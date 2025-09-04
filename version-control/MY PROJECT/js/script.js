@@ -42,14 +42,14 @@ function draw() {
         // No line around the levels
         noStroke();
         // Set the fill colour to our shade (RGB)
-        fill(shade, shade, 0);
+        fill(shade, shade, 22);
         // Draw rectangles from the centre
         rectMode(CENTER);
         // Draw the rectangle in the centre of the canvas
         // (320, 320) with a size based on the level
         // e.g. level 1 will be a 48x48 rectangle and
         // level 10 will be a 480x480 rectangle
-        rect(320, 320, level * 20, level * 20);
+        rect(320, 320, level * 10, level * 20);
         pop();
     }
 
@@ -58,8 +58,8 @@ function draw() {
     // No line around the shape
     noStroke();
     // Make it red (RGB)
-    fill(255, 0, 0);
+    fill(128, 15, 10);
     // Draw a 100x100 circle at the mouse position
-    ellipse(mouseX, mouseY, 100, 100);
+    ellipse(mouseX, mouseY, 50, 50);
     pop();
 }
