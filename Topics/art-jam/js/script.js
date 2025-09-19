@@ -33,9 +33,17 @@ function draw() {
     drawPizza();
 
     //Mouth opens whenever the hand with the pizza gets close
-
-
 }
 
-
-
+function drawBody() {
+    //Body
+    push();
+    noStroke();
+    fill("#AF2413");
+    ellipse(470, 530, 290, 380);
+    fill("#AF2413");
+    ellipse(470, 340, 200, 220)
+    fill("#950606")
+    ellipse(470, 355, 150, 160);
+    pop();
+}
