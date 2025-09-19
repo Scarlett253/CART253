@@ -7,19 +7,19 @@
 
 "use strict";
 
-/**
- * Really pretty project In process...
-*/
+
 function setup() {
-    createcanvas(940, 580)
-
+    //creating a canvas
+    createCanvas(640, 480)
 }
-
-
 /**
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
-    Background(255, 200, 200)
+    //Adding some color on the back
+    background(250, 200, 200)
+}
+const Me = {
+    //Drawing body
 
 }
