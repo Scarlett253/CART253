@@ -1,17 +1,17 @@
 /**
- * Title of Project
- * Author Name
+ * Me, I and myself: Art Jam Self-portrait project
+ * Yvonne Scarlett Arriola Lerin
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Draw a self-portrait (in JavaScript with p5)
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * Really pretty project In process...
 */
 function setup() {
+    createcanvas(940, 580)
 
 }
 
@@ -20,5 +20,6 @@ function setup() {
  * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
 */
 function draw() {
+    Background(255, 200, 200)
 
 }
