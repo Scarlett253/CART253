@@ -34,13 +34,23 @@ function draw() {
 
     //Mouth opens whenever the hand with the pizza gets close
 }
+function drawFace() {
+    //Face
+    push();
+    noStroke();
+    fill("#EDAC69");
+    elipse(100, 100, 100, 100);
 
+}
 function drawBody() {
     //Body
     push();
     noStroke();
     fill("#AF2413");
     ellipse(470, 530, 290, 380);
+}
+function drawHoodie() {
+    //Hoodie
     fill("#AF2413");
     ellipse(470, 340, 200, 220)
     fill("#950606")
