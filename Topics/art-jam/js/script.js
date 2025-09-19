@@ -10,16 +10,32 @@
 
 function setup() {
     //creating a canvas
-    createCanvas(640, 480)
+    createCanvas(940, 580);
 }
+
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * Draw of myself, eating, with a mouvable hand holding a pizza
 */
 function draw() {
     //Adding some color on the back
-    background(250, 200, 200)
-}
-const Me = {
-    //Drawing body
+    background(250, 200, 200);
+
+    //Me, I, and Myself
+    drawBody();
+    drawHoodie();
+    drawFace();
+    drawMouth();
+    drawBlush();
+    drawHair();
+
+    //Hand holding pizza
+    drawHand();
+    drawPizza();
+
+    //Mouth opens whenever the hand with the pizza gets close
+
 
 }
+
+
+
