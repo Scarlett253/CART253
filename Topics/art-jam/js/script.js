@@ -25,6 +25,7 @@ function draw() {
     drawHoodie();
     drawFace();
     drawMouth();
+    drawEyes();
     drawBlush();
     drawHair();
 
@@ -34,14 +35,7 @@ function draw() {
 
     //Mouth opens whenever the hand with the pizza gets close
 }
-function drawFace() {
-    //Face
-    push();
-    noStroke();
-    fill("#EDAC69");
-    elipse(100, 100, 100, 100);
 
-}
 function drawBody() {
     //Body
     push();
@@ -56,4 +50,31 @@ function drawHoodie() {
     fill("#950606")
     ellipse(470, 355, 150, 160);
     pop();
+}
+function drawFace() {
+    //Face
+    push();
+    noStroke();
+    fill("#FFDFC4");
+    ellipse(470, 355, 140, 150);
+    pop();
+
+}
+function drawMouth() {
+    //Mouth opens whenever the hand with the pizza gets close
+    push();
+    noStroke();
+    fill("#680C07");
+    ellipse(470, 385, 50, 10);
+    pop();
+
+}
+function drawEyes() {
+    //Eyes follow the pizza
+    push();
+    noStroke();
+    fill("#FFFFFF");
+    ellipse(435, 335, 40, 40);
+    fill("#FFFFFF");
+    ellipse(505, 335, 40, 40);
 }
