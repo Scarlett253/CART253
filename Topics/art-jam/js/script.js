@@ -7,6 +7,10 @@
 
 "use strict";
 
+//Mouth opens whenever the hand with the pizza gets close
+
+let x = 200;
+let y = 200;
 
 function setup() {
     //creating a canvas
@@ -25,15 +29,13 @@ function draw() {
     drawHoodie();
     drawFace();
     drawMouth();
-    drawEyes();
     drawBlush();
+    drawEyes();
     drawHair();
 
     //Hand holding pizza
     drawHand();
     drawPizza();
-
-    //Mouth opens whenever the hand with the pizza gets close
 }
 
 function drawBody() {
@@ -42,15 +44,20 @@ function drawBody() {
     noStroke();
     fill("#AF2413");
     ellipse(470, 530, 290, 380);
+    pop();
 }
+
 function drawHoodie() {
     //Hoodie
+    push();
+    noStroke();
     fill("#AF2413");
     ellipse(470, 340, 200, 220)
     fill("#950606")
     ellipse(470, 355, 150, 160);
     pop();
 }
+
 function drawFace() {
     //Face
     push();
@@ -58,8 +65,8 @@ function drawFace() {
     fill("#FFDFC4");
     ellipse(470, 355, 140, 150);
     pop();
-
 }
+
 function drawMouth() {
     //Mouth opens whenever the hand with the pizza gets close
     push();
@@ -67,14 +74,47 @@ function drawMouth() {
     fill("#680C07");
     ellipse(470, 385, 50, 10);
     pop();
-
 }
+
+function drawBlush() {
+    //Blush in cheek one
+    push();
+    noStroke();
+    fill("#e3bcd8ff");
+    ellipse(420, 360, 30, 30);
+    pop();
+
+    //Blush in cheek two
+    push();
+    noStroke();
+    fill("#e3bcd8ff");
+    ellipse(520, 360, 30, 30);
+    pop();
+}
+
 function drawEyes() {
-    //Eyes follow the pizza
+    //Draw the left eye
     push();
     noStroke();
     fill("#FFFFFF");
     ellipse(435, 335, 40, 40);
+    fill("#000000");
+    ellipse(435, 335, 30, 30);
+    pop();
+
+    //Draw the right eye
+    push();
+    noStroke();
     fill("#FFFFFF");
     ellipse(505, 335, 40, 40);
+    fill("#000000");
+    ellipse(505, 335, 30, 30);
+    pop();
+}
+function drawHair() {
+    //Draw toupet one
+    push();
+    noStroke();
+    fill("#482828ff");
+    ellipse(470, 280, 50, 20);
 }
