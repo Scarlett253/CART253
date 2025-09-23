@@ -52,8 +52,13 @@ function drawHoodie() {
     push();
     noStroke();
     fill("#AF2413");
-    ellipse(470, 340, 200, 220)
-    fill("#950606")
+    ellipse(470, 340, 200, 220);
+    pop();
+
+    //Inside the Hoodie
+    push();
+    noStroke();
+    fill("#950606");
     ellipse(470, 355, 150, 160);
     pop();
 }
@@ -111,10 +116,33 @@ function drawEyes() {
     ellipse(505, 335, 30, 30);
     pop();
 }
+
 function drawHair() {
     //Draw toupet one
     push();
     noStroke();
     fill("#482828ff");
-    ellipse(470, 280, 50, 20);
+    ellipse(438, 285, 50, 20);
+    pop();
+
+    //Draw toupet two
+    push();
+    noStroke();
+    fill("#482828ff");
+    ellipse(470, 280, 20, 50);
+    pop();
+
+    //Draw toupet three
+    push();
+    noStroke();
+    fill("#482828ff");
+    ellipse(497, 285, 50, 20);
+    pop();
+
+    //Lock of hair one
+    push();
+    noStroke();
+    fill("#482828ff");
+    rec(430, 370, 40, 100);
+    pop();
 }
