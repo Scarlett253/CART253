@@ -77,7 +77,11 @@ function drawMouth() {
     push();
     noStroke();
     fill("#680C07");
-    ellipse(470, 385, 50, 10);
+    // d = distance between the mouse and the center of the mouth
+    let d = dist(mouseX, mouseY, 470, 385);
+    let mouthSize = map(d, 0, 385, 50, 10);
+    mouthSize = constrain(mouthSize, 10, 50);
+    ellipse(470, 385, mouthSize, mouthSize);
     pop();
 }
 
