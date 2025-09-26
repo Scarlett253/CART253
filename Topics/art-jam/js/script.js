@@ -11,10 +11,10 @@ function setup() {
     //creating a canvas
     createCanvas(940, 580);
 }
-describe('The pizza follows the mouse as the user moves. Mouth opens whenever the pizza comes close')
+describe('The pizza follows the mouse as the user moves. Mouth opens whenever the cookie comes close')
 
 /**
- * Draw of myself, eating, with a floating mouse/pizza
+ * Draw of myself, eating, with a floating mouse/cookie
 */
 function draw() {
     //Adding some color on the back
@@ -29,8 +29,8 @@ function draw() {
     drawEyes();
     drawHair();
 
-    //Pizza
-    drawPizza();
+    //Cookie
+    drawCookie();
 }
 
 function drawBody() {
@@ -68,7 +68,7 @@ function drawFace() {
 }
 
 function drawMouth() {
-    //Mouth opens whenever the hand with the pizza gets close
+    //Mouth opens whenever the cookie gets close
     push();
     noStroke();
     fill("#680C07");
@@ -139,11 +139,29 @@ function drawHair() {
     pop();
 }
 
-function drawPizza() {
-    //Draw triangle as a pizza slice
+function drawCookie() {
+    //Cookie
     push();
     noStroke();
+    noCursor();
     fill("#efc713ff");
+    circle(mouseX, mouseY, 40);
+    //Chocolate chips
+    fill("#48280fff");
+    let chips = [
+        [-12, -8], [10, -6], [-5, 6],
+        [14, 4], [-15, 5], [2, -14],
+        [6, 12]
+    ];
+
+    for (let i = 0; i < chips.length; i++) {
+        let dx = chips[i][0];
+        let dy = chips[i][1];
+        circle(mouseX + dx, mouseY + dy, 6);
+    }
+
+
+
 
 
 
