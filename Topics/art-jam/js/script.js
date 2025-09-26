@@ -7,18 +7,14 @@
 
 "use strict";
 
-//Mouth opens whenever the hand with the pizza gets close
-
-let x = 200;
-let y = 200;
-
 function setup() {
     //creating a canvas
     createCanvas(940, 580);
 }
+describe('The pizza follows the mouse as the user moves. Mouth opens whenever the pizza comes close')
 
 /**
- * Draw of myself, eating, with a mouvable hand holding a pizza
+ * Draw of myself, eating, with a floating mouse/pizza
 */
 function draw() {
     //Adding some color on the back
@@ -33,8 +29,7 @@ function draw() {
     drawEyes();
     drawHair();
 
-    //Hand holding pizza
-    drawHand();
+    //Pizza
     drawPizza();
 }
 
@@ -145,20 +140,11 @@ function drawHair() {
 }
 
 function drawPizza() {
-    //Begin drawing group
+    //Draw triangle as a pizza slice
     push();
-
-    //Mouse position
-    translate(mouseX, mouseY);
-
-    //Style the pizza
-    fill("#efc713ff");
     noStroke();
+    fill("#efc713ff");
 
-    //Draw pizza base
-
-    triangle(0, 0, 0, 0, 0, 0);
-    pop();
 
 
 
