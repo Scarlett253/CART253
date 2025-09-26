@@ -138,11 +138,24 @@ function drawHair() {
     fill("#482828ff");
     ellipse(497, 285, 50, 20);
     pop();
+}
 
-    //Lock of hair one
+function drawPizza() {
+    //Begin drawing group
     push();
+
+    //Mouse position
+    translate(mouseX, mouseY);
+
+    //Style the pizza
+    fill("#efc713ff");
     noStroke();
-    fill("#482828ff");
-    rec(430, 370, 40, 100);
+
+    //Draw pizza base
+
+    triangle(0, 0, 0, 0, 0, 0);
     pop();
+
+
+
 }

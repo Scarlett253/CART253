@@ -1,4 +1,4 @@
-/**
+/**Participants: Scarlett Arriola, Chloé Guérin, Lucie Soussan, Yelena Arakelian
  * Circle Master
  * Pippin Barr
  *
@@ -25,6 +25,8 @@ const user = {
  */
 function setup() {
     createCanvas(400, 400);
+
+
 }
 
 /**
@@ -39,6 +41,7 @@ function draw() {
     // Draw the user and puck
     drawUser();
     drawPuck();
+
 }
 
 /**
@@ -48,6 +51,9 @@ function moveUser() {
     user.x = mouseX;
     user.y = mouseY;
 }
+/**
+* Sets the puck position to the mouse position
+*/
 
 /**
  * Displays the user circle
@@ -69,4 +75,15 @@ function drawPuck() {
     fill(puck.fill);
     ellipse(puck.x, puck.y, puck.size);
     pop();
+}
+/** 
+*Calculate distance between circles centres
+*/
+function movePuck() {
+    const d = dist(user.x, user.y, puck.x, puck.y);
+    if (d < user.size / 2 + puck.Size / 2);
+
+    if (puck.x > user.x);
+         
+        
 }
