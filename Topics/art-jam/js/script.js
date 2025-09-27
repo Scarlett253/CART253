@@ -29,13 +29,12 @@ function draw() {
     drawEyes();
     drawHair();
 
-    //Bee
+    //Beetles
     drawBee();
+    drawLadybug();
 
     //Cookie
     drawCookie();
-
-
 }
 
 function drawBody() {
@@ -101,7 +100,6 @@ function drawBlush() {
     pop();
 }
 
-
 function drawEyes() {
     //Draw white part of the eyes
     push();
@@ -146,11 +144,90 @@ function drawHair() {
 }
 
 function drawBee() {
+    //Wings
+    push();
+    noStroke();
+    fill("#75c3f0ff");
+    ellipse(90, 60, 15, 45);
+    fill("#69bae8ff");
+    ellipse(100, 60, 15, 40);
+    pop();
+
     //Body
     push();
     noStroke();
     fill("#e4e00fff");
-    ellipse()
+    ellipse(100, 100, 80, 50);
+    fill("#1b0303ff");
+    ellipse(100, 100, 10, 50);
+    fill("#1b0303ff");
+    ellipse(80, 100, 10, 40);
+    fill("#1b0303ff");
+    ellipse(118, 100, 10, 42);
+    pop();
+
+    //Antennas
+    push();
+    noStroke();
+    fill("#1b0303ff");
+    ellipse(124, 70, 5, 30);
+    fill("#1b0303ff");
+    ellipse(138, 70, 5, 30);
+    pop();
+
+    //Antennas' antennas
+    push();
+    noStroke();
+    fill("#1b0303ff");
+    ellipse(124, 60, 10, 3);
+    fill("#1b0303ff");
+    ellipse(138, 60, 10, 3);
+    pop();
+
+    //Head
+    push();
+    noStroke();
+    fill("#1b0303ff");
+    ellipse(132, 100, 30, 40);
+    pop();
+
+    //Sting
+    push();
+    noStroke();
+    fill("#1b0303ff");
+    ellipse(60, 100, 10, 20);
+    fill("#1b0303ff");
+    ellipse(50, 100, 20, 5);
+    pop();
+
+    //Draw white part of the bee's eyes
+    push();
+    noStroke();
+    fill("#FFFFFF");
+    ellipse(125, 90, 12, 12);
+    fill("#FFFFFF");
+    ellipse(140, 90, 12, 12);
+    pop();
+
+    //Draw pupils
+    push();
+    noStroke();
+    fill("#000000");
+    ellipse(125, 90, 9, 9);
+    fill("#000000");
+    ellipse(140, 90, 9, 9);
+    pop();
+
+    //Mouth
+    push();
+    noStroke();
+    fill("#ef5ba7ff");
+    // d = distance between the mouse and the center of the bee's mouth
+    let d = dist(mouseX, mouseY, 133, 108);
+    let mouthSize = map(d, 0, 108, 30, 12);
+    mouthSize = constrain(mouthSize, 12, 30);
+    ellipse(133, 108, mouthSize, mouthSize);
+    pop();
 }
 
 function drawCookie() {
