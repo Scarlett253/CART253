@@ -117,13 +117,9 @@ function drawEyes() {
     noStroke();
     fill("#000000");
     ellipse(435, 335, 30, 30);
-    pop();
-
-    push();
     fill("#000000");
     ellipse(505, 335, 30, 30);
     pop();
-    //Eyes following cookie
 }
 
 function drawHair() {
