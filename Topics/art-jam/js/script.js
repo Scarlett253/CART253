@@ -11,7 +11,7 @@ function setup() {
     //creating a canvas
     createCanvas(940, 580);
 }
-describe('The pizza follows the mouse as the user moves. Mouth opens whenever the cookie comes close')
+describe('The cookie follows the mouse as the user moves. Mouth opens whenever the cookie comes close')
 
 /**
  * Draw of myself, eating, with a floating mouse/cookie
@@ -29,8 +29,13 @@ function draw() {
     drawEyes();
     drawHair();
 
+    //Bee
+    drawBee();
+
     //Cookie
     drawCookie();
+
+
 }
 
 function drawBody() {
@@ -96,24 +101,29 @@ function drawBlush() {
     pop();
 }
 
+
 function drawEyes() {
-    //Draw the left eye
+    //Draw white part of the eyes
     push();
     noStroke();
     fill("#FFFFFF");
     ellipse(435, 335, 40, 40);
+    fill("#FFFFFF");
+    ellipse(505, 335, 40, 40);
+    pop();
+
+    //Draw pupils
+    push();
+    noStroke();
     fill("#000000");
     ellipse(435, 335, 30, 30);
     pop();
 
-    //Draw the right eye
     push();
-    noStroke();
-    fill("#FFFFFF");
-    ellipse(505, 335, 40, 40);
     fill("#000000");
     ellipse(505, 335, 30, 30);
     pop();
+    //Eyes following cookie
 }
 
 function drawHair() {
@@ -139,6 +149,14 @@ function drawHair() {
     pop();
 }
 
+function drawBee() {
+    //Body
+    push();
+    noStroke();
+    fill("#e4e00fff");
+    ellipse()
+}
+
 function drawCookie() {
     //Cookie
     push();
@@ -146,6 +164,7 @@ function drawCookie() {
     noCursor();
     fill("#efc713ff");
     circle(mouseX, mouseY, 40);
+    pop();
     //Chocolate chips
     fill("#48280fff");
     let chips = [
@@ -159,11 +178,6 @@ function drawCookie() {
         let dy = chips[i][1];
         circle(mouseX + dx, mouseY + dy, 6);
     }
-
-
-
-
-
-
-
 }
+
+
