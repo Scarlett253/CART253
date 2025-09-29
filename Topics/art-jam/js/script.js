@@ -13,6 +13,10 @@ function setup() {
 
     //Slow frame rate
     frameRate(10);
+
+    //Text
+    textSize(50);
+
 }
 describe('The cookie follows the mouse as the user moves. Mouth opens whenever the cookie comes close')
 
@@ -47,6 +51,15 @@ function drawBody() {
     fill("#AF2413");
     ellipse(470, 530, 290, 380);
     pop();
+
+    //Heart
+    push();
+    noStroke();
+    fill("#f2eb17ff");
+    circle(440, 570, 110);
+    fill("#f2eb17ff");
+    circle(500, 570, 110);
+    pop();
 }
 
 function drawHoodie() {
@@ -63,6 +76,25 @@ function drawHoodie() {
     fill("#950606");
     ellipse(470, 355, 150, 160);
     pop();
+
+    //Antennas
+    push();
+    noStroke();
+    fill("#AF2413");
+    rect(425, 180, 5, 70);
+    fill("#AF2413");
+    rect(515, 180, 5, 70);
+    pop();
+
+    //Antennas puffs
+    push();
+    noStroke();
+    fill("#f2eb17ff");
+    circle(425, 170, 40);
+    fill("#f2eb17ff");
+    circle(515, 170, 40);
+    pop();
+
 }
 
 function drawFace() {
