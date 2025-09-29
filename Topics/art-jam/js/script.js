@@ -29,9 +29,8 @@ function draw() {
     drawEyes();
     drawHair();
 
-    //Beetles
+    //Bee
     drawBee();
-    drawLadybug();
 
     //Cookie
     drawCookie();
