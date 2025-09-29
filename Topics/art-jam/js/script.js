@@ -85,6 +85,7 @@ function drawMouth() {
     mouthSize = constrain(mouthSize, 10, 50);
     ellipse(470, 385, mouthSize, mouthSize);
     pop();
+
 }
 
 function drawBlush() {
@@ -246,8 +247,20 @@ function drawCookie() {
     fill("#efc713ff");
     circle(mouseX, mouseY, 40);
     pop();
+
+    //Cookie eaten
+    if (mouseIsPressed) {
+        circle(mouseX, mouseY, 40);
+    } else {
+        fill("#efc713ff");
+    }
+    {
+        circle(mouseX, mouseY, 40);
+    }
+    { noStroke(); }
+
     //Chocolate chips
-    fill("#48280fff");
+    fill("#680C07");
     let chips = [
         [-12, -8], [10, -6], [-5, 6],
         [14, 4], [-15, 5], [2, -14],
@@ -259,6 +272,9 @@ function drawCookie() {
         let dy = chips[i][1];
         circle(mouseX + dx, mouseY + dy, 6);
     }
+
+
+
 }
 
 
