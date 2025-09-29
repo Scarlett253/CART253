@@ -10,6 +10,9 @@
 function setup() {
     //creating a canvas
     createCanvas(940, 580);
+
+    //Slow frame rate
+    frameRate(10);
 }
 describe('The cookie follows the mouse as the user moves. Mouth opens whenever the cookie comes close')
 
@@ -29,8 +32,9 @@ function draw() {
     drawEyes();
     drawHair();
 
-    //Bee
+    //Bugs
     drawBee();
+    drawBees();
 
     //Cookie
     drawCookie();
@@ -227,6 +231,11 @@ function drawBee() {
     mouthSize = constrain(mouthSize, 12, 30);
     ellipse(133, 108, mouthSize, mouthSize);
     pop();
+}
+function drawBees() {
+    let x = random(0, 940);
+    let y = random(0, 580);
+    text('🐝', x, y);
 }
 
 function drawCookie() {
