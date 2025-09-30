@@ -158,24 +158,36 @@ function drawEyes() {
 
 function drawHair() {
     //Draw toupet one
-    push();
-    noStroke();
-    fill("#482828ff");
-    ellipse(438, 285, 50, 20);
-    pop();
+    // push();
+    // noStroke();
+    // fill("#482828ff");
+    // ellipse(438, 285, 50, 20);
+    // pop();
 
-    //Draw toupet two
-    push();
-    noStroke();
-    fill("#482828ff");
-    ellipse(470, 280, 20, 50);
-    pop();
+    // //Draw toupet two
+    // push();
+    // noStroke();
+    // fill("#482828ff");
+    // ellipse(470, 280, 20, 50);
+    // pop();
 
-    //Draw toupet three
+    // //Draw toupet three
+    // push();
+    // noStroke();
+    // fill("#482828ff");
+    // ellipse(497, 285, 50, 20);
+    // pop();
+
+    drawToupet(438, 285, 50, 20);
+    drawToupet(470, 280, 20, 50);
+    drawToupet(497, 285, 50, 20);
+}
+
+function drawToupet(x_pos, y_pos, width, height) {
     push();
     noStroke();
     fill("#482828ff");
-    ellipse(497, 285, 50, 20);
+    ellipse(x_pos, y_pos, width, height);
     pop();
 }
 
