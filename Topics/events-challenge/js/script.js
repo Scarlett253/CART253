@@ -67,7 +67,11 @@ function displayScore() {
 
 //Add lose function
 function lose() {
-    push();
-
-
+    gameOver = true
 }
+if (keyIsPressed) {
+    if (mouseIsPressed)
+        if (mouseMoved)
+            lose()
+}
+
