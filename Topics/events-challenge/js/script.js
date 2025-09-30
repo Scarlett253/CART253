@@ -1,6 +1,6 @@
 /**
  * Events Challenge
- * Scarlett Arriola, Chloé Guerin, Lucie Soussana, Yelena A
+ * Scarlett Arriola, Chloé Guerin, Lucie Soussana, Yelena Arakelian
  * 
  /**
  * The Only Move Is Not To Play
@@ -67,11 +67,20 @@ function displayScore() {
 
 //Add lose function
 function lose() {
-    gameOver = true
+    gameOver = true;
 }
-if (keyIsPressed) {
-    if (mouseIsPressed)
-        if (mouseMoved)
-            lose()
+
+//Any action will make the game end
+function keyPressed() {
+    lose()
 }
+
+function mousePressed() {
+    lose()
+}
+
+function mouseMoved() {
+    lose()
+}
+
 
