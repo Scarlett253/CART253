@@ -12,7 +12,9 @@ function setup() {
     createCanvas(940, 580);
 
     //Slow frame rate
+    let = frameCount % 100;
     frameRate(10);
+
 
     //Text
     textSize(50);
@@ -60,6 +62,8 @@ function drawBody() {
     fill("#f2eb17ff");
     circle(500, 570, 110);
     pop();
+
+
 }
 
 function drawHoodie() {
@@ -76,6 +80,12 @@ function drawHoodie() {
     fill("#950606");
     ellipse(470, 355, 150, 160);
     pop();
+
+    //Hoodie details
+    push();
+    noStroke();
+    noFill();
+    circle(440, 500, 10);
 
     //Antennas
     push();
