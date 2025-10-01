@@ -12,14 +12,12 @@ function setup() {
     createCanvas(940, 580);
 
     //Slow frame rate
-    let = frameCount % 100;
     frameRate(10);
-
 
     //Text
     textSize(50);
-
 }
+
 describe('The cookie follows the mouse as the user moves. Mouth opens whenever the cookie comes close')
 
 /**
@@ -62,8 +60,6 @@ function drawBody() {
     fill("#f2eb17ff");
     circle(500, 570, 110);
     pop();
-
-
 }
 
 function drawHoodie() {
@@ -104,7 +100,6 @@ function drawHoodie() {
     fill("#f2eb17ff");
     circle(515, 170, 40);
     pop();
-
 }
 
 function drawFace() {
@@ -287,6 +282,7 @@ function drawBee() {
     ellipse(133, 108, mouthSize, mouthSize);
     pop();
 }
+
 function drawBees() {
     let x = random(0, 940);
     let y = random(0, 580);
