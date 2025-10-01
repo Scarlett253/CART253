@@ -284,6 +284,9 @@ function drawBee() {
 }
 
 function drawBees() {
+    fill(0); // Ensure visible color
+    textSize(50); // Keep the size consistent
+    textFont('Arial'); //
     let x = random(0, 940);
     let y = random(0, 580);
     text('🐝', x, y);
