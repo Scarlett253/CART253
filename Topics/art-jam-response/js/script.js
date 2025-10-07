@@ -1,6 +1,6 @@
 /**
- * Title of Project
- * Author Name
+ * Art-Jam-Response
+ * Yvonne Scarlett Arriola Lerin 
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
