@@ -1,6 +1,6 @@
 /**
  * Title of Project
- * Yvonne Scarlett Arriola Lerin <3
+ * Author Name
  * 
  * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
  * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
