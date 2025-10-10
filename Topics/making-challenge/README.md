@@ -1,6 +1,5 @@
-# TITLE OF PROJECT
-
-Yvonne Scarlett Arriola Lerin <3
+# Mod-Jam-Brainstorm
+Yvonne Scarlett Arriola Lerin
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
