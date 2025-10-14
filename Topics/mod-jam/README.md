@@ -1,7 +1,6 @@
-# TITLE OF PROJECT
+# Am I a Frog?
 
-AUTHOR NAME
-
+Yvonne Scarlett Arriola Lerin <3
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
