@@ -1,9 +1,15 @@
 /**
- * My Mod-Jam
- * Yvonne Scarlett Arriola Lerin <3
+ * FrogFrogFrog
+ * Pippin Barr
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Game about catching flies as a frog.
+ * 
+ * The frog is at the bottom centre and you shoot its tongue to a 
+ * specific destination with a click/touch. If it hits the fly
+ * the fly gets eaten and on you go forever.
+ * 
+ * There are no consequences for anything yet which is kind of chill
+ * but probably should change.
  */
 
 "use strict";
@@ -490,49 +496,10 @@ function lightMask() {
 
 
 
-function preload() { }
-
-/**
- * Only at the beginning of the program
-*/
-function setup() {
-    //Creating a canvas
-    createCanvas(500, 800);
-
-    //reset scoring system
-    resetScoringSystem();
-
-    //reset frog and fly positions
-    resetFrog();
-    resetFly();
-
-}
-
-
-/**
- *For every frame
-*/
-function draw() {
-    //Setting background color
-    background(150, 200, 300);
-
-    //Adding a title and instructions page
-    function title() {
-
-    }
-    instructions();
-
-    //Adding an ending
-    ending();
-
-    //Adding a scoring system
-    scoringSystem();
-
-    //Adding a timer
-    timer();
 
 
 
-}
+
+
 
 
