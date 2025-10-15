@@ -1,6 +1,6 @@
 /**
- * Frogfrogfrog
- * Pippin Barr
+ * Am I a Frog?
+ * Scarlett Arriola Lerin <3
  * 
  * A game of catching flies with your frog-tongue
  * 
@@ -38,11 +38,12 @@ const frog = {
 // Has a position, size, and speed of horizontal movement
 const fly = {
     x: 0,
-    y: 200, // Will be random
+    y: 0, // Will be random
     size: 10,
     speed: 3
 };
-
+//Current state for a title screen
+let state = "title screen";
 /**
  * Creates the canvas and initializes the fly
  */
@@ -53,7 +54,15 @@ function setup() {
     resetFly();
 }
 
+
+
 function draw() {
+    if (state === "title screen") {
+        titleScreen();
+    }
+    else if (state === "game start") {
+        gameStart();
+    }
     background("#87ceeb");
     moveFly();
     drawFly();
@@ -63,6 +72,24 @@ function draw() {
     checkTongueFlyOverlap();
 }
 
+/**Draw a title and instructions page before the game starts*/
+function titleScreen() {
+    //Background color
+    background("#0b1259ff");
+
+    //Title text
+    push();
+    textSize(60);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("Am I a", CENTER, CENTER);
+    text("Frog?", CENTER, CENTER + 70);
+    pop();
+
+}
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
@@ -84,6 +111,7 @@ function drawFly() {
     noStroke();
     fill("#000000");
     ellipse(fly.x, fly.y, fly.size);
+    ellipse(fly.x, fly.y,)
     pop();
 }
 
@@ -91,8 +119,8 @@ function drawFly() {
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = 0;
-    fly.y = random(0, 300);
+    fly.x = random(0, 640),
+        fly.y = random(0, 480);
 }
 
 /**
@@ -163,7 +191,7 @@ function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     // Check if it's an overlap
-    const eaten = (d < frog.tongue.size/2 + fly.size/2);
+    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
     if (eaten) {
         // Reset the fly
         resetFly();

@@ -1,4 +1,4 @@
-# Frogfrogfrog
+# Am I a Frog?
 
 A game about catching flies.
 

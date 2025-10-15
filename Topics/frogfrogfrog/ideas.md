@@ -1,24 +1,16 @@
 # Starting points
 
 
-Finding metro tickets on the ground and trying to sell them
+* A title and instructions screen. Could the frog be used to start the game? Could the frog eat the title?
 
-**Frog eating flies but it gets harder and harder to catch them**
+* An ending. How should the game end? Because the frog explodes with flies? Because it starves? How can you tell the game is over?
 
-Swimming lessons but controlling your body is really hard
+* A scoring system. But not just a standard number counting up on the screen.
 
-Crossing the street and it’s busy
+* New kinds of fly movement. Sine wave? Random movement? Perlin noise? Teleportation? Controlled by a second player?
 
-Riding a tricycle but the wheel keeps falling off
+* New visual and/or audio effects. Frog’s eyes follow the fly? Sound effects for all major actions? Fly flaps its wings? Frog hops around instead of sliding?
 
-Shaving people’s heads in beautiful patterns and showing them at an art gallery
+* Visually bringing the fly back to the frog’s mouth on capture. Relative positioning needed for this
 
-Making cups out of clay and seeing what cafe customers say about them
-
-Growing plants that eat you
-
-Keeping a computer mouse as a pet and looking after it
-
-Rewiring a light
-
-Cooking spaghetti with a dog
+* A new control system. The keyboard is an obvious choice here? Or clicking where you want the frog to go? Or telling it where to go? Or having it move on its own? Or being able to control the tongue while it’s moving?
