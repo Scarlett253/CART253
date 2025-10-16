@@ -15,6 +15,13 @@
 
 "use strict";
 
+//Current score
+let score = 0;
+
+//Is the game over?
+let gameOver = false;
+
+/**Frog Settings */
 // Our frog
 const frog = {
     // The frog's body has a position and size
@@ -34,6 +41,7 @@ const frog = {
     }
 };
 
+/**Fly Settings */
 // Our fly
 // Has a position, size, and speed of horizontal movement
 const fly = {
@@ -42,8 +50,19 @@ const fly = {
     size: 10,
     speed: 3
 };
-//Current state for a title screen
+
+/** Load sounds */
+function preload() {
+}
+
+/**Current state for a title screen*/
 let state = "title screen";
+
+//Start game when a key is pressed
+function keyPressed() {
+    if (state === "title screen");
+    state = "game start";
+}
 /**
  * Creates the canvas and initializes the fly
  */
@@ -55,7 +74,7 @@ function setup() {
 }
 
 
-
+//Draw the title screen 
 function draw() {
     if (state === "title screen") {
         titleScreen();
@@ -63,6 +82,54 @@ function draw() {
     else if (state === "game start") {
         gameStart();
     }
+
+    /**Draw a title and instructions page before the game starts*/
+    function titleScreen() {
+        //Background color
+        background("#0b1259ff");
+
+        //Title text
+        push();
+        textSize(60);
+        textStyle(BOLD);
+        textAlign(CENTER, CENTER);
+        fill("#000000");
+        stroke("#FFFFFF");
+        strokeWeight(4);
+        text("Am I a", CENTER, CENTER);
+        text("Frog?", CENTER, CENTER + 70);
+        pop();
+    }
+
+    //Only increase score when the game is not over
+    if (!gameOver) {
+        score = + 0.5;
+    }
+    //Display the game over screen
+    displayUI();
+}
+//Display the game over on the screen
+function displayUI() {
+    if (gameOver) {
+        push();
+        textSize(40);
+        textStyle(BOLD);
+        textAlign(320, 100);
+        text("Game Over!", width / 2, height / 3);
+        pop();
+    }
+    //Display the score
+    displayScore();
+}
+//Display the score on the screen
+function displayScore() {
+    push();
+    textSize(40);
+    textStyle(BOLD);
+    textAlign(320, 100);
+    text(floor(score), width / 2, height / 3);
+    pop();
+
     background("#87ceeb");
     moveFly();
     drawFly();
@@ -70,26 +137,15 @@ function draw() {
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
-}
-
-/**Draw a title and instructions page before the game starts*/
-function titleScreen() {
-    //Background color
-    background("#0b1259ff");
-
-    //Title text
-    push();
-    textSize(60);
-    textStyle(BOLD);
-    textAlign(CENTER, CENTER);
-    fill("#000000");
-    stroke("#FFFFFF");
-    strokeWeight(4);
-    text("Am I a", CENTER, CENTER);
-    text("Frog?", CENTER, CENTER + 70);
-    pop();
 
 }
+
+
+
+
+
+
+
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
