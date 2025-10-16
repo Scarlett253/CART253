@@ -61,7 +61,7 @@ let state = "title screen";
 //Start game when a key is pressed
 function keyPressed() {
     if (state === "title screen");
-    state = "game start";
+    state = "game start"
 }
 /**
  * Creates the canvas and initializes the fly
@@ -79,35 +79,44 @@ function draw() {
     if (state === "title screen") {
         titleScreen();
     }
-    else if (state === "game start") {
-        gameStart();
+    else if (state === "game screen") {
+        gameScreen();
     }
 
-    /**Draw a title and instructions page before the game starts*/
     function titleScreen() {
+        //Disolay the title screen 
         //Background color
         background("#0b1259ff");
-
-        //Title text
-        push();
-        textSize(60);
-        textStyle(BOLD);
-        textAlign(CENTER, CENTER);
-        fill("#000000");
-        stroke("#FFFFFF");
-        strokeWeight(4);
-        text("Am I a", CENTER, CENTER);
-        text("Frog?", CENTER, CENTER + 70);
-        pop();
+        // background("#87ceeb");
+        moveFrog();
+        moveTongue();
+        moveFly();
+        checkTongueFlyOverlap();
+        drawFrog();
+        drawFly();
+        displayScore();
     }
 
-    //Only increase score when the game is not over
-    if (!gameOver) {
-        score = + 0.5;
-    }
-    //Display the game over screen
-    displayUI();
+    //Title text
+    push();
+    textSize(60);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("Am I a", CENTER, CENTER);
+    text("Frog?", CENTER, CENTER + 70);
+    pop();
 }
+
+//Only increase score when the frog catches a fly
+if (checkTongueFlyOverlap) {
+    score = + 0.5;
+}
+//Display the game over screen
+displayUI();
+
 //Display the game over on the screen
 function displayUI() {
     if (gameOver) {
@@ -119,7 +128,7 @@ function displayUI() {
         pop();
     }
     //Display the score
-    displayScore();
+    // displayScore();
 }
 //Display the score on the screen
 function displayScore() {
@@ -129,22 +138,7 @@ function displayScore() {
     textAlign(320, 100);
     text(floor(score), width / 2, height / 3);
     pop();
-
-    background("#87ceeb");
-    moveFly();
-    drawFly();
-    moveFrog();
-    moveTongue();
-    drawFrog();
-    checkTongueFlyOverlap();
-
 }
-
-
-
-
-
-
 
 /**
  * Moves the fly according to its speed
