@@ -19,7 +19,7 @@
 let gameState = "title screen";
 
 //Current score
-// let score = 0;
+let score = 0;
 
 //Is the game over?
 // let gameOver = false;
@@ -62,10 +62,10 @@ const fly = {
 // let background
 
 //Start game when a key is pressed
-// function keyPressed() {
-// if (state === "title screen");
-// state = "game start"
-// }
+function keyPressed() {
+    if (gameState === "title screen")
+        gameState = "playing"
+}
 /**
  * Creates the canvas and initializes the fly
  */
@@ -110,8 +110,8 @@ function titleScreen() {
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text("Am I a", CENTER, CENTER);
-    text("Frog?", CENTER, CENTER + 70);
+    text("Am I a", width / 2, height / 2);
+    text("Frog?", width / 2, width / 2 + 70);
     pop();
 }
 
@@ -154,8 +154,8 @@ function drawFly() {
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = random(0, 640),
-        fly.y = random(0, 480);
+    fly.x = random(0, 640)
+    fly.y = random(0, 480);
 }
 
 /**

@@ -8,4 +8,5 @@ A game about catching flies.
 - [Planning](./planning.md)
 - [Pseudocode](./pseudocode.md)
 Sources
-events-challenge
+events-challenge 
+change variables video-examples
