@@ -16,3 +16,7 @@
 * A new control system. The keyboard is an obvious choice here? Or clicking where you want the frog to go? Or telling it where to go? Or having it move on its own? Or being able to control the tongue while it’s moving?
 
 * Add a birthday hat to the frog, and maybe to the fly
+* I wanna add starts now, it would look pretty
+* The ending will be that if you dont play the frog dies
+* Add ladybugs that gives u extra points when the frog catches em
+* Add bees that stings the frog and dies

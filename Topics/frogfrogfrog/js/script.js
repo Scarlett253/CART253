@@ -15,11 +15,18 @@
 
 "use strict";
 
+/**Start state for a title screen*/
+let gameState = "title screen";
+
 //Current score
-let score = 0;
+// let score = 0;
 
 //Is the game over?
-let gameOver = false;
+// let gameOver = false;
+
+/** Load sounds */
+function preload() {
+}
 
 /**Frog Settings */
 // Our frog
@@ -51,18 +58,14 @@ const fly = {
     speed: 3
 };
 
-/** Load sounds */
-function preload() {
-}
-
-/**Current state for a title screen*/
-let state = "title screen";
+//Shade the background
+// let background
 
 //Start game when a key is pressed
-function keyPressed() {
-    if (state === "title screen");
-    state = "game start"
-}
+// function keyPressed() {
+// if (state === "title screen");
+// state = "game start"
+// }
 /**
  * Creates the canvas and initializes the fly
  */
@@ -76,27 +79,29 @@ function setup() {
 
 //Draw the title screen 
 function draw() {
-    if (state === "title screen") {
+    if (gameState === "title screen") {
         titleScreen();
     }
-    else if (state === "game screen") {
-        gameScreen();
-    }
-
-    function titleScreen() {
+    else if (gameState === "playing") {
+        // function titleScreen() {
         //Disolay the title screen 
-        //Background color
-        background("#0b1259ff");
-        // background("#87ceeb");
+
+        drawBackground();
+        moveFly();
+        drawFly();
         moveFrog();
         moveTongue();
-        moveFly();
-        checkTongueFlyOverlap();
         drawFrog();
-        drawFly();
+        checkTongueFlyOverlap();
         displayScore();
     }
+    else if (gameState === "game over") {
+        gameOver();
+    }
 
+}
+/**Drawing title screen */
+function titleScreen() {
     //Title text
     push();
     textSize(60);
@@ -110,34 +115,11 @@ function draw() {
     pop();
 }
 
-//Only increase score when the frog catches a fly
-if (checkTongueFlyOverlap) {
-    score = + 0.5;
-}
-//Display the game over screen
-displayUI();
-
-//Display the game over on the screen
-function displayUI() {
-    if (gameOver) {
-        push();
-        textSize(40);
-        textStyle(BOLD);
-        textAlign(320, 100);
-        text("Game Over!", width / 2, height / 3);
-        pop();
-    }
-    //Display the score
-    // displayScore();
-}
-//Display the score on the screen
-function displayScore() {
-    push();
-    textSize(40);
-    textStyle(BOLD);
-    textAlign(320, 100);
-    text(floor(score), width / 2, height / 3);
-    pop();
+/**Draw background with color shading*/
+//Background color
+function drawBackground() {
+    background("#0b1259ff");
+    // background("#87ceeb");
 }
 
 /**
@@ -159,9 +141,12 @@ function moveFly() {
 function drawFly() {
     push();
     noStroke();
+    fill("#8fa8f6ff");
+    ellipse(fly.x - 3, fly.y - 7, fly.size / 2);
     fill("#000000");
     ellipse(fly.x, fly.y, fly.size);
-    ellipse(fly.x, fly.y,)
+    fill("#aec0f6ff");
+    ellipse(fly.x + 1, fly.y - 7, fly.size / 2);
     pop();
 }
 
@@ -249,6 +234,27 @@ function checkTongueFlyOverlap() {
         frog.tongue.state = "inbound";
     }
 }
+// //Only increase score when the frog catches a fly
+// if (checkTongueFlyOverlap) {
+//     score = score + 0.5;
+// }
+
+//Display the score
+// displayScore();
+
+//Display the score on the screen
+function displayScore() {
+    push();
+    textSize(40);
+    textStyle(BOLD);
+    textAlign(320, 100);
+    text(floor(score), width / 2, height / 3);
+    pop();
+}
+
+// //Display the game over on the screen
+// function displayUI() {
+//     if (gameOver) {
 
 /**
  * Launch the tongue on click (if it's not launched yet)
@@ -258,3 +264,22 @@ function mousePressed() {
         frog.tongue.state = "outbound";
     }
 }
+
+function gameOver() {
+    push();
+    textSize(40);
+    textStyle(BOLD);
+    textAlign(320, 100);
+    text("Game Over!", width / 2, height / 3);
+    pop();
+}
+
+
+
+
+
+
+
+
+
+
