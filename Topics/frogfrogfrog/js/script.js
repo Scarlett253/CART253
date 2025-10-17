@@ -20,6 +20,8 @@ let gameState = "title screen";
 
 //Current score
 let score = 0;
+//Set Poisson Steve song
+let song;
 
 //Is the game over?
 // let gameOver = false;
