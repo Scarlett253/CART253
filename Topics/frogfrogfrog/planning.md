@@ -104,3 +104,9 @@ Events
     - If the tongue is still inside the frog's mouth
         - Launch the tongue
 
+
+Random moves and respawn of the fly every time its eaten
+background color changed from white to blue
+Title change to game after random key is pressed
+
+

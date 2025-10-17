@@ -21,13 +21,14 @@ let gameState = "title screen";
 //Current score
 let score = 0;
 //Set Poisson Steve song
-let song;
+let poissonSteveSong;
 
 //Is the game over?
 // let gameOver = false;
 
 /** Load sounds */
 function preload() {
+    poissonSteveSong = loadSong("assets/sounds/poissonsteve.mp3");
 }
 
 /**Frog Settings */
@@ -67,6 +68,13 @@ const fly = {
 function keyPressed() {
     if (gameState === "title screen")
         gameState = "playing"
+
+    //Start the Poisson Steve song when a key is pressed
+    if (keyPressed) {
+        poissonSteveSong.stop()
+    } else {
+        poissonSteveSong.loop()
+    }
 }
 /**
  * Creates the canvas and initializes the fly
@@ -113,7 +121,7 @@ function titleScreen() {
     stroke("#FFFFFF");
     strokeWeight(4);
     text("Am I a", width / 2, height / 2);
-    text("Frog?", width / 2, width / 2 + 70);
+    text("Frog?", width / 2, width / 2);
     pop();
 }
 
