@@ -20,3 +20,5 @@
 * The ending will be that if you dont play the frog dies
 * Add ladybugs that gives u extra points when the frog catches em
 * Add bees that stings the frog and dies
+* If the Frog catched at least 5 flies nostopping, its a frog, else,  YOU LOSE!
+* Tittle background is a lilypad

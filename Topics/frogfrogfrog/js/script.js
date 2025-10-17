@@ -68,14 +68,10 @@ const fly = {
 function keyPressed() {
     if (gameState === "title screen")
         gameState = "playing"
-
-    //Start the Poisson Steve song when a key is pressed
-    if (keyPressed) {
-        poissonSteveSong.stop()
-    } else {
-        poissonSteveSong.loop()
-    }
+    poissonSteveSong.loop();
 }
+
+
 /**
  * Creates the canvas and initializes the fly
  */
@@ -93,8 +89,6 @@ function draw() {
         titleScreen();
     }
     else if (gameState === "playing") {
-        // function titleScreen() {
-        //Disolay the title screen 
 
         drawBackground();
         moveFly();
@@ -112,16 +106,59 @@ function draw() {
 }
 /**Drawing title screen */
 function titleScreen() {
-    //Title text
+
     push();
+    //Draw a bacground with a lilypad
+    //First the water
+    noStroke();
+    fill("#2c6bc3ff");
+    rect(0, 0, width, height);
+
+    //Leaf pad
+    noStroke();
+    fill("#17e867ff");
+    ellipse(width / 2, height / 2, 400, 400);
+
+    //Draw lilypad petals
+    noStroke();
+    fill("#dbdce8ff");
+    ellipse(width / 2, height / 2, 200, 60);
+    ellipse(width / 2, height / 2, 60, 200);
+
+    //Lily pad center
+    noStroke();
+    fill("#efe85fff");
+    ellipse(width / 2, height / 2, 50, 50);
+
+    //Title text
     textSize(60);
-    textStyle(BOLD);
+    textFont("Comic Sans Ms");
     textAlign(CENTER, CENTER);
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text("Am I a", width / 2, height / 2);
-    text("Frog?", width / 2, width / 2);
+    text("Am I a", width / 2, height / 2 - 110);
+    text("Frog?", width / 2, height / 2 - 40);
+
+    //Instructions text
+    textSize(20);
+    textFont("Comic Sans Ms");
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("- Move the frog with your mouse", width / 2, height / 2 + 40);
+    text("- Click to launch the tongue", width / 2, height / 2 + 70);
+    text("- CATCH THE FLIES!!!", width / 2, height / 2 + 100);
+
+    //Start the game text
+    textSize(10);
+    textFont("Comic Sans Ms");
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("PRESS ANY KEY TO START :)", width / 2, height / 2 + 215);
     pop();
 }
 
