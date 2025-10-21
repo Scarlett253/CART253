@@ -8,17 +8,10 @@
 
 "use strict";
 
-// Our ball
-const ball = {
-    x: 300,
-    y: 20,
-    width: 10,
-    height: 10,
-    velocity: {
-        x: 0,
-        y: 10
-    }
-};
+// Our balls
+let ball1 = undefined;
+let ball2 = undefined;
+
 
 // Our paddle
 const paddle = {
@@ -33,8 +26,25 @@ const paddle = {
 */
 function setup() {
     createCanvas(600, 300);
+
+    ball1 = createBall()
+    ball2 = createBall()
+
 }
 
+function createBall() {
+    let ball = {
+        x: random(300, width - 50),
+        y: 20,
+        width: 10,
+        height: 10,
+        velocity: {
+            x: 0,
+            y: random(2, 10)
+        }
+    };
+    return ball;
+}
 
 /**
  * Move and display the ball and paddle
@@ -43,12 +53,15 @@ function draw() {
     background("#87ceeb");
 
     movePaddle(paddle);
-    moveBall(ball);
+    moveBall(ball1);
+    moveBall(ball2);
 
-    handleBounce(ball, paddle);
+    handleBounce(ball1, paddle);
+    handleBounce(ball2, paddle);
 
     drawPaddle(paddle);
-    drawBall(ball);
+    drawBall(ball1);
+    drawBall(ball2);
 }
 
 /**
@@ -63,16 +76,22 @@ function movePaddle(paddle) {
  * Moves the ball passed in as a parameter
  */
 function moveBall(ball) {
-    ball.x = ball.velocity.x
+    ball.x += ball.velocity.x;
+    ball.y += ball.velocity.y;
+
 }
 /**
  * Bounces the provided ball off the provided paddle
  */
-function handleBounce(ball, paddle) {
+function handleBounce(ball) {
     if (checkOverlap(ball, paddle)) {
-        ball.velocity.x = bounce
+        const overlap = checkOverlap(ball, paddle);
+
+        if (overlap)
+            ball.velocity.y *= -1;
     }
 }
+
 
 /**
  * Draws the specified paddle on the canvas
@@ -86,6 +105,7 @@ function drawPaddle(paddle) {
     pop();
 }
 
+
 /**
  * Draws the specified ball on the canvas
  */
@@ -97,6 +117,7 @@ function drawBall(ball) {
     rect(ball.x, ball.y, ball.width, ball.height);
     pop();
 }
+
 
 /**
  * Returns true if rectA and rectB overlap, and false otherwise
