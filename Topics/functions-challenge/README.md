@@ -1,4 +1,5 @@
-# FUNCTIONS
+# Bouncy Ball Ball Bonanza
+
 
 Scarlett Arriola, Chloé Guerin, Lucie Soussana, Yelena Arakelian
 
