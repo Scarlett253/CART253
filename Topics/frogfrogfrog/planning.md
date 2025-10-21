@@ -104,9 +104,18 @@ Events
     - If the tongue is still inside the frog's mouth
         - Launch the tongue
 
+ASSIGMENT FEATURES DONE:
+- Random moves and respawn of the fly every time its eaten
+- Title (and instructions) change to game after random key is pressed
+- Poisson Steve song plays after starting the game 
+- 
 
-Random moves and respawn of the fly every time its eaten
-background color changed from white to blue
-Title change to game after random key is pressed
+MY FEATURES DONE:
+- background color changed from white to blue
+
+TO DO:
+* An ending. How should the game end? Because the frog explodes with flies? Because it starves? How can you tell the game is over?
+
+* A scoring system. But not just a standard number counting up on the screen.
 
 

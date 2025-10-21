@@ -65,12 +65,10 @@ function keyPressed() {
         gameState = "playing"
     }
     if (!mySound.isPlaying() && !hasSoundPlayed) {
-        mySound.play();
+        mySound.loop();
         hasSoundPlayed = true;
     }
-
 }
-
 
 /**
  * Creates the canvas and initializes the fly
@@ -82,6 +80,7 @@ function setup() {
     resetFly();
 }
 
+//Sound variables
 let mySound;
 let hasSoundPlayed = false;
 
@@ -89,6 +88,7 @@ let hasSoundPlayed = false;
 function preload() {
     mySound = loadSound('assets/sounds/poisson-steve.mp3')
 }
+
 //Draw the title screen 
 function draw() {
     if (gameState === "title screen") {
@@ -283,19 +283,14 @@ function checkTongueFlyOverlap() {
     if (eaten) {
         // Reset the fly
         resetFly();
+        //Score increases 1 point whenever the frog catches a fly
+        score += 1;
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
 }
-// //Only increase score when the frog catches a fly
-// if (checkTongueFlyOverlap) {
-//     score = score + 0.5;
-// }
 
-//Display the score
-// displayScore();
-
-//Display the score on the screen
+// Display the score on the screen
 function displayScore() {
     push();
     textSize(40);
