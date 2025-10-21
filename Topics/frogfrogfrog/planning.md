@@ -118,4 +118,9 @@ TO DO:
 
 * A scoring system. But not just a standard number counting up on the screen.
 
+MY FEATURES TO DO:
+- The frog is now a square (why a square? is it always a square or it's a mod? Like, does it becomes a square because he eat a fly or because it hasn't catch one yet? is the fly a square too? is this the minimalist mode?)
 
+- Add more beetles (Yessss, it's 2025, we want diversity, let's add some ladybugs, I love ladybugs, or some bees, there's a lot of bees around campus nowdays. Does the other beetles increment the powers of the frog? or are they weaknesses??)
+
+-Beetles have different mods (As I was saying, maybe the ladybugs are extra points depending how many spots they have, what abt the bees?they hurt the frog with their stings, and there'S bumblebees too, those ones are just cuties patooties)

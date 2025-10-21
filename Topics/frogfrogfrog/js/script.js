@@ -21,6 +21,10 @@ let gameState = "title screen";
 //Current score
 let score = 0;
 
+//Frog lives variables
+let frogPixelGif;
+let frogScore = 0;
+
 //Is the game over?
 // let gameOver = false;
 
@@ -104,6 +108,7 @@ function draw() {
         drawFrog();
         checkTongueFlyOverlap();
         displayScore();
+        displayStrikes();
     }
     else if (gameState === "game over") {
         gameOver();
@@ -287,6 +292,28 @@ function checkTongueFlyOverlap() {
         score += 1;
         // Bring back the tongue
         frog.tongue.state = "inbound";
+    } else if (fly.x === 0) {
+        frogScore++;
+    }
+}
+
+//Strike every time the frog misses a fly
+function displayStrikes() {
+    if (frogScore >= 1 && frogPixelGif) {
+        image(frogPixelGif, width - 150, height - 60, 50, 50);
+    }
+
+    if (frogScore >= 2 && frogPixelGif) {
+        image(frogPixelGif, width - 100, height - 60, 50, 50);
+    }
+
+    if (frogScore >= 3 && frogPixelGif) {
+        image(frogPixelGif, width - 50, height - 60, 50, 50);
+    }
+
+    //After 3 strikes game finishes
+    if (frogScore >= 3) {
+        gameState = "game over";
     }
 }
 
