@@ -20,16 +20,11 @@ let gameState = "title screen";
 
 //Current score
 let score = 0;
-//Set Poisson Steve song
-let poissonSteveSong;
 
 //Is the game over?
 // let gameOver = false;
 
-/** Load sounds */
-function preload() {
-    poissonSteveSong = loadSong("assets/sounds/poissonsteve.mp3");
-}
+
 
 /**Frog Settings */
 // Our frog
@@ -66,9 +61,14 @@ const fly = {
 
 //Start game when a key is pressed
 function keyPressed() {
-    if (gameState === "title screen")
+    if (gameState === "title screen") {
         gameState = "playing"
-    poissonSteveSong.loop();
+    }
+    if (!mySound.isPlaying() && !hasSoundPlayed) {
+        mySound.play();
+        hasSoundPlayed = true;
+    }
+
 }
 
 
@@ -82,7 +82,13 @@ function setup() {
     resetFly();
 }
 
+let mySound;
+let hasSoundPlayed = false;
 
+/** Load sounds */
+function preload() {
+    mySound = loadSound('assets/sounds/poisson-steve.mp3')
+}
 //Draw the title screen 
 function draw() {
     if (gameState === "title screen") {
