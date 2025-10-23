@@ -190,6 +190,7 @@ function moveFly() {
     // Handle the fly going off the canvas
     if (fly.x > width) {
         resetFly();
+        frogScore += 1;
     }
 }
 
@@ -212,11 +213,11 @@ function drawFly() {
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = random(0, 640)
-    fly.y = random(0, 480);
+    fly.x = random(0, 320)
+    fly.y = random(80, 480);
 }
 
-/**
+/** 
  * Moves the frog to the mouse position on x
  */
 function moveFrog() {
@@ -239,6 +240,7 @@ function moveTongue() {
         // The tongue bounces back if it hits the top
         if (frog.tongue.y <= 0) {
             frog.tongue.state = "inbound";
+            frogScore + 1;
         }
     }
     // If the tongue is inbound, it moves down
@@ -288,12 +290,15 @@ function checkTongueFlyOverlap() {
     if (eaten) {
         // Reset the fly
         resetFly();
-        //Score increases 1 point whenever the frog catches a fly
-        score += 1;
+
         // Bring back the tongue
         frog.tongue.state = "inbound";
-    } else if (fly.x === 0) {
-        frogScore++;
+
+        //Score increases 1 point whenever the frog catches a fly
+        score += 1;
+
+        //Strike every time the frog misses a fly
+
     }
 }
 
@@ -323,7 +328,13 @@ function displayScore() {
     textSize(40);
     textStyle(BOLD);
     textAlign(320, 100);
-    text(floor(score), width / 2, height / 3);
+    text(score, width * 0.85, height * 0.1);
+    //Strike everytime the frog missess
+    push();
+    textSize(40);
+    textStyle(BOLD);
+    textAlign(320, 100);
+    text(frogScore, width * 0.15, height * 0.1);
     pop();
 }
 
