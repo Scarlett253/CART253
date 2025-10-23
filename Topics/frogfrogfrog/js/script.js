@@ -22,13 +22,11 @@ let gameState = "title screen";
 let score = 0;
 
 //Frog lives variables
-let frogPixelGif;
-let frogScore = 0;
+let strikes;
+let frogStrikes = 0;
 
 //Is the game over?
 // let gameOver = false;
-
-
 
 /**Frog Settings */
 // Our frog
@@ -90,6 +88,7 @@ let hasSoundPlayed = false;
 
 /** Load sounds */
 function preload() {
+    strikes = loadImage("assets/images/pixelX.png")
     mySound = loadSound('assets/sounds/poisson-steve.mp3')
 }
 
@@ -190,7 +189,7 @@ function moveFly() {
     // Handle the fly going off the canvas
     if (fly.x > width) {
         resetFly();
-        frogScore += 1;
+        frogStrikes += 1;
     }
 }
 
@@ -240,7 +239,7 @@ function moveTongue() {
         // The tongue bounces back if it hits the top
         if (frog.tongue.y <= 0) {
             frog.tongue.state = "inbound";
-            frogScore + 1;
+            frogStrikes + 1;
         }
     }
     // If the tongue is inbound, it moves down
@@ -304,20 +303,20 @@ function checkTongueFlyOverlap() {
 
 //Strike every time the frog misses a fly
 function displayStrikes() {
-    if (frogScore >= 1 && frogPixelGif) {
-        image(frogPixelGif, width - 150, height - 60, 50, 50);
+    if (frogStrikes >= 1 && strikes) {
+        image(strikes, 200 - 150, 90 - 60, 50, 50);
     }
 
-    if (frogScore >= 2 && frogPixelGif) {
-        image(frogPixelGif, width - 100, height - 60, 50, 50);
+    if (frogStrikes >= 2 && strikes) {
+        image(strikes, 200 - 100, 90 - 60, 50, 50);
     }
 
-    if (frogScore >= 3 && frogPixelGif) {
-        image(frogPixelGif, width - 50, height - 60, 50, 50);
+    if (frogStrikes >= 3 && strikes) {
+        image(strikes, 200 - 50, 90 - 60, 50, 50);
     }
 
     //After 3 strikes game finishes
-    if (frogScore >= 3) {
+    if (frogStrikes >= 3) {
         gameState = "game over";
     }
 }
@@ -329,12 +328,6 @@ function displayScore() {
     textStyle(BOLD);
     textAlign(320, 100);
     text(score, width * 0.85, height * 0.1);
-    //Strike everytime the frog missess
-    push();
-    textSize(40);
-    textStyle(BOLD);
-    textAlign(320, 100);
-    text(frogScore, width * 0.15, height * 0.1);
     pop();
 }
 
