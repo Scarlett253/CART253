@@ -110,7 +110,7 @@ ASSIGMENT FEATURES DONE:
 - Random moves and respawn of the fly every time its eaten
 - Title (and instructions) change to game after random key is pressed
 - Poisson Steve song plays after starting the game 
-- 
+- Score is working
 
 MY FEATURES DONE:
 - background color changed from white to blue
@@ -118,7 +118,6 @@ MY FEATURES DONE:
 TO DO:
 * An ending. How should the game end? Because the frog explodes with flies? Because it starves? How can you tell the game is over?
 
-* A scoring system. But not just a standard number counting up on the screen.
 
 MY FEATURES TO DO:
 - The frog is now a square (why a square? is it always a square or it's a mod? Like, does it becomes a square because he eat a fly or because it hasn't catch one yet? is the fly a square too? is this the minimalist mode?)

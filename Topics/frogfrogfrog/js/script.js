@@ -25,8 +25,30 @@ let score = 0;
 let strikes;
 let frogStrikes = 0;
 
-//Is the game over?
-// let gameOver = false;
+//Sound variables
+let mySound;
+let hasSoundPlayed = false;
+
+//Shade the background
+// let background
+
+/** Load sounds and images */
+function preload() {
+    // scoreFrog = loadImage("assets/images/frogPixelGif.gif")
+    strikes = loadImage("assets/images/pixelX.png")
+    mySound = loadSound('assets/sounds/poisson-steve.mp3')
+}
+
+//Start game when a key is pressed
+function keyPressed() {
+    if (gameState === "title screen") {
+        gameState = "playing"
+    }
+    if (!mySound.isPlaying() && !hasSoundPlayed) {
+        mySound.loop();
+        hasSoundPlayed = true;
+    }
+}
 
 /**Frog Settings */
 // Our frog
@@ -58,19 +80,15 @@ const fly = {
     speed: 3
 };
 
-//Shade the background
-// let background
-
-//Start game when a key is pressed
-function keyPressed() {
-    if (gameState === "title screen") {
-        gameState = "playing"
-    }
-    if (!mySound.isPlaying() && !hasSoundPlayed) {
-        mySound.loop();
-        hasSoundPlayed = true;
-    }
-}
+/**Ladybug Settings */
+// Our ladybug
+// Has a position, size, and speed of horizontal movement
+const ladybug = {
+    x: 0,
+    y: 0, // Will be random too
+    size: 12,
+    speed: 4
+};
 
 /**
  * Creates the canvas and initializes the fly
@@ -80,19 +98,11 @@ function setup() {
 
     // Give the fly its first random position
     resetFly();
+    // Give the ladybug its first random position
+    resetLadybug();
 }
 
-//Sound variables
-let mySound;
-let hasSoundPlayed = false;
-
-/** Load sounds */
-function preload() {
-    strikes = loadImage("assets/images/pixelX.png")
-    mySound = loadSound('assets/sounds/poisson-steve.mp3')
-}
-
-//Draw the title screen 
+//Draw the title, background frog and bugs depending on game state
 function draw() {
     if (gameState === "title screen") {
         titleScreen();
@@ -102,6 +112,8 @@ function draw() {
         drawBackground();
         moveFly();
         drawFly();
+        moveLadybug();
+        drawLadybug();
         moveFrog();
         moveTongue();
         drawFrog();
@@ -116,9 +128,8 @@ function draw() {
 }
 /**Drawing title screen */
 function titleScreen() {
-
     push();
-    //Draw a bacground with a lilypad
+    //Draw a background with a lilypad
     //First the water
     noStroke();
     fill("#2c6bc3ff");
@@ -194,7 +205,7 @@ function moveFly() {
 }
 
 /**
- * Draws the fly as a black circle
+ * Draws the fly as a black circle with wings
  */
 function drawFly() {
     push();
@@ -214,6 +225,43 @@ function drawFly() {
 function resetFly() {
     fly.x = random(0, 320)
     fly.y = random(80, 480);
+}
+
+/**
+ * Moves the ladybug according to its speed
+ * Resets the ladybug if it gets all the way to the right
+ */
+function moveLadybug() {
+    // Move the ladybug
+    ladybug.x += ladybug.speed;
+    // Handle the ladybug going off the canvas
+    if (ladybug.x > width) {
+        resetLadybug();
+        frogStrikes += 0;
+    }
+}
+
+/**
+ * Draws the ladybug as a red circle with wings
+ */
+function drawLadybug() {
+    push();
+    noStroke();
+    fill("#8fa8f6ff");
+    ellipse(ladybug.x - 3, ladybug.y - 7, ladybug.size / 2);
+    fill("#a60606ff");
+    ellipse(ladybug.x, ladybug.y, ladybug.size);
+    fill("#aec0f6ff");
+    ellipse(ladybug.x + 1, ladybug.y - 7, ladybug.size / 2);
+    pop();
+}
+
+/**
+ * Resets the ladybug to the left with a random y
+ */
+function resetLadybug() {
+    ladybug.x = random(0, 320)
+    ladybug.y = random(80, 480);
 }
 
 /** 
@@ -279,25 +327,31 @@ function drawFrog() {
 }
 
 /**
- * Handles the tongue overlapping the fly
+ * Handles the tongue overlapping the fly and the ladybug
  */
 function checkTongueFlyOverlap() {
     // Get distance from tongue to fly
     const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+
+    // Get distance from tongue to ladybug
+    const dLadybug = dist(frog.tongue.x, frog.tongue.y, ladybug.x, ladybug.y);
+    // Check if it's an overlap
+    const eatenLadybug = (dLadybug < frog.tongue.size / 2 + ladybug.size / 2);
+
     if (eaten) {
         // Reset the fly
         resetFly();
-
         // Bring back the tongue
         frog.tongue.state = "inbound";
-
         //Score increases 1 point whenever the frog catches a fly
         score += 1;
 
-        //Strike every time the frog misses a fly
-
+    } else if (eatenLadybug) {
+        resetLadybug();
+        frog.tongue.state = "inbound";
+        score += 2;
     }
 }
 
@@ -348,8 +402,8 @@ function gameOver() {
     push();
     textSize(40);
     textStyle(BOLD);
-    textAlign(320, 100);
-    text("Game Over!", width / 2, height / 3);
+    textAlign(CENTER, CENTER);
+    text("YOU ARE NOT A FROG!", width / 2, height / 2 - 110);
     pop();
 }
 
