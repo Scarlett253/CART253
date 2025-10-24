@@ -77,7 +77,7 @@ const fly = {
     x: 0,
     y: 0, // Will be random
     size: 10,
-    speed: 3
+    speed: 2
 };
 
 /**Ladybug Settings */
@@ -87,7 +87,7 @@ const ladybug = {
     x: 0,
     y: 0, // Will be random too
     size: 12,
-    speed: 4
+    speed: 3
 };
 
 /**
@@ -197,8 +197,13 @@ function drawBackground() {
 function moveFly() {
     // Move the fly
     fly.x += fly.speed;
+    fly.y += fly.speed;
+
+
     // Handle the fly going off the canvas
-    if (fly.x > width) {
+    if (fly.x > width,
+        fly.y > height
+    ) {
         resetFly();
         frogStrikes += 1;
     }
@@ -223,8 +228,8 @@ function drawFly() {
  * Resets the fly to the left with a random y
  */
 function resetFly() {
-    fly.x = random(0, 320)
-    fly.y = random(80, 480);
+    fly.x = random(0, 320);
+    fly.y = random(130, 300);
 }
 
 /**
@@ -234,6 +239,7 @@ function resetFly() {
 function moveLadybug() {
     // Move the ladybug
     ladybug.x += ladybug.speed;
+
     // Handle the ladybug going off the canvas
     if (ladybug.x > width) {
         resetLadybug();
@@ -260,8 +266,8 @@ function drawLadybug() {
  * Resets the ladybug to the left with a random y
  */
 function resetLadybug() {
-    ladybug.x = random(0, 320)
-    ladybug.y = random(80, 480);
+    ladybug.x = random(200, 320)
+    ladybug.y = random(130, 300);
 }
 
 /** 
