@@ -119,7 +119,9 @@ function draw() {
         drawFrog();
         checkTongueFlyOverlap();
         displayScore();
+        // displayLowScore();
         displayStrikes();
+
     }
     else if (gameState === "game over") {
         gameOver();
@@ -383,6 +385,11 @@ function displayStrikes() {
 
 // Display the score on the screen
 function displayScore() {
+    //Game also ends if you only eat the ladybugs
+    if (score == -5) {
+        gameState = "game over";
+    }
+
     push();
     textSize(40);
     textStyle(BOLD);
@@ -392,8 +399,6 @@ function displayScore() {
 }
 
 // //Display the game over on the screen
-// function displayUI() {
-//     if (gameOver) {
 
 /**
  * Launch the tongue on click (if it's not launched yet)
