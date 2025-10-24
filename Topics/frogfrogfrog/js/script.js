@@ -29,12 +29,13 @@ let frogStrikes = 0;
 let mySound;
 let hasSoundPlayed = false;
 
+//Frame rate
+let frameRate = 2;
 
-
-//track of fade of background
-let fade = 0;
-//Speed of fade
-let speed = 0.001;
+//Shade the background
+let backgroundShade = 10;
+//Day and night cycle
+let backgroundDirection = 1;
 
 /** Load sounds and images */
 function preload() {
@@ -190,32 +191,21 @@ function titleScreen() {
 }
 
 /**Draw background with color shading*/
-// Background color
+//Background color
 function drawBackground() {
-    //increase fade slowly
-    // fade += speed;
-    // if (fade > 1) {
-    //     fade = 0;
-    // }
-
-    //Daylight
-    let dayColor = color(135, 206, 235);
-    //Nightlight
-    let nightColor = color(11, 18, 89);
-
-    //lerpColor variables
-    let r = lerp(red(nightColor), red(dayColor)), fade;
-    let g = lerp(green(nightColor), green(dayColor), fade);
-    let b = lerp(blue(nightColor), blue(dayColor), fade);
+    //Make the background darker and lighter
+    backgroundShade += 0.2 * backgroundDirection;
+    if (backgroundShade >= 100) {
+        backgroundDirection = -1;
+    }
+    if (backgroundShade <= 0) {
+        backgroundDirection = 1;
+    }
+    let r = 173 - backgroundShade;
+    let g = 216 - backgroundShade;
+    let b = 230 - backgroundShade;
 
     background(r, g, b);
-
-    // let r = frameCount % 211;
-    // let g = 218;
-    // let b = 350;
-    //Make the background darker and lighter
-    // backgroundShade += 1;
-    // background(r, g, b);
     // background("#0b1259ff");
     // background("#87ceeb");
 }
