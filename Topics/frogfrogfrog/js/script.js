@@ -87,7 +87,7 @@ const ladybug = {
     x: 0,
     y: 0, // Will be random too
     size: 12,
-    speed: 3
+    speed: 4
 };
 
 /**
@@ -293,7 +293,6 @@ function moveTongue() {
         // The tongue bounces back if it hits the top
         if (frog.tongue.y <= 0) {
             frog.tongue.state = "inbound";
-            frogStrikes + 1;
         }
     }
     // If the tongue is inbound, it moves down
@@ -357,7 +356,8 @@ function checkTongueFlyOverlap() {
     } else if (eatenLadybug) {
         resetLadybug();
         frog.tongue.state = "inbound";
-        score += 2;
+        frogStrikes -= 1;
+        score -= 1;
     }
 }
 
