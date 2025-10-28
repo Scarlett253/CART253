@@ -1,497 +1,439 @@
 /**
- * FrogFrogFrog
- * Pippin Barr
+ * Am I a Frog?
+ * Scarlett Arriola Lerin <3
  * 
- * Game about catching flies as a frog.
+ * A game of catching flies with your frog-tongue
  * 
- * The frog is at the bottom centre and you shoot its tongue to a 
- * specific destination with a click/touch. If it hits the fly
- * the fly gets eaten and on you go forever.
+ * Instructions:
+ * - Move the frog with your mouse
+ * - Click to launch the tongue
+ * - Catch flies
  * 
- * There are no consequences for anything yet which is kind of chill
- * but probably should change.
+ * Made with p5
+ * https://p5js.org/
  */
 
 "use strict";
 
-const frog = {
-    // Is the frog being moved right now?
-    dragging: false,
-    // Will set position in setup based on canvas size
-    x: undefined,
-    y: undefined,
-    // Size is the diameter of the circle
-    size: 140,
-    // The frog's tongue has it's own position and size...
-    tongue: {
-        // Position of the tip of the tongue
-        x: undefined,
-        y: undefined,
-        // Size of the tip of the tongue (and the line joining it to the frog)
-        size: 20,
-        // How fast the tongue moves (out or in)
-        speed: 0.05,
-        // What is the tongue currently doing
-        // idle; outbound; inbound
-        state: "idle",
-        // Starting point we will be lerping from...
-        start: {
-            x: undefined,
-            y: undefined
-        },
-        // Target
-        target: {
-            x: undefined,
-            y: undefined
-        }
-    }
-};
+/**Start state for a title screen*/
+let gameState = "title screen";
 
-const fly = {
-    // Position (will be defined in setup)
-    x: undefined,
-    y: undefined,
-    // Size is the diameter of the circle
-    size: 15,
-    // Times for the perlin noise to allow us to get some organic
-    // movement for the fly on the screen
-    // Will be set by resetFly() in setup()
-    tx: undefined,
-    ty: undefined,
-    // How erratically the fly moves (this will be used to change the time variables
-    // for the Perlin noise). The bigger the number there more random-looking
-    // the movement
-    buzziness: 0.02,
-    // Flapping wings
-    wingMaxSize: 15, // How long is a wing at most
-    wingAngle: 0, // Use in sine function to vary the wing size over time
-    wingSpeed: 1.2,
-    // Was it caught this time?
-    caught: false
-};
+//Current score
+let score = 0;
 
-// A place to store our sound effects
-const sounds = {
-    buzzing: undefined,
-    atmosphere: undefined,
-    slurp: undefined,
-    swallow: undefined,
-};
+//Frog lives variables
+let strikes;
+let frogStrikes = 0;
 
-// This variable will hold the appropriate action verb based on whether
-// the user is using touch or not (in though)
-let actionVerb = "click"; // Can be "click" or "touch"
+//Sound variables
+let mySound;
+let hasSoundPlayed = false;
 
-// Current state (so we can have a title at least for now)
-let state = "title"; // Can be: "title" or "simulation"
+//Frame rate
+let frameRate = 2;
 
-/**
- * Load our sounds
- */
+//Shade the background
+let backgroundShade = 10;
+//Day and night cycle
+let backgroundDirection = 1;
+
+/** Load sounds and images */
 function preload() {
-    // MP3s for the longer two
-    sounds.atmosphere = loadSound("assets/sounds/pond.mp3");
-    sounds.buzzing = loadSound("assets/sounds/fly.mp3");
-    // WAVs for the shorter two
-    sounds.slurp = loadSound("assets/sounds/slurp.wav");
-    sounds.swallow = loadSound("assets/sounds/swallow.wav");
+    // scoreFrog = loadImage("assets/images/frogPixelGif.gif")
+    strikes = loadImage("assets/images/pixelX.png")
+    mySound = loadSound('assets/sounds/poisson-steve.mp3')
 }
 
+//Start game when a key is pressed
+function keyPressed() {
+    if (gameState === "title screen") {
+        gameState = "playing"
+    }
+    if (!mySound.isPlaying() && !hasSoundPlayed) {
+        mySound.loop();
+        hasSoundPlayed = true;
+    }
+}
+
+/**Frog Settings */
+// Our frog
+const frog = {
+    // The frog's body has a position and size
+    body: {
+        x: 320,
+        y: 520,
+        size: 150
+    },
+    // The frog's tongue has a position, size, speed, and state
+    tongue: {
+        x: undefined,
+        y: 480,
+        size: 20,
+        speed: 20,
+        // Determines how the tongue moves each frame
+        state: "idle" // State can be: idle, outbound, inbound
+    }
+};
+
+/**Fly Settings */
+// Our fly
+// Has a position, size, and speed of horizontal movement
+const fly = {
+    x: 0,
+    y: 0, // Will be random
+    size: 10,
+    speed: 2
+};
+
+/**Ladybug Settings */
+// Our ladybug
+// Has a position, size, and speed of horizontal movement
+const ladybug = {
+    x: 0,
+    y: 0, // Will be random too
+    size: 12,
+    speed: 4
+};
+
 /**
- * Create a canvas to draw on
-*/
+ * Creates the canvas and initializes the fly
+ */
 function setup() {
-    // Create a 480x640 canvas (trying for portrait for mobile)
-    createCanvas(480, 640);
+    createCanvas(640, 480);
 
-    // Reset the frog to defaults
-    resetFrog();
-
-    // Reset the fly to its starting point
+    // Give the fly its first random position
     resetFly();
-
-    // Determine the action verb
-    // Found this idea here: https://gist.github.com/esedic/39a16a7521d42ae205203e3d40dc19f5
-    // But it's pretty common
-    // Basically you're checking if the window (the browser) "knows about"
-    // checking for touches, if it does, then it's at least pretty likely
-    // that touch is available
-    if ('ontouchstart' in window) {
-        actionVerb = "touch";
-    }
-
-    // Play atmosphere (won't start until there's user input though)
-    sounds.atmosphere.loop();
-    sounds.buzzing.loop();
+    // Give the ladybug its first random position
+    resetLadybug();
 }
 
-/**
- * Draw the title or simulation state
-*/
+//Draw the title, background frog and bugs depending on game state
 function draw() {
-    if (state === "title") {
-        title();
+    if (gameState === "title screen") {
+        titleScreen();
     }
-    else if (state === "simulation") {
-        simulation();
+    else if (gameState === "playing") {
+
+        drawBackground();
+        moveFly();
+        drawFly();
+        moveLadybug();
+        drawLadybug();
+        moveFrog();
+        moveTongue();
+        drawFrog();
+        checkTongueFlyOverlap();
+        displayScore();
+        // displayLowScore();
+        displayStrikes();
+
     }
+    else if (gameState === "game over") {
+        gameOver();
+    }
+
 }
-
-/**
- * Displays the title
- */
-function title() {
-    // A green
-    background(100, 240, 80);
-
-    // The title
+/**Drawing title screen */
+function titleScreen() {
     push();
-    textSize(64);
-    textStyle(BOLD);
-    textAlign(CENTER, CENTER);
-    fill(40, 80, 30);
-    text("frogfrogfrog", width / 2, height / 2);
-    pop();
+    //Draw a background with a lilypad
+    //First the water
+    noStroke();
+    fill("#2c6bc3ff");
+    rect(0, 0, width, height);
 
-    // The instruction to click to begin
-    push();
-    textSize(32);
-    textStyle(BOLD);
+    //Leaf pad
+    noStroke();
+    fill("#17e867ff");
+    ellipse(width / 2, height / 2, 400, 400);
+
+    //Draw lilypad petals
+    noStroke();
+    fill("#dbdce8ff");
+    ellipse(width / 2, height / 2, 200, 60);
+    ellipse(width / 2, height / 2, 60, 200);
+
+    //Lily pad center
+    noStroke();
+    fill("#efe85fff");
+    ellipse(width / 2, height / 2, 50, 50);
+
+    //Title text
+    textSize(60);
+    textFont("Comic Sans Ms");
     textAlign(CENTER, CENTER);
-    fill(40, 80, 30);
-    text(`- ${actionVerb} to begin -`, width / 2, 3 * height / 4);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("Am I a", width / 2, height / 2 - 110);
+    text("Frog?", width / 2, height / 2 - 40);
+
+    //Instructions text
+    textSize(20);
+    textFont("Comic Sans Ms");
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("- Move the frog with your mouse", width / 2, height / 2 + 40);
+    text("- Click to launch the tongue", width / 2, height / 2 + 70);
+    text("- CATCH THE FLIES!!!", width / 2, height / 2 + 100);
+
+    //Start the game text
+    textSize(10);
+    textFont("Comic Sans Ms");
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("PRESS ANY KEY TO START :)", width / 2, height / 2 + 215);
     pop();
 }
 
-/**
- * Runs the simulation (I'm refusing to call it a game, because it's
- * just so realistic)
- */
-function simulation() {
-    drawBackground();
-    updateFrog();
-    updateFly();
-    checkCatch();
-    displayFly();
-    displayFrog();
-    // Leaving this out for now, I don't like the effect enough
-    // until it proves itself further.
-    // displayLightMask();
-}
-
-/**
- * Draws the background. For now it's just blue, but it would be
- * nice if it has, like, clouds and moving water or something.
- */
+/**Draw background with color shading*/
+//Background color
 function drawBackground() {
-    // Fill the background blue
-    background(110, 150, 250);
-}
-
-/**
- * Move the frog based on the mouse's/finger's x position
- */
-function updateFrog() {
-
-    switch (frog.tongue.state) {
-        // If the tongue is idle it just follows the frog
-        case "idle":
-            frog.tongue.x = frog.x;
-            frog.tongue.y = frog.y;
-            break;
-
-        // If the tongue is outbound it needs to move toward its target
-        // and come back it it reaches it
-        case "outbound":
-            // Movement
-            moveTongue();
-
-            // Check if it hit the destination and head back
-            if (frog.tongue.progress >= 1) {
-                retractTongue();
-            }
-            break;
-
-        // If the tongue in in bound it needs to move toward the
-        // frog's body as a target
-        case "inbound":
-            // Update the target to the current frog position
-            // So that it lerps to the correct location given that the
-            // frog can move around
-            frog.tongue.target.x = frog.x;
-            frog.tongue.target.y = frog.y;
-            // Move the tongue
-            moveTongue();
-
-            // Check if it returned to the frog and stop if so
-            if (frog.tongue.progress >= 1) {
-                resetTongue();
-                // If there was a fly caught, then swallow
-                if (fly.caught) {
-                    fly.caught = false;
-                    sounds.swallow.play();
-                }
-            }
-            break;
+    //Make the background darker and lighter
+    backgroundShade += 0.2 * backgroundDirection;
+    if (backgroundShade >= 100) {
+        backgroundDirection = -1;
     }
-}
-
-/**
- * Move the tongue position by interpolating between it's starting and target
- * positions.
- */
-function moveTongue() {
-    frog.tongue.progress += frog.tongue.speed;
-    frog.tongue.x = lerp(frog.tongue.start.x, frog.tongue.target.x, frog.tongue.progress);
-    frog.tongue.y = lerp(frog.tongue.start.y, frog.tongue.target.y, frog.tongue.progress);
-}
-
-/**
- * Set things up to retract the tongue back into the mouth
- */
-function retractTongue() {
-    // Don't retract the tongue if it's already coming back!
-    if (frog.tongue.state === "inbound") {
-        return;
+    if (backgroundShade <= 0) {
+        backgroundDirection = 1;
     }
+    let r = 173 - backgroundShade;
+    let g = 216 - backgroundShade;
+    let b = 230 - backgroundShade;
 
-    // This is what it takes to send the tongue back these days!
-    // Change the state
-    frog.tongue.state = "inbound";
-    // Set its starting point to where it just reached
-    // Actually I wonder if this is the cleanest approach, seems weird
-    frog.tongue.start.x = frog.tongue.target.x;
-    frog.tongue.start.y = frog.tongue.target.y;
-    // We're going back to target wherever the frog is
-    frog.tongue.target.x = frog.x;
-    frog.tongue.target.y = frog.y;
-    // And we haven't made any progress yet because we just started
-    frog.tongue.progress = 0;
+    background(r, g, b);
+    // background("#0b1259ff");
+    // background("#87ceeb");
 }
 
 /**
- * Set the tongue back to sweet nothing (in the frog's mouth)
+ * Moves the fly according to its speed
+ * Resets the fly if it gets all the way to the right
  */
-function resetTongue() {
-    // Make tongue idle
-    frog.tongue.state = "idle";
-    // Reset progress
-    frog.tongue.progress = 0;
-    // And position it exactly on the frog
-    frog.tongue.x = frog.x;
-    frog.tongue.y = frog.y;
-}
+function moveFly() {
+    // Move the fly
+    fly.x += fly.speed;
+    fly.y += fly.speed;
 
-/**
- * Checks if the tongue touches the fly and handles that
- */
-function checkCatch() {
-    // Check if the tongue tip overlaps the fly
-    // Get the distance between the tongue tip and frog
-    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
-    // Check if there's an overlap
-    if (d <= frog.tongue.size / 2 + fly.size / 2) {
-        // Set the fly as caught
-        fly.caught = true;
-        // Reset the fly (as if a new one comes in)
+
+    // Handle the fly going off the canvas
+    if (fly.x > width,
+        fly.y > height
+    ) {
         resetFly();
-        // Send the tongue back to the frog
-        retractTongue();
+        frogStrikes += 1;
     }
 }
 
 /**
- * Draw the frog on the canvas
- * A frog is a green circle with a tongue and eyes
+ * Draws the fly as a black circle with wings
  */
-function displayFrog() {
-    // Draw the tongue first, since it should
-    // go behind the frog....
+function drawFly() {
     push();
-    // Tongue tip first
-    fill(250, 140, 120);
     noStroke();
-    ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
-    // Tongue line second
-    stroke(250, 140, 120);
-    strokeWeight(frog.tongue.size);
-    line(frog.x, frog.y, frog.tongue.x, frog.tongue.y);
+    fill("#8fa8f6ff");
+    ellipse(fly.x - 3, fly.y - 7, fly.size / 2);
+    fill("#000000");
+    ellipse(fly.x, fly.y, fly.size);
+    fill("#aec0f6ff");
+    ellipse(fly.x + 1, fly.y - 7, fly.size / 2);
     pop();
-
-    // Draw the frog at its position
-    // Just a green circle for now
-    push();
-    fill(110, 250, 140);
-    noStroke();
-    ellipse(frog.x, frog.y, frog.size);
-    pop();
-
-    // Eyes
-    drawFrogEye(frog.x - frog.size / 3, frog.y - frog.size / 3);
-    drawFrogEye(frog.x + frog.size / 3, frog.y - frog.size / 3);
 }
 
 /**
- * Draws a frog's eye at the specified position. The eye will follow the fly.
- * 
- * @param {float} x x-position of the eye
- * @param {float} y y-position of the eye
- */
-function drawFrogEye(x, y) {
-    // Calculate the angle to rotate the eye based on where the fly is
-    // Uses trigonometry! I knew that would come in handy one day!
-    const eyeAngle = atan((x - fly.x) / (y - fly.y))
-
-    push();
-    // Translate the "pen" to the location of the eye
-    translate(x, y);
-    // Rotate by the correct angle
-    rotate(-eyeAngle);
-    // And then draw the eye there
-    noStroke();
-    fill(255); // White of the eyes
-    ellipse(0, 0, frog.size / 4);
-    fill(0); // Pupil is offset from the centre by a bit
-    ellipse(0, -frog.size / 15, frog.size / 8); // Yeah those hardcoded numbers are bad
-    pop();
-    // I should really do a better job on the numbers here though, ugly stuff
-}
-
-/**
- * Reset the frog to its default position and tongue state
- */
-function resetFrog() {
-    // Position the frog in the bottom center
-    frog.x = width / 2;
-    frog.y = height;
-    // Position the tongue relative to the frog
-    frog.tongue.x = frog.x;
-    frog.tongue.y = frog.y;
-    // Reset the state back to in the mouth
-    frog.tongue.state = "idle";
-}
-
-/**
- * Move the fly linearly across the canvas, left to right
- */
-function updateFly() {
-    // Update the fly's time variable (to cause noise() to return the
-    // next organically related value
-    fly.tx += fly.buzziness;
-    fly.ty += fly.buzziness;
-    // Update the fly's position by adding its speed to its position
-    fly.x = map(noise(fly.tx), 0, 1, 0, width);
-    fly.y = map(noise(fly.ty), 0, 1, 0, height);
-
-    // Note the fly never leaves the screen because the map() function is 
-    // forcing its x and y to be on the canvas
-
-    // Increase the angle used to control the fly's wings
-    fly.wingAngle += fly.wingSpeed;
-}
-
-/**
- * Moves the fly back to its starting point at a random height
- * A function so 
+ * Resets the fly to the left with a random y
  */
 function resetFly() {
-    // Set random time values to move the fly somewhere
-    fly.tx = random(0, 100);
-    fly.ty = random(0, 100);
+    fly.x = random(0, 320);
+    fly.y = random(130, 300);
 }
 
 /**
- * Draw the fly on the canvas
+ * Moves the ladybug according to its speed
+ * Resets the ladybug if it gets all the way to the right
  */
-function displayFly() {
-    // Calculate the size of the wings based on the wing angle using sine
-    // map it to a number between 0 and max size
-    const wingSize = map(sin(fly.wingAngle), -1, 1, 0, fly.wingMaxSize);
+function moveLadybug() {
+    // Move the ladybug
+    ladybug.x += ladybug.speed;
 
-    // Wings
-    push();
-    stroke(0);
-    fill(255);
-    ellipse(fly.x, fly.y - fly.size / 2, fly.size / 1.5, wingSize);
-    ellipse(fly.x, fly.y + fly.size / 2, fly.size / 1.5, wingSize);
-    pop();
-
-    // Body is a black circle
-    push();
-    fill(0, 0, 0);
-    noStroke();
-    // Width is slightly elongated to make it more... fly-ish
-    ellipse(fly.x, fly.y, fly.size * 1.5, fly.size);
-    pop();
-}
-
-/**
- * On click, send the tongue out if it's not already
- * Towards the location of the click/touch
- */
-function mousePressed() {
-    // Handle audio
-    userStartAudio();
-
-    // Handle the different states
-    if (state === "title") {
-        state = "simulation";
+    // Handle the ladybug going off the canvas
+    if (ladybug.x > width) {
+        resetLadybug();
+        frogStrikes += 0;
     }
-    else if (state === "simulation") {
-        // Check if the tongue is idle (otherwise it can't shoot out)
-        if (frog.tongue.state === "idle") {
-            // Sound
-            sounds.slurp.play();
-            // Set the tongue's starting position (in the frog)
-            frog.tongue.start.x = frog.x;
-            frog.tongue.start.y = frog.y;
-            // Set the tongue's target position (we will lerp to it I guess?)
-            frog.tongue.target.x = mouseX;
-            frog.tongue.target.y = mouseY;
-            // Set the tongue's progress (nothin)
-            frog.tongue.progress = 0;
-            // Launch
-            frog.tongue.state = "outbound";
+}
+
+/**
+ * Draws the ladybug as a red circle with wings
+ */
+function drawLadybug() {
+    push();
+    noStroke();
+    fill("#8fa8f6ff");
+    ellipse(ladybug.x - 3, ladybug.y - 7, ladybug.size / 2);
+    fill("#a60606ff");
+    ellipse(ladybug.x, ladybug.y, ladybug.size);
+    fill("#aec0f6ff");
+    ellipse(ladybug.x + 1, ladybug.y - 7, ladybug.size / 2);
+    pop();
+}
+
+/**
+ * Resets the ladybug to the left with a random y
+ */
+function resetLadybug() {
+    ladybug.x = random(200, 320)
+    ladybug.y = random(130, 300);
+}
+
+/** 
+ * Moves the frog to the mouse position on x
+ */
+function moveFrog() {
+    frog.body.x = mouseX;
+}
+
+/**
+ * Handles moving the tongue based on its state
+ */
+function moveTongue() {
+    // Tongue matches the frog's x
+    frog.tongue.x = frog.body.x;
+    // If the tongue is idle, it doesn't do anything
+    if (frog.tongue.state === "idle") {
+        // Do nothing
+    }
+    // If the tongue is outbound, it moves up
+    else if (frog.tongue.state === "outbound") {
+        frog.tongue.y += -frog.tongue.speed;
+        // The tongue bounces back if it hits the top
+        if (frog.tongue.y <= 0) {
+            frog.tongue.state = "inbound";
+        }
+    }
+    // If the tongue is inbound, it moves down
+    else if (frog.tongue.state === "inbound") {
+        frog.tongue.y += frog.tongue.speed;
+        // The tongue stops if it hits the bottom
+        if (frog.tongue.y >= height) {
+            frog.tongue.state = "idle";
         }
     }
 }
 
 /**
- * Nothing for now
+ * Displays the tongue (tip and line connection) and the frog (body)
  */
-function mouseReleased() {
-    // frog.dragging = false;
-}
-
-
-/**
- * Below are things that are not part of the program right now.
- * I technically should delete them but I'm keeping them around
- * superstitiously in case I want to refer to them later.
- */
-
-
-/**
- * Covers the canvas in black and masks out a "light" 
- * on the frog's tongue. Kind of stupid.
- */
-function displayLightMask() {
+function drawFrog() {
+    // Draw the tongue tip
     push();
-    // This is how you clip with a mask apparently
-    // It calls a function to define the shape of the mask
-    // And in this case I'm inverting it so that I want
-    // the *inverse* of the circle to be black
-    clip(lightMask, { invert: true });
-    fill(0, 200);
-    rect(0, 0, width, height);
-    pop()
+    fill("#ff0000");
+    noStroke();
+    ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
+    pop();
+
+    // Draw the rest of the tongue
+    push();
+    stroke("#ff0000");
+    strokeWeight(frog.tongue.size);
+    line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
+    pop();
+
+    // Draw the frog's body
+    push();
+    fill("#00ff00");
+    noStroke();
+    ellipse(frog.body.x, frog.body.y, frog.body.size);
+    pop();
 }
 
 /**
- * Defines the mask (an ellipse centered on the frog's tongue)
+ * Handles the tongue overlapping the fly and the ladybug
  */
-function lightMask() {
-    ellipse(frog.tongue.x, frog.tongue.y, 250, 250);
+function checkTongueFlyOverlap() {
+    // Get distance from tongue to fly
+    const d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
+    // Check if it's an overlap
+    const eaten = (d < frog.tongue.size / 2 + fly.size / 2);
+
+    // Get distance from tongue to ladybug
+    const dLadybug = dist(frog.tongue.x, frog.tongue.y, ladybug.x, ladybug.y);
+    // Check if it's an overlap
+    const eatenLadybug = (dLadybug < frog.tongue.size / 2 + ladybug.size / 2);
+
+    if (eaten) {
+        // Reset the fly
+        resetFly();
+        // Bring back the tongue
+        frog.tongue.state = "inbound";
+        //Score increases 1 point whenever the frog catches a fly
+        score += 1;
+
+    } else if (eatenLadybug) {
+        resetLadybug();
+        frog.tongue.state = "inbound";
+        frogStrikes -= 1;
+        score -= 1;
+    }
+}
+
+//Strike every time the frog misses a fly
+function displayStrikes() {
+    if (frogStrikes >= 1 && strikes) {
+        image(strikes, 200 - 150, 90 - 60, 50, 50);
+    }
+
+    if (frogStrikes >= 2 && strikes) {
+        image(strikes, 200 - 100, 90 - 60, 50, 50);
+    }
+
+    if (frogStrikes >= 3 && strikes) {
+        image(strikes, 200 - 50, 90 - 60, 50, 50);
+    }
+
+    //After 3 strikes game finishes
+    if (frogStrikes >= 3) {
+        gameState = "game over";
+    }
+}
+
+// Display the score on the screen
+function displayScore() {
+    //Game also ends if you only eat the ladybugs
+    if (score == -5) {
+        gameState = "game over";
+    }
+
+    push();
+    textSize(40);
+    textStyle(BOLD);
+    textAlign(320, 100);
+    text(score, width * 0.85, height * 0.1);
+    pop();
+}
+
+// //Display the game over on the screen
+
+/**
+ * Launch the tongue on click (if it's not launched yet)
+ */
+function mousePressed() {
+    if (frog.tongue.state === "idle") {
+        frog.tongue.state = "outbound";
+    }
+}
+
+function gameOver() {
+    push();
+    textSize(40);
+    textStyle(BOLD);
+    textAlign(CENTER, CENTER);
+    text("YOU ARE NOT A FROG!", width / 2, height / 2 - 110);
+    pop();
 }
 
 
