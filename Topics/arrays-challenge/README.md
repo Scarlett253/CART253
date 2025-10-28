@@ -1,6 +1,6 @@
-# TITLE OF PROJECT
+# ARRAYS-CHALLENGE
 
-AUTHOR NAME
+Scarlett Arriola, Chloé Guerin, Lucie Soussana, Yelena Arakelian
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
