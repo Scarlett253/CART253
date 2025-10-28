@@ -120,6 +120,7 @@ MY FEATURES DONE:
 
 TO DO:
 * An ending. How should the game end? Because the frog explodes with flies? Because it starves? How can you tell the game is over?
+add score and strikes
 
 
 MY FEATURES TO DO:

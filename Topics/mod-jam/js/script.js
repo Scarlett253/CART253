@@ -15,8 +15,9 @@
 
 "use strict";
 
-/**Start state for a title screen*/
+/**Start state for a title and Game over screen*/
 let gameState = "title screen";
+let gameOverScreen;
 
 //Current score
 let score = 0;
@@ -24,6 +25,9 @@ let score = 0;
 //Frog lives variables
 let strikes;
 let frogStrikes = 0;
+
+//Frog
+let realFrog;
 
 //Sound variables
 let mySound;
@@ -42,6 +46,8 @@ function preload() {
     // scoreFrog = loadImage("assets/images/frogPixelGif.gif")
     strikes = loadImage("assets/images/pixelX.png")
     mySound = loadSound('assets/sounds/poisson-steve.mp3')
+    realFrog = loadImage("assets/images/realFrog.png")
+    gameOverScreen = loadImage("assets/images/deadFrog.gif")
 }
 
 //Start game when a key is pressed
@@ -194,20 +200,18 @@ function titleScreen() {
 //Background color
 function drawBackground() {
     //Make the background darker and lighter
-    backgroundShade += 0.2 * backgroundDirection;
+    backgroundShade += 0.3 * backgroundDirection;
     if (backgroundShade >= 100) {
         backgroundDirection = -1;
     }
     if (backgroundShade <= 0) {
         backgroundDirection = 1;
     }
-    let r = 173 - backgroundShade;
-    let g = 216 - backgroundShade;
+    let r = 130 - backgroundShade;
+    let g = 150 - backgroundShade;
     let b = 230 - backgroundShade;
 
     background(r, g, b);
-    // background("#0b1259ff");
-    // background("#87ceeb");
 }
 
 /**
@@ -343,11 +347,10 @@ function drawFrog() {
     line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
     pop();
 
-    // Draw the frog's body
+    // Draw the frog's body (Frog image)
     push();
-    fill("#00ff00");
-    noStroke();
-    ellipse(frog.body.x, frog.body.y, frog.body.size);
+    imageMode(CENTER);
+    image(realFrog, frog.body.x, frog.body.y - 20, frog.body.size, frog.body.size);
     pop();
 }
 
@@ -407,7 +410,6 @@ function displayScore() {
     if (score == -5) {
         gameState = "game over";
     }
-
     push();
     textSize(40);
     textStyle(BOLD);
@@ -415,8 +417,6 @@ function displayScore() {
     text(score, width * 0.85, height * 0.1);
     pop();
 }
-
-// //Display the game over on the screen
 
 /**
  * Launch the tongue on click (if it's not launched yet)
@@ -427,8 +427,15 @@ function mousePressed() {
     }
 }
 
+//Display the game over on the screen
 function gameOver() {
+    if (gameOver) {
+    }
     push();
+    //Game Over screen
+    imageMode(CENTER);
+    image(gameOverScreen, width / 2, height / 2, 640);
+    //Game Over text
     textSize(40);
     textStyle(BOLD);
     textAlign(CENTER, CENTER);
