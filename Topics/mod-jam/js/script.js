@@ -17,7 +17,13 @@
 
 /**Start state for a title and Game over screen*/
 let gameState = "title screen";
+
+//Game over screen
 let gameOverScreen;
+
+//You win screen
+let mineFrog;
+let pixelFly;
 
 //Current score
 let score = 0;
@@ -48,6 +54,8 @@ function preload() {
     mySound = loadSound('assets/sounds/poisson-steve.mp3')
     realFrog = loadImage("assets/images/realFrog.png")
     gameOverScreen = loadImage("assets/images/deadFrog.gif")
+    mineFrog = loadImage("assets/images/walkingFrog.gif")
+    pixelFly = loadImage("assets/images/flyPixelGif.gif")
 }
 
 //Start game when a key is pressed
@@ -130,12 +138,14 @@ function draw() {
         drawFrog();
         checkTongueFlyOverlap();
         displayScore();
-        // displayLowScore();
         displayStrikes();
 
     }
     else if (gameState === "game over") {
         gameOver();
+    }
+    else if (gameState === "you win") {
+        youWin();
     }
 
 }
@@ -171,19 +181,23 @@ function titleScreen() {
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text("Am I a", width / 2, height / 2 - 110);
-    text("Frog?", width / 2, height / 2 - 40);
+    text("Am I a", width / 2, height / 2 - 130);
+    text("Frog?", width / 2, height / 2 - 60);
 
     //Instructions text
-    textSize(20);
+    textSize(18);
     textFont("Comic Sans Ms");
     textAlign(CENTER, CENTER);
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text("- Move the frog with your mouse", width / 2, height / 2 + 40);
-    text("- Click to launch the tongue", width / 2, height / 2 + 70);
-    text("- CATCH THE FLIES!!!", width / 2, height / 2 + 100);
+    text("- Move the frog with your mouse", width / 2, height / 2 - 10);
+    text("- Click to launch the tongue", width / 2, height / 2 + 20);
+    text("- Eating ladybugs eliminates your strikes,", width / 2, height / 2 + 50);
+    text("but lowers your score", width / 2, height / 2 + 80);
+    text("- You lose if the score is -5", width / 2, height / 2 + 110);
+    text("- You lose if you don't catch any fly ", width / 2, height / 2 + 140);
+    text("- CATCH THE FLIES!!!", width / 2, height / 2 + 170);
 
     //Start the game text
     textSize(10);
@@ -290,7 +304,7 @@ function drawLadybug() {
  * Resets the ladybug to the left with a random y
  */
 function resetLadybug() {
-    ladybug.x = random(200, 320)
+    ladybug.x = random(10, 320)
     ladybug.y = random(130, 300);
 }
 
@@ -410,10 +424,17 @@ function displayScore() {
     if (score == -5) {
         gameState = "game over";
     }
+
+    if (score == 10) {
+        gameState = "you win";
+    }
     push();
     textSize(40);
-    textStyle(BOLD);
     textAlign(320, 100);
+    textFont("Comic Sans Ms");
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
     text(score, width * 0.85, height * 0.1);
     pop();
 }
@@ -437,11 +458,47 @@ function gameOver() {
     image(gameOverScreen, width / 2, height / 2, 640);
     //Game Over text
     textSize(40);
-    textStyle(BOLD);
+    textFont("Comic Sans Ms");
     textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
     text("YOU ARE NOT A FROG!", width / 2, height / 2 - 110);
+    textSize(10);
+    textFont("Comic Sans Ms");
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("Ctrl + r to restart", width / 2, height / 2 - 80);
     pop();
 }
+//Display the you win screen
+
+
+function youWin() {
+    // if (youWin) {
+    // }
+    push();
+    //You win screen
+    background("#d4ed91ff");
+    //Images 
+    imageMode(CENTER);
+    image(mineFrog, width / 2, height / 2 + 20, 300, 300);
+    //You win text
+    textSize(40);
+    textFont("Comic Sans Ms");
+    textAlign(CENTER, CENTER);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text("YOU ARE A FROG!", width / 2, height / 2 - 110);
+    pop();
+
+}
+
+
+
 
 
 

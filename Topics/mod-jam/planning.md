@@ -115,8 +115,11 @@ ASSIGMENT FEATURES DONE:
 MY FEATURES DONE:
 - Added a ladybug that eliminates strikes, but if the frog eats them the score lowers, and if the score is -5, the game ends.
 - Tittle background is a lilypad
+- background color changed from white to blue (shading)
+- Modify the frog
+- Add more beetles (Yessss, it's 2025, we want diversity, let's add some ladybugs, I love ladybugs, or some bees, there's a lot of bees around campus nowdays. Does the other beetles increment the powers of the frog? or are they weaknesses??)
 
-
+-Beetles have different mods (As I was saying, maybe the ladybugs are extra points depending how many spots they have, what abt the bees?they hurt the frog with their stings, and there'S bumblebees too, those ones are just cuties patooties)
 
 TO DO:
 * An ending. How should the game end? Because the frog explodes with flies? Because it starves? How can you tell the game is over?
@@ -124,11 +127,5 @@ add score and strikes
 
 
 MY FEATURES TO DO:
-- background color changed from white to blue (shading)
-- Modify the frog
 
-- The frog is now a square (why a square? is it always a square or it's a mod? Like, does it becomes a square because he eat a fly or because it hasn't catch one yet? is the fly a square too? is this the minimalist mode?)
 
-- Add more beetles (Yessss, it's 2025, we want diversity, let's add some ladybugs, I love ladybugs, or some bees, there's a lot of bees around campus nowdays. Does the other beetles increment the powers of the frog? or are they weaknesses??)
-
--Beetles have different mods (As I was saying, maybe the ladybugs are extra points depending how many spots they have, what abt the bees?they hurt the frog with their stings, and there'S bumblebees too, those ones are just cuties patooties)
