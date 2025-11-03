@@ -107,25 +107,17 @@ Events
 
 
 ASSIGMENT FEATURES DONE:
-- Random moves and respawn of the fly every time its eaten
+- Random moves and respawn of the fly (and the ladybug) every time its eaten
 - Title (and instructions) change to game after random key is pressed
 - Poisson Steve song plays after starting the game 
 - Score and strikes are working
+- An ending: You can win or you can lose
 
 MY FEATURES DONE:
-- Added a ladybug that eliminates strikes, but if the frog eats them the score lowers, and if the score is -5, the game ends.
-- Tittle background is a lilypad
-- background color changed from white to blue (shading)
-- Modify the frog
-- Add more beetles (Yessss, it's 2025, we want diversity, let's add some ladybugs, I love ladybugs, or some bees, there's a lot of bees around campus nowdays. Does the other beetles increment the powers of the frog? or are they weaknesses??)
+- Added a ladybug that eliminates strikes, but if the frog eats them the score lowers one point, and if the score is -5, the game ends.
+- Title background is a lilypad
+- background color changes from dark to light blue smoothly (shading)
+- Modify the frog (now is a real frog)
 
--Beetles have different mods (As I was saying, maybe the ladybugs are extra points depending how many spots they have, what abt the bees?they hurt the frog with their stings, and there'S bumblebees too, those ones are just cuties patooties)
-
-TO DO:
-* An ending. How should the game end? Because the frog explodes with flies? Because it starves? How can you tell the game is over?
-add score and strikes
-
-
-MY FEATURES TO DO:
 
 

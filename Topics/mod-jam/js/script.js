@@ -46,6 +46,9 @@ let backgroundShade = 10;
 //Day and night cycle
 let backgroundDirection = 1;
 
+//Add some stars
+let stars;
+
 /** Load sounds and images */
 function preload() {
     // scoreFrog = loadImage("assets/images/frogPixelGif.gif")
@@ -54,6 +57,7 @@ function preload() {
     realFrog = loadImage("assets/images/realFrog.png")
     gameOverScreen = loadImage("assets/images/deadFrog.gif")
     mineFrog = loadImage("assets/images/walkingFrog.gif")
+    stars = loadImage("assets/images/stars.gif")
 
 }
 
@@ -185,33 +189,22 @@ function titleScreen() {
 
     //Instructions text
     textSize(18);
-    textFont("Comic Sans Ms");
-    textAlign(CENTER, CENTER);
-    fill("#000000");
-    stroke("#FFFFFF");
-    strokeWeight(4);
     text("- Move the frog with your mouse", width / 2, height / 2 - 10);
     text("- Click to launch the tongue", width / 2, height / 2 + 20);
     text("- Eating ladybugs eliminates your strikes,", width / 2, height / 2 + 50);
     text("but lowers your score", width / 2, height / 2 + 80);
     text("- You lose if the score is -5", width / 2, height / 2 + 110);
-    text("- You lose if you don't catch any fly ", width / 2, height / 2 + 140);
+    text("- You lose if you get 3 strikes ", width / 2, height / 2 + 140);
     text("- CATCH THE FLIES!!!", width / 2, height / 2 + 170);
-
     //Start the game text
     textSize(10);
-    textFont("Comic Sans Ms");
-    textAlign(CENTER, CENTER);
-    fill("#000000");
-    stroke("#FFFFFF");
-    strokeWeight(4);
     text("PRESS ANY KEY TO START :)", width / 2, height / 2 + 215);
     pop();
 }
 
 /**Draw background with color shading*/
-//Background color
 function drawBackground() {
+
     //Make the background darker and lighter
     backgroundShade += 0.3 * backgroundDirection;
     if (backgroundShade >= 100) {
@@ -225,6 +218,10 @@ function drawBackground() {
     let b = 230 - backgroundShade;
 
     background(r, g, b);
+
+    //Add stars
+    imageMode(CENTER);
+    image(stars, width / 2, height - 400, 640, 480);
 }
 
 /**
@@ -424,7 +421,7 @@ function displayScore() {
         gameState = "game over";
     }
 
-    if (score == 10) {
+    if (score == 30) {
         gameState = "you win";
     }
     push();
@@ -464,16 +461,11 @@ function gameOver() {
     strokeWeight(4);
     text("YOU ARE NOT A FROG!", width / 2, height / 2 - 110);
     textSize(10);
-    textFont("Comic Sans Ms");
-    textAlign(CENTER, CENTER);
-    fill("#000000");
-    stroke("#FFFFFF");
-    strokeWeight(4);
     text("Ctrl + r to restart", width / 2, height / 2 - 80);
     pop();
 }
-//Display the you win screen
 
+//Display the YOU WIN screen
 
 function youWin() {
     push();
@@ -489,7 +481,9 @@ function youWin() {
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text("YOU ARE A FROG!", width / 2, height / 2 - 110);
+    text("YOU ARE A FROG!", width / 2, height / 2 - 130);
+    textSize(10);
+    text("Ctrl + r to restart", width / 2, height / 2 - 100);
     pop();
 
 }
