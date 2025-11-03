@@ -23,7 +23,6 @@ let gameOverScreen;
 
 //You win screen
 let mineFrog;
-let pixelFly;
 
 //Current score
 let score = 0;
@@ -55,7 +54,7 @@ function preload() {
     realFrog = loadImage("assets/images/realFrog.png")
     gameOverScreen = loadImage("assets/images/deadFrog.gif")
     mineFrog = loadImage("assets/images/walkingFrog.gif")
-    pixelFly = loadImage("assets/images/flyPixelGif.gif")
+
 }
 
 //Start game when a key is pressed
@@ -477,8 +476,6 @@ function gameOver() {
 
 
 function youWin() {
-    // if (youWin) {
-    // }
     push();
     //You win screen
     background("#d4ed91ff");
