@@ -65,4 +65,11 @@ function draw() {
         stroke(strokeValue);
         strokeValue += 25;
     }
+
+    while (y < height) {
+        line(0, y, width, y);
+        y += 50;
+        stroke(strokeValue);
+        strokeValue -= 25;
+    }
 }
