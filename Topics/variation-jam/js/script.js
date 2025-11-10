@@ -1,17 +1,22 @@
 /**
- * Title of Project
- * Author Name
+ * Cookie Eater 
+ * Yvonne Scarlett Arriola Lerin
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
- */
+ * A game about avoiding being eaten by a cookie monster
+ * 
+ * Instructions:
+ * - Move the mouse to avoid the cookie monster
+ * - Enter trought the doors to escape to the next room
+ * - Collect chips to gain points
+ * 
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * Create canvas and set up monster and mouse positions
 */
 function setup() {
+    createCanvas(800, 600);
 
 }
 
