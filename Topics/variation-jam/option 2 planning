@@ -1,0 +1,100 @@
+# Planning Cookie Monster 
+
+## Starting point
+
+The initial idea:
+
+> A monster that tries to eat the mouse.
+
+## Experience design
+
+The experience:
+
+> The user controls the mouse all around the screen trying to avoid the monster, otherwise they'll get  eaten (or worse...). The way of escape for the mouse is entering doors (simple black squares) that takes the user to different rooms. If the mouse is reach by the monster, it gets eaten and lose the game.
+
+## Breaking it down
+
+Basic things to do:
+
+- Draw the monster (image? a circle?)
+- draw the mouse (like make it have another shape? a cookie?)
+- Make the monster mouve (in line? around? random? INPREDICTABLE??)
+- What happens if the mouse it's eaten? (the screen explotes? jumpscare? obviously game over...or not?...)
+
+Questions:
+
+- What does the monster looks like?
+    - A circle, a fluffy circle like the cookie monster, just a mouth.
+- How does the user control the mouse?
+    - IT's literally the mouse lol
+    - does the mouse does any other action? left click? right click?
+- Levels?
+    - yesss yes yes!
+    - Add like secret paths?
+    - Change of rooms by entering doors?
+    - Hidding?
+
+- How does the user wins?
+    - Again, levels?
+    - score?
+- What does it all look like on the screen? Layout?
+    - that last game on ready player one? the scene with the easter egg?
+
+
+## The program starts to form....
+
+What is there?
+
+- The mouse
+    - Position and size
+    - style
+    - what is it doing?
+- The monster
+    - Position and the size
+    - Velocity
+    - Does it randomly appears from any of the screen sides?
+
+```
+
+monster
+    x
+    y
+    size
+    speed
+
+doors/gates
+    x
+    y
+    size
+```
+
+What happens in this project?
+
+- Start (setup)
+    - Create a canvas
+    
+- Every frame (draw)
+    - Draw the background (different backgrounds per room)
+    - Move and draw the monster
+        - Add the monster's speed to it x and y
+        - Draw a circle at the monster's position with its size (blue)
+   
+
+Events
+
+- If the user clicks the mouse
+- If the monster eats the mouse is a game over
+- If the user wins
+
+
+
+FEATURES to do:
+- Menu (and instructions) change to game after space bar is pressed
+- Isaac bailando Song plays after starting the game 
+- add sounds effects for the monster
+- Score/time system
+- An ending: You can win or you can lose
+
+
+
+

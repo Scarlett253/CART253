@@ -1,0 +1,100 @@
+# Planning Mexican Horse
+
+## Starting point
+
+The initial idea:
+A horse that skips obstacles
+
+## Experience design
+
+The experience:
+
+> The user controls a horse running towards the right side infinitly, they can make it jump to avoid obstacles that appear eventually on the screen.
+
+## Breaking it down
+
+Basic things to do:
+
+- Draw the horse (image? use a brown rectangle?)
+- Make it jump (using the mouse? with the keyboard?)
+- Draw the obstacles ( squares? in line? random?)
+- Make the whole simulation a loop (using frogfrogfrog examples?)
+
+Questions:
+
+- What does the horse looks like?
+    - rectangles! (pixel art)
+- How does the user control the horse?
+    - User controls horse with the space bar 
+- How does the objects appear?
+    - The objects start appearing on the right moving to the left at the bottom of the page, they appear in loop
+- What happens if the user hits an obstacle?
+    - game over (like in the google's dinosaur game)
+- What does it all look like on the screen? Layout?
+    - Like google's dinosaur game
+
+## The program starts to form....
+
+What is there?
+
+- The horse
+    - Position and size
+    - velocity
+- The obstacles
+    - Position and the size
+    - Velocity
+    - infinity loop
+
+```
+horse
+    body
+        x
+        y
+        size
+        speed
+    
+
+obstacles
+    x
+    y
+    size
+    
+```
+
+What happens in this project?
+
+- Start (setup)
+    - Create a canvas
+    
+- Every frame (draw)
+    - Draw the background
+    - Move and draw the horse 
+        - Add the horse's speed to it x
+        - Draw a rectangle at the horse's position with its size (brown)/or make it an image
+    -draw the obstacles
+        - Move the objects on loop, x position
+        - Draw squares as obstacles
+
+
+Events
+
+- If the user press the space bar, the horse jumps
+- If the horse hits an obstacle is a game over
+
+FEATURES to do:
+- Menu (and instructions) change to game after space bar is pressed
+- Isaac dancing Song plays after starting the game 
+- add sound effects when the horse jumps
+- Score/time system
+- An ending: You can win or you can lose
+
+
+
+* Deploying the full set of programming skills covered in the course, including arrays, loops, and data-structures.
+
+* Understanding how a basic underlying experience can be made distinctive through different programming approaches
+
+* Creating a more polished work that could be part of a portfolio
+
+
+
