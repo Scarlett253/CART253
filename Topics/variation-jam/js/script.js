@@ -186,8 +186,32 @@ function drawMonster() {
     //Eyes
     push();
     fill("#FFFFFF");
-    ellipse(monster.body.x - 20, monster.body.y - 20, 20, 30);
-    ellipse(monster.body.x + 20, monster.body.y - 20, 20, 30);
+    ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
+    ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
+    pop();
+
+    //Pupils
+    push();
+    fill("#000000");
+    ellipse(monster.body.x - 10, monster.body.y - 40, 10, 10);
+    ellipse(monster.body.x + 10, monster.body.y - 40, 10, 10);
+    pop();
+    //Make left pupil follow mouse
+    let leftPupilX = map(mouseX, 0, width, -5, 5);
+    let leftPupilY = map(mouseY, 0, height, -5, 5);
+    //Make right pupil follow mouse
+    let rightPupilX = map(mouseX, 0, width, -5, 5);
+    let rightPupilY = map(mouseY, 0, height, -5, 5);
+
+    //Mouth
+    push();
+    noStroke();
+    fill("#680C07");
+    // d = distance between the mouse and the center of the monster's mouth
+    let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
+    let mouthSize = map(d, 0, 200, 60, 15);
+    mouthSize = constrain(mouthSize, 15, 60);
+    ellipse(monster.body.x, monster.body.y, mouthSize);
     pop();
 };
 
