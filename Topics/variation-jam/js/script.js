@@ -33,9 +33,16 @@ let youWin;
 let score = 0;
 
 /** Monster settings */
-//Monster position
-let monsterX = 200;
-let monsterY = 200;
+let monsterImage;
+
+const monster = {
+    body: {
+        x: 100,
+        y: 200,
+        size: 100,
+        speed: 3
+    }
+}
 
 /** Load sounds and images */
 function preload() {
@@ -45,6 +52,7 @@ function preload() {
     avoidObstacles = loadImage("assets/images/avoidObstacles.png");
     enterDoors = loadImage("assets/images/enterDoors.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
+    monsterImage = loadImage("assets/images/monster.png");
 }
 
 //Start game when ENTER is pressed
@@ -133,16 +141,19 @@ function drawBackground() {
 function drawMonster() {
     //Body
     push();
-    noStroke();
-    fill("#391be1ff");
-    ellipse(monsterX, monsterY, 150, 200);
+    imageMode(CENTER);
+    image(monsterImage, monster.body.x, monster.body.y, monster.body.size, monster.body.size);
+    pop();
+
+
+
     pop();
 
     //Eyes
     push();
     fill("#FFFFFF");
-    ellipse(monsterX - 25, monsterY - 20, 40, 30);
-    ellipse(monsterX + 25, monsterY - 20, 40, 30);
+    ellipse(monster.x - 5, monster.y - 5, monster.size * 2 / 5, monster.size * 3 / 8);
+    ellipse(monster.x, monster.y, monster.size * 2 / 5, monster.size * 3 / 8);
     pop();
 
 
