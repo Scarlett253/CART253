@@ -35,14 +35,7 @@ let score = 0;
 /** Monster settings */
 let monsterImage;
 
-const monster = {
-    body: {
-        x: 100,
-        y: 200,
-        size: 100,
-        speed: 3
-    }
-}
+
 
 /** Load sounds and images */
 function preload() {
@@ -62,14 +55,20 @@ function keyPressed() {
     }
 }
 
+const monster = {
+    body: {
+        x: 100,
+        y: 200,
+        size: 100,
+        speed: 3
+    }
+};
+
 /**
  * Create canvas and set up monster and mouse positions
 */
 function setup() {
     createCanvas(1300, 800);
-
-    //Give the monster a initial random position
-    // resetMonster();
 
 }
 
@@ -84,15 +83,16 @@ function draw() {
     else if (gameState === "playing") {
 
         drawBackground();
-        drawMonster();
+        drawCookie();
         moveMonster();
+        drawMonster();
         checkMonsterCollision();
         drawObstacles();
         checkObstaclesCollision();
         drawDoors();
         checkDoorsCollision();
-        drawCookie();
         displayScore();
+
 
     }
     else if (gameState === "game over") {
@@ -135,68 +135,15 @@ function drawBackground() {
     background(300, 150, 200);
 }
 
-// /** Monster set up */
-
-//Draw monster
-function drawMonster() {
-    //Body
-    push();
-    imageMode(CENTER);
-    image(monsterImage, monster.body.x, monster.body.y, monster.body.size, monster.body.size);
-    pop();
-
-
-
-    pop();
-
-    //Eyes
-    push();
-    fill("#FFFFFF");
-    ellipse(monster.x - 5, monster.y - 5, monster.size * 2 / 5, monster.size * 3 / 8);
-    ellipse(monster.x, monster.y, monster.size * 2 / 5, monster.size * 3 / 8);
-    pop();
-
-
-}
-
-// //Move monster
-// function moveMonster() {
-// }
-
-// //Monster collision
-// function checkMonsterCollision() {
-// }
-
-// /** Obstacles and doors set up */
-// //Draw Obstacles
-// function drawObstacles() {
-
-// }
-
-// //Check obstacles collision
-// function checkObstaclesCollision() {
-
-// }
-
-// //Draw doors
-// function drawDoors() {
-
-// }
-
-// //Check doors collision
-// function checkDoorsCollision() {
-
-// }
-
-// /** Cookie */
+/** Cookie */
 function drawCookie() {
     //Cookie
     push();
-    noStroke();
     noCursor();
+    noStroke();
     fill("#efc713ff");
     circle(mouseX, mouseY, 40);
-    pop();
+
 
     //Chocolate chips
     fill("#680C07");
@@ -211,6 +158,61 @@ function drawCookie() {
         let dy = chips[i][1];
         circle(mouseX + dx, mouseY + dy, 6);
     }
+    pop();
+}
+
+// /** Monster set up */
+
+// //Move monster
+function moveMonster() {
+    let followSpeed = 0.3;
+    monster.body.x = lerp(monster.body.x, mouseX, followSpeed);
+    monster.body.y = lerp(monster.body.y, mouseY, followSpeed);
+}
+
+//Draw monster
+function drawMonster() {
+    //Body
+    push();
+    imageMode(CENTER);
+    image(monsterImage, monster.body.x, monster.body.y, monster.body.size, monster.body.size);
+    pop();
+
+    //Eyes
+    push();
+    fill("#FFFFFF");
+    ellipse(monster.body.x - 20, monster.body.y - 20, 20, 30);
+    ellipse(monster.body.x + 20, monster.body.y - 20, 20, 30);
+    pop();
+
+
+}
+
+
+
+//Monster collision
+function checkMonsterCollision() {
+}
+
+/** Obstacles and doors set up */
+//Draw Obstacles
+function drawObstacles() {
+
+}
+
+//Check obstacles collision
+function checkObstaclesCollision() {
+
+}
+
+//Draw doors
+function drawDoors() {
+
+}
+
+//Check doors collision
+function checkDoorsCollision() {
+
 }
 
 //Display score
@@ -227,13 +229,17 @@ function displayScore() {
 
 }
 
-// /**Game over and You win set up */
 
-// //Game over screen
-// function gameOver() {
 
-// }
-// //You win screen
-// function youWin() {
 
-// }
+
+/**Game over and You win set up */
+
+//Game over screen
+function gameOver() {
+
+}
+//You win screen
+function youWin() {
+
+}
