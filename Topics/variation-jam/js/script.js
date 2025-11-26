@@ -78,7 +78,7 @@ const cookie = {
 const chips = {
     x: 0,
     y: 0,
-    size: 6
+    size: 8
 };
 
 /** Load sounds and images */
@@ -103,7 +103,7 @@ function keyPressed() {
  * Create canvas and set up monster and mouse positions
 */
 function setup() {
-    createCanvas(1300, 800);
+    createCanvas(1300, 700);
 
     //Give the chips random positions
     resetChips();
@@ -250,8 +250,8 @@ function drawChips() {
 
 /** Reset the chips in random positions all over the screen*/
 function resetChips() {
-    chips.x = random(0, 1300);
-    chips.y = random(0, 800);
+    chips.x = random(13, 1288);
+    chips.y = random(13, 688);
 };
 
 function checkChipsCollision() {
@@ -307,11 +307,11 @@ function displayScore() {
     push();
     textSize(40);
     textAlign(320, 100);
-    textFont("Comic Sans Ms");
+    textFont(BOLD);
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text(score, width * 0.85, height * 0.1);
+    text(score, width * 0.90, height * 0.1);
     pop();
 }
 
