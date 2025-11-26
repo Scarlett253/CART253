@@ -25,9 +25,11 @@ let chip = 0;
 
 /**Monster's settings */
 
-//Image
+//Xula image
 let xula;
 let xulaMad;
+//Dog cookie image
+let dogCookie;
 //monster
 const monster = {
     body: {

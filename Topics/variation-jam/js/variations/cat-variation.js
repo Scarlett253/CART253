@@ -23,12 +23,15 @@ let gameOver;
 let score = 0;
 let chip = 0;
 
-/**Monster's settings */
+/**Frijol's settings */
 
-//Image
+//Frijol mage
 let frijol;
 let frijolMad;
-//monster
+//Cat cookie image
+let catCookie;
+
+//frijol
 const monster = {
     body: {
         x: 100,
