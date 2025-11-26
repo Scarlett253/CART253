@@ -17,11 +17,10 @@
 // let normalModeState = "playing";
 
 // //Gameover screen
-// let gameOver;
+// let catGameOver;
 
 // //Current score
-// let score = 0;
-// let chip = 0;
+// let catScore = 0;
 
 // /**Frijol's settings */
 
@@ -95,7 +94,7 @@
 // function normalDraw() {
 //     if (normalModeState === "playing") {
 
-//         drawBackground();
+//         catDrawBackground();
 //         moveCookie();
 //         drawCookie();
 //         moveMonster();
@@ -106,17 +105,17 @@
 //         chipCollected();
 //         // drawObstacles();
 //         // checkObstaclesCollision();
-//         displayScore();
+//         catDisplayScore();
 
 //     }
 //     else if (normalModeState === "game over") {
-//         gameOver();
+//         catGameOver();
 //     }
 
 // }
 
 // /**Draw background*/
-// function drawBackground() {
+// function catDrawBackground() {
 //     background(300, 150, 200);
 // };
 
@@ -221,8 +220,7 @@
 //         //Reset the chip
 //         resetChips();
 //         //Score increases and a chip is added to the cookie
-//         score += 1;
-//         chip += 1;
+//         catScore += 1;
 
 //     }
 
@@ -250,7 +248,7 @@
 
 
 // //Display score
-// function displayScore() {
+// function catDisplayScore() {
 //     push();
 //     textSize(40);
 //     textAlign(320, 100);
@@ -258,12 +256,12 @@
 //     fill("#000000");
 //     stroke("#FFFFFF");
 //     strokeWeight(4);
-//     text(score, width * 0.90, height * 0.1);
+//     text(catScore, width * 0.90, height * 0.1);
 //     pop();
 // }
 
 // // /**Game over set up */
-// // function gameOver() {
+// // function catGameOver() {
 // //     push();
 // //     //Game over screen
 // //     noStroke();

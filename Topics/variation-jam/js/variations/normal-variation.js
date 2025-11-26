@@ -17,7 +17,7 @@
 let normalModeState = "playing";
 
 //Gameover screen
-let gameOver;
+let normalGameOver;
 
 //Current score
 let normalScore = 0;
@@ -27,6 +27,7 @@ let chip = 0;
 
 //Image
 let monsterImage;
+
 //monster
 const monster = {
     body: {
@@ -91,7 +92,7 @@ function normalSetup() {
 function normalDraw() {
     if (normalModeState === "playing") {
 
-        drawBackground();
+        normalDrawBackground();
         moveCookie();
         drawCookie();
         moveMonster();
@@ -102,17 +103,17 @@ function normalDraw() {
         chipCollected();
         // drawObstacles();
         // checkObstaclesCollision();
-        displayScore();
+        normalDisplayScore();
 
     }
     else if (normalModeState === "game over") {
-        gameOver();
+        normalGameOver();
     }
 
 }
 
 /**Draw background*/
-function drawBackground() {
+function normalDrawBackground() {
     background(300, 150, 200);
 };
 
@@ -217,7 +218,7 @@ function checkChipsCollision() {
         //Reset the chip
         resetChips();
         //Score increases and a chip is added to the cookie
-        score += 1;
+        normalScore += 1;
         chip += 1;
 
     }
@@ -232,42 +233,9 @@ function chipCollected() {
     pop();
 
 }
-//     let chips = [
-//         [-12, -8], [10, -6], [-5, 6],
-//         [14, 4], [-15, 5], [2, -14],
-//         [6, 12]
-//     ];
-
-//     for (let i = 0; i < chips.length; i++) {
-//         let dx = chips[i][0];
-//         let dy = chips[i][1];
-//         circle(mouseX + dx, mouseY + dy, 6);
-//     }
-//     pop();
-// }
-// /** Obstacles set up */
-// //Draw Obstacles
-// function drawObstacles() {
-
-// }
-
-// //Check obstacles collision
-// function checkObstaclesCollision() {
-
-// }
-
-// //Draw doors
-// function drawDoors() {
-
-// }
-
-// //Check doors collision
-// function checkDoorsCollision() {
-
-// }
 
 //Display score
-function displayScore() {
+function displayNormalScore() {
     push();
     textSize(40);
     textAlign(320, 100);
@@ -275,16 +243,16 @@ function displayScore() {
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text(score, width * 0.90, height * 0.1);
+    text(normalScore, width * 0.90, height * 0.1);
     pop();
 }
 
-// /**Game over set up */
-// function gameOver() {
-//     push();
-//     //Game over screen
-//     noStroke();
-//     fill("#08519C");
-//     rect(0, 0, width, height);
-// }
+/**Game over set up */
+function normalGameOver() {
+    push();
+    //Game over screen
+    noStroke();
+    fill("#08519C");
+    rect(0, 0, width, height);
+}
 

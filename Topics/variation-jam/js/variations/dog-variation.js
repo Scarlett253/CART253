@@ -17,7 +17,7 @@
 let dogModeState = "playing";
 
 //Gameover screen
-let gameOver;
+let dogGameOver;
 
 //Current score
 let dogScore = 0;
@@ -28,9 +28,6 @@ let dogScore = 0;
 let xulaImage;
 let xulaMad;
 
-// //Dog cookie image
-// let dogCookie;
-
 //xula
 const xula = {
     body: {
@@ -40,28 +37,6 @@ const xula = {
         speed: 3
     }
 
-    //     //Eyes and pupils
-    //     eyes: {
-    //         globes: {
-    //             fill: "#FFFFFF",
-    //         },
-    //         pupils: {
-    //             y: undefined,
-    //             fill: "#000000",
-    //             left: {
-    //                 x: undefined,
-    //             },
-    //             right: {
-    //                 x: undefined,
-    //             }
-    //         },
-    //         left: {
-    //             x: undefined,
-    //         },
-    //         right: {
-    //             x: undefined,
-    //         }
-    //     }
 };
 /**Dog cookie settings */
 //cookie
@@ -95,7 +70,7 @@ function dogSetup() {
 function dogDraw() {
     if (dogModeState === "playing") {
 
-        drawBackground();
+        dogDrawBackground();
         moveDogCookie();
         drawDogCookie();
         moveXula();
@@ -105,17 +80,17 @@ function dogDraw() {
         checkBonesCollision();
         // drawObstacles();
         // checkObstaclesCollision();
-        displayScore();
+        dogDisplayScore();
 
     }
     else if (dogModeState === "game over") {
-        gameOver();
+        dogGameOver();
     }
 
 }
 
 /**Draw background*/
-function drawBackground() {
+function dogDrawBackground() {
     background(300, 150, 200);
 };
 
@@ -149,40 +124,7 @@ function drawXula() {
     pop();
 };
 
-// //Eyes
-// push();
-// noStroke();
-// fill(monster.eyes.globes.fill);
-// monster.eyes.y = monster.body.y - 10;
-// ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
-// ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
-// pop();
-
-// //Pupils
-// push();
-// fill(monster.eyes.pupils.fill);
-// // Make left pupil follow mouse X and mouse Y inside globe
-// monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
-// monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-// ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
-// // Make right pupil follow mouse X and mouse Y inside globe
-// monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
-// monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-// ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
-// pop();
-
 //     //Mad xula
-//     push();
-//     imageMode(CENTER);
-//     image(xulaMad, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
-//     pop();
-//     // d = distance between the mouse and the center of the monster's mouth
-//     let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
-//     let mouthSize = map(d, 0, 200, 60, 15);
-//     mouthSize = constrain(mouthSize, 15, 60);
-//     ellipse(monster.body.x, monster.body.y, mouthSize);
-//     pop();
-// };
 
 //Xula collission with dog cookie
 function checkXulaCollision() {
@@ -220,26 +162,13 @@ function checkBonesCollision() {
         //Reset the bones
         resetBones();
         //Score increases
-        score += 1;
+        dogScore += 1;
     }
 
 };
 
-
-// /** Obstacles set up */
-// //Draw Obstacles
-// function drawObstacles() {
-
-// }
-
-// //Check obstacles collision
-// function checkObstaclesCollision() {
-
-// }
-
-
 //Display score
-function displayScore() {
+function dogDisplayScore() {
     push();
     textSize(40);
     textAlign(320, 100);
@@ -247,16 +176,16 @@ function displayScore() {
     fill("#000000");
     stroke("#FFFFFF");
     strokeWeight(4);
-    text(score, width * 0.90, height * 0.1);
+    text(dogScore, width * 0.90, height * 0.1);
     pop();
 };
 
-// /**Game over set up */
-// function gameOver() {
-//     push();
-//     //Game over screen
-//     noStroke();
-//     fill("#08519C");
-//     rect(0, 0, width, height);
-// }
+/**Game over set up */
+function dogGameOver() {
+    push();
+    //Game over screen
+    noStroke();
+    fill("#08519C");
+    rect(0, 0, width, height);
+}
 
