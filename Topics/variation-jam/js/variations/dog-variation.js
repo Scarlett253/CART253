@@ -103,7 +103,6 @@ function dogDraw() {
         checkXulaCollision();
         drawBones();
         checkBonesCollision();
-        boneCollected();
         // drawObstacles();
         // checkObstaclesCollision();
         displayScore();
@@ -127,11 +126,10 @@ function moveDogCookie() {
 };
 
 function drawDogCookie() {
-    //dog Cookie
     push();
-    noStroke();
-    fill("#efc713ff");
-    ellipse(dogCookie.x, dogCookie.y, dogCookie.size);
+    imageMode(CENTER);
+    image(dogCookieImage, dogCookie.x, dogCookie.y, dogCookie.size, dogCookie.size);
+    pop();
 };
 
 /** Xula set up */
@@ -190,7 +188,7 @@ function drawXula() {
         //distance between xula and dog cookie
         const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
         //eaten as soon they touch
-        const eaten = (d < xula.body.size / 2 + xula.size / 2);
+        const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
 
         if (eaten) {
             dogModeState = "game over";
@@ -201,41 +199,31 @@ function drawXula() {
     function drawBones() {
         push();
         imageMode(CENTER);
-        image(bones, bones.x, bones.y, bones.size, bones.size);
+        image(bonesImage, bones.x, bones.y, bones.size, bones.size);
         pop();
     };
 
     /** Reset the bones in random positions all over the screen*/
-    function resetChips() {
-        chips.x = random(13, 1288);
-        chips.y = random(13, 688);
+    function resetBones() {
+        bones.x = random(13, 1288);
+        bones.y = random(13, 688);
     };
 
-    function checkChipsCollision() {
-        //Distance between cookie and chips
-        const d = dist(cookie.x, cookie.y, chips.x, chips.y);
-        //Getting collect by the cookie
-        const collect = (d < cookie.size / 2 + chips.size / 2);
+    function checkBonesCollision() {
+        //Distance between dog cookie and bones
+        const d = dist(dogCookie.x, dogCookie.y, bones.x, bones.y);
+        //Getting collect by the dog cookie
+        const collect = (d < dogCookie.size / 2 + bones.size / 2);
 
         if (collect) {
-            //Reset the chip
-            resetChips();
-            //Score increases and a chip is added to the cookie
+            //Reset the bones
+            resetBones();
+            //Score increases
             score += 1;
-            chip += 1;
-
         }
 
     }
 
-    function chipCollected() {
-        push();
-        noStroke();
-        fill("#680C07");
-        // ellipse(cookie.x, cookie.y, cookie.size);
-        pop();
-
-    }
 
     // /** Obstacles set up */
     // //Draw Obstacles

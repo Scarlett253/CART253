@@ -29,8 +29,8 @@ function preload() {
     monsterImage = loadImage("assets/images/monster.png");
     xulaImage = loadImage("assets/images/xulaPose1.png");
     xulaMad = loadImage("assets/images/xulaPose2.png");
-    dogCookie = loadImage("assets/images/dogCookie.png");
-    bones = loadImage("assets/images/bone.png");
+    dogCookieImage = loadImage("assets/images/dogCookie.png");
+    bonesImage = loadImage("assets/images/bone.png");
     frijolImage = loadImage("assets/images/frijolPose2.png");
     frijolMad = loadImage("assets/images/frijolPose1.png");
     fishCookie = loadImage("assets/images/fishCookie.png");
