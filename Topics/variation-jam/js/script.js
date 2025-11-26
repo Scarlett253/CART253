@@ -42,6 +42,31 @@ const monster = {
         y: 200,
         size: 100,
         speed: 3
+    },
+
+    //Eyes and pupils
+    eyes: {
+        y: undefined,
+        size: 80,
+        globes: {
+            fill: "#FFFFFF",
+        },
+        pupils: {
+            y: undefined,
+            fill: "#000000",
+            left: {
+                x: undefined,
+            },
+            right: {
+                x: undefined,
+            }
+        },
+        left: {
+            x: undefined,
+        },
+        right: {
+            x: undefined,
+        }
     }
 };
 //cookie
@@ -185,23 +210,55 @@ function drawMonster() {
 
     //Eyes
     push();
-    fill("#FFFFFF");
+    noStroke();
+    fill(monster.eyes.globes.fill);
+    monster.eyes.y = monster.body.y - 10;
+    // monster.eyes.left.x = width / 4;
+    // monster.eyes.right.x = width - width / 4;
     ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
     ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
+    // ellipse(monster.eyes.left.x, monster.eyes.y, monster.eyes.size);
+    // ellipse(monster.eyes.right.x, monster.eyes.y, monster.eyes.size);
     pop();
+    // push();
+    // noStroke();
+    // fill("#FFFFFF");
+    // pop();
 
     //Pupils
     push();
-    fill("#000000");
-    ellipse(monster.body.x - 10, monster.body.y - 40, 10, 10);
-    ellipse(monster.body.x + 10, monster.body.y - 40, 10, 10);
+    fill(monster.eyes.pupils.fill);
+    // Make left pupil follow mouse X and mouse Y inside globe
+    monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
+    monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
+    ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
+    // Make right pupil follow mouse X and mouse Y inside globe
+    monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
+    monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
+    ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
+
+
+    // monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.eyes.left.x, monster.eyes.left.x + 5);
+    // monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.eyes.y - 5, monster.eyes.y + 5);
+    // ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, monster.eyes.size - 15);
+    // // Make right pupil follow mouse X and mouse Y inside globe
+    // monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.eyes.right.x - 5, monster.eyes.right.x + 5);
+    // monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.eyes.y - 5, monster.eyes.y + 5);
+    // ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, monster.eyes.size - 15);
     pop();
-    //Make left pupil follow mouse
-    let leftPupilX = map(mouseX, 0, width, -5, 5);
-    let leftPupilY = map(mouseY, 0, height, -5, 5);
-    //Make right pupil follow mouse
-    let rightPupilX = map(mouseX, 0, width, -5, 5);
-    let rightPupilY = map(mouseY, 0, height, -5, 5);
+    // push();
+    // fill(monster.eyes.pupils.fill);
+    // //Make left pupil follow mouse
+    // monster.eyes.pupils.left.x = map(mouseX, 0, width,)
+    // ellipse(monster.body.x - 10, monster.body.y - 40, 10, 10);
+    // ellipse(monster.body.x + 10, monster.body.y - 40, 10, 10);
+    // pop();
+    // //Make left pupil follow mouse
+    // let leftPupilX = map(mouseX, 0, width, -5, 5);
+    // let leftPupilY = map(mouseY, 0, height, -5, 5);
+    // //Make right pupil follow mouse
+    // let rightPupilX = map(mouseX, 0, width, -5, 5);
+    // let rightPupilY = map(mouseY, 0, height, -5, 5);
 
     //Mouth
     push();
