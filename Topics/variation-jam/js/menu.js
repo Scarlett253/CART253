@@ -64,21 +64,22 @@ function menuDraw() {
 /**
  * Listen to the keyboard
  */
-function menuKeyPressed(event) {
-    switch (event.keyCode) {
-        case 78:
-            state = "normal-variation";
-            normalSetup();
-            break;
+fu
+// function menuKeyPressed(event) {
+//     switch (event.keyCode) {
+//         case 78:
+//             state = "normal-variation";
+//             normalSetup();
+//             break;
 
-        case 68:
-            state = "dog-variation";
-            dogSetup();
-            break;
+//         case 68:
+//             state = "dog-variation";
+//             dogSetup();
+//             break;
 
-        case 67:
-            state = "cat-variation";
-            catSetup();
-            break;
-    }
-}
+//         case 67:
+//             state = "cat-variation";
+//             catSetup();
+//             break;
+//     }
+// }

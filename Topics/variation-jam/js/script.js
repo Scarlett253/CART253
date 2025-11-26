@@ -43,18 +43,18 @@ function draw() {
  * Listen for keypressed and call the function for it in the
  * current state
  */
-function keyPressed(event) {
-    // ESC → go back to main menu
-    if (event.keyCode === 27) {
-        window.location.reload();
-    }
+// function keyPressed(event) {
+//     // ESC → go back to main menu
+//     if (event.keyCode === 27) {
+//         window.location.reload();
+//     }
 
-    switch (state) {
-        case "menu":
-            menuKeyPressed(event);
-            break;
-    }
-}
+//     switch (state) {
+//         case "menu":
+//             menuKeyPressed(event);
+//             break;
+//     }
+// }
 
 
 

@@ -80,7 +80,7 @@ const chips = {
  * Create canvas and set up monster and mouse positions
 */
 function normalSetup() {
-    createCanvas(1300, 700);
+    // createCanvas(1300, 700);
 
     //Give the chips random positions
     resetChips();

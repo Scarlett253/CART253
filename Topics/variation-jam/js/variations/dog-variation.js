@@ -58,7 +58,7 @@ const bones = {
  * Create canvas and set up xula and mouse positions
 */
 function dogSetup() {
-    createCanvas(1300, 700);
+    // createCanvas(1300, 700);
 
     //Give the bones random positions
     resetBones();
