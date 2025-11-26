@@ -26,13 +26,11 @@ let escapeMonster;
 //Gameover screen
 let gameOver;
 
-//You win screen
-let youWin;
-
 //Current score
 let score = 0;
 
 /**Monster's settings */
+
 //Image
 let monsterImage;
 //monster
@@ -67,6 +65,7 @@ const monster = {
         }
     }
 };
+/**Cookie settings */
 //cookie
 const cookie = {
     x: undefined, // mouseX
@@ -74,7 +73,8 @@ const cookie = {
     size: 40
 };
 
-//Chips
+/**Chips settings */
+//chips
 const chips = {
     x: 0,
     y: 0,
@@ -129,8 +129,7 @@ function draw() {
         checkChipsCollision();
         // drawObstacles();
         // checkObstaclesCollision();
-        // displayScore();
-
+        displayScore();
 
     }
     else if (gameState === "game over") {
@@ -238,7 +237,8 @@ function checkMonsterCollision() {
     if (eaten) {
         gameState = "game over";
     }
-}
+};
+
 //Chocolate chips
 function drawChips() {
     push();
@@ -246,6 +246,27 @@ function drawChips() {
     fill("#680C07");
     ellipse(chips.x, chips.y, chips.size);
     pop();
+};
+
+/** Reset the chips in random positions all over the screen*/
+function resetChips() {
+    chips.x = random(0, 1300);
+    chips.y = random(0, 800);
+};
+
+function checkChipsCollision() {
+    //Distance between cookie and chips
+    const d = dist(cookie.x, cookie.y, chips.x, chips.y);
+    //Getting collect by the cookie
+    const collect = (d < cookie.size / 2 + chips.size / 2);
+
+    if (collect) {
+        //Reset the chip
+        resetChips();
+        //Score increases and a chip is added to the cookie
+        score += 1;
+    }
+
 }
 //     let chips = [
 //         [-12, -8], [10, -6], [-5, 6],
@@ -281,19 +302,18 @@ function drawChips() {
 
 // }
 
-// //Display score
-// function displayScore() {
-//     push();
-//     textSize(40);
-//     textAlign(320, 100);
-//     textFont("Comic Sans Ms");
-//     fill("#000000");
-//     stroke("#FFFFFF");
-//     strokeWeight(4);
-//     text(score, width * 0.85, height * 0.1);
-//     pop();
-
-// }
+//Display score
+function displayScore() {
+    push();
+    textSize(40);
+    textAlign(320, 100);
+    textFont("Comic Sans Ms");
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text(score, width * 0.85, height * 0.1);
+    pop();
+}
 
 
 
