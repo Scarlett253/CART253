@@ -35,5 +35,5 @@ This bit should include the license you want to apply to your work. For example:
 
 ## Sourtces
 * mod-jam code example
-
-*
+* art-jam
+* conditionals-challenge

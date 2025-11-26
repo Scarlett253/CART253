@@ -6,7 +6,7 @@
  * 
  * Instructions:
  * - Move the mouse to avoid the cookie monster
- * - Enter trought the doors to escape to the next room
+ * - Avoid the obstacles
  * - Collect chips to gain points
  */
 
@@ -46,8 +46,6 @@ const monster = {
 
     //Eyes and pupils
     eyes: {
-        y: undefined,
-        size: 80,
         globes: {
             fill: "#FFFFFF",
         },
@@ -76,6 +74,12 @@ const cookie = {
     size: 40
 };
 
+//Chips
+const chips = {
+    x: 0,
+    y: 0,
+    size: 6
+};
 
 /** Load sounds and images */
 function preload() {
@@ -101,6 +105,8 @@ function keyPressed() {
 function setup() {
     createCanvas(1300, 800);
 
+    //Give the chips random positions
+    resetChips();
 }
 
 /**
@@ -118,11 +124,11 @@ function draw() {
         drawCookie();
         moveMonster();
         drawMonster();
-        // checkMonsterCollision();
+        checkMonsterCollision();
+        drawChips();
+        checkChipsCollision();
         // drawObstacles();
         // checkObstaclesCollision();
-        // drawDoors();
-        // checkDoorsCollision();
         // displayScore();
 
 
@@ -130,9 +136,7 @@ function draw() {
     else if (gameState === "game over") {
         gameOver();
     }
-    else if (gameState === "you win") {
-        youWin();
-    }
+
 }
 
 /**Draw menu screen*/
@@ -174,26 +178,8 @@ function drawCookie() {
     ellipse(cookie.x, cookie.y, cookie.size);
 };
 
-
-//     //Chocolate chips
-//     fill("#680C07");
-//     let chips = [
-//         [-12, -8], [10, -6], [-5, 6],
-//         [14, 4], [-15, 5], [2, -14],
-//         [6, 12]
-//     ];
-
-//     for (let i = 0; i < chips.length; i++) {
-//         let dx = chips[i][0];
-//         let dy = chips[i][1];
-//         circle(mouseX + dx, mouseY + dy, 6);
-//     }
-//     pop();
-// }
-
-// /** Monster set up */
-
-// //Move monster
+/** Monster set up */
+//Move monster
 function moveMonster() {
     let followSpeed = 0.05;
     monster.body.x = lerp(monster.body.x, mouseX, followSpeed);
@@ -213,17 +199,9 @@ function drawMonster() {
     noStroke();
     fill(monster.eyes.globes.fill);
     monster.eyes.y = monster.body.y - 10;
-    // monster.eyes.left.x = width / 4;
-    // monster.eyes.right.x = width - width / 4;
     ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
     ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
-    // ellipse(monster.eyes.left.x, monster.eyes.y, monster.eyes.size);
-    // ellipse(monster.eyes.right.x, monster.eyes.y, monster.eyes.size);
     pop();
-    // push();
-    // noStroke();
-    // fill("#FFFFFF");
-    // pop();
 
     //Pupils
     push();
@@ -236,29 +214,7 @@ function drawMonster() {
     monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
     monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
     ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
-
-
-    // monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.eyes.left.x, monster.eyes.left.x + 5);
-    // monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.eyes.y - 5, monster.eyes.y + 5);
-    // ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, monster.eyes.size - 15);
-    // // Make right pupil follow mouse X and mouse Y inside globe
-    // monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.eyes.right.x - 5, monster.eyes.right.x + 5);
-    // monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.eyes.y - 5, monster.eyes.y + 5);
-    // ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, monster.eyes.size - 15);
     pop();
-    // push();
-    // fill(monster.eyes.pupils.fill);
-    // //Make left pupil follow mouse
-    // monster.eyes.pupils.left.x = map(mouseX, 0, width,)
-    // ellipse(monster.body.x - 10, monster.body.y - 40, 10, 10);
-    // ellipse(monster.body.x + 10, monster.body.y - 40, 10, 10);
-    // pop();
-    // //Make left pupil follow mouse
-    // let leftPupilX = map(mouseX, 0, width, -5, 5);
-    // let leftPupilY = map(mouseY, 0, height, -5, 5);
-    // //Make right pupil follow mouse
-    // let rightPupilX = map(mouseX, 0, width, -5, 5);
-    // let rightPupilY = map(mouseY, 0, height, -5, 5);
 
     //Mouth
     push();
@@ -272,12 +228,38 @@ function drawMonster() {
     pop();
 };
 
+//Monster collission with cookie
+function checkMonsterCollision() {
+    //distance between monster and cookie
+    const d = dist(monster.body.x, monster.body.y, cookie.x, cookie.y);
+    //eaten as soon they touch
+    const eaten = (d < monster.body.size / 2 + cookie.size / 2);
 
+    if (eaten) {
+        gameState = "game over";
+    }
+}
+//Chocolate chips
+function drawChips() {
+    push();
+    noStroke();
+    fill("#680C07");
+    ellipse(chips.x, chips.y, chips.size);
+    pop();
+}
+//     let chips = [
+//         [-12, -8], [10, -6], [-5, 6],
+//         [14, 4], [-15, 5], [2, -14],
+//         [6, 12]
+//     ];
 
-// //Monster collision
-// function checkMonsterCollision() {
+//     for (let i = 0; i < chips.length; i++) {
+//         let dx = chips[i][0];
+//         let dy = chips[i][1];
+//         circle(mouseX + dx, mouseY + dy, 6);
+//     }
+//     pop();
 // }
-
 // /** Obstacles and doors set up */
 // //Draw Obstacles
 // function drawObstacles() {
@@ -317,13 +299,12 @@ function drawMonster() {
 
 
 
-// /**Game over and You win set up */
-
-// //Game over screen
+// /**Game over set up */
 // function gameOver() {
-
+//     push();
+//     //Game over screen
+//     noStroke();
+//     fill("#08519C");
+//     rect(0, 0, width, height);
 // }
-// //You win screen
-// function youWin() {
 
-// }
