@@ -37,3 +37,4 @@ This bit should include the license you want to apply to your work. For example:
 * mod-jam code example
 * art-jam
 * conditionals-challenge
+* p5js lerp and map

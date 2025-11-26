@@ -28,6 +28,7 @@ let gameOver;
 
 //Current score
 let score = 0;
+let chip = 0;
 
 /**Monster's settings */
 
@@ -127,6 +128,7 @@ function draw() {
         checkMonsterCollision();
         drawChips();
         checkChipsCollision();
+        chipCollected();
         // drawObstacles();
         // checkObstaclesCollision();
         displayScore();
@@ -265,7 +267,18 @@ function checkChipsCollision() {
         resetChips();
         //Score increases and a chip is added to the cookie
         score += 1;
+        chip += 1;
+
     }
+
+}
+
+function chipCollected() {
+    push();
+    noStroke();
+    fill("#680C07");
+    ellipse(cookie.x, cookie.y, cookie.size);
+    pop();
 
 }
 //     let chips = [
@@ -281,7 +294,7 @@ function checkChipsCollision() {
 //     }
 //     pop();
 // }
-// /** Obstacles and doors set up */
+// /** Obstacles set up */
 // //Draw Obstacles
 // function drawObstacles() {
 
