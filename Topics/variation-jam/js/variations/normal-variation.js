@@ -228,7 +228,7 @@ function chipCollected() {
     push();
     noStroke();
     fill("#680C07");
-    ellipse(cookie.x, cookie.y, cookie.size);
+    // ellipse(cookie.x, cookie.y, cookie.size);
     pop();
 
 }
