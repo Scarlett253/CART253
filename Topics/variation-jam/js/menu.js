@@ -27,11 +27,11 @@ function preload() {
     enterDoors = loadImage("assets/images/enterDoors.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
     monsterImage = loadImage("assets/images/monster.png");
-    xula = loadImage("assets/images/xulaPose1.png");
+    xulaImage = loadImage("assets/images/xulaPose1.png");
     xulaMad = loadImage("assets/images/xulaPose2.png");
     dogCookie = loadImage("assets/images/dogCookie.png");
-    bone = loadImage("assets/images/bone.png");
-    frijol = loadImage("assets/images/frijolPose2.png");
+    bones = loadImage("assets/images/bone.png");
+    frijolImage = loadImage("assets/images/frijolPose2.png");
     frijolMad = loadImage("assets/images/frijolPose1.png");
     fishCookie = loadImage("assets/images/fishCookie.png");
     fish = loadImage("assets/images/fish.png");
