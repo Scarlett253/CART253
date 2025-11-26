@@ -1,15 +1,15 @@
 /**
- * COOKIE EATER
- * Yvonne Scarlett Arriola Lerin
- * 
- * A game about avoiding being eaten by a cookie monster.
- * This is the normal variation.
- * 
- * Instructions:
- * - Move the mouse to avoid the cookie monster
- * - Avoid the obstacles
- * - Collect chips to gain points
- */
+* COOKIE EATER
+* Yvonne Scarlett Arriola Lerin
+* 
+* A game about avoiding being eaten by a cookie monster.
+* This is the normal variation.
+* 
+* Instructions:
+* - Move the mouse to avoid the cookie monster
+* - Avoid the obstacles
+* - Collect chips to gain points
+*/
 
 "use strict"
 
