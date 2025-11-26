@@ -9,9 +9,6 @@ const menuText = `
 (D) Dog 
 (C) Cat`
 
-/**Start state for a title and Game over screen*/
-//Menu screen
-let gameState = "menu";
 //Title text and instructions images
 let cookieEaterText;
 let instructions;
@@ -28,15 +25,16 @@ function preload() {
     avoidObstacles = loadImage("assets/images/avoidObstacles.png");
     enterDoors = loadImage("assets/images/enterDoors.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
+    monsterImage = loadImage("assets/images/monster.png");
 }
 
 /**Draw menu screen*/
-function menuScreen() {
+function menuDraw() {
     push();
     //Add background color
     noStroke();
     fill(300, 250, 200);
-    rect(0, 0, width, height)
+    rect(0, 0, width, height);
 
     //Title text
     imageMode(CENTER);

@@ -1,343 +1,401 @@
 /**
- * Cookie Eater 
+ * Variation Menu
  * Yvonne Scarlett Arriola Lerin
  * 
- * A game about avoiding being eaten by a cookie monster
- * 
- * Instructions:
- * - Move the mouse to avoid the cookie monster
- * - Avoid the obstacles
- * - Collect chips to gain points
+ * A relatively simple example of a set of variations within a single
+ * project. (When we learn Object-Oriented Programming this will be a
+ * LOT easier.)
  */
 
 "use strict";
 
-/**Start state for a title and Game over screen*/
-//Menu screen
-let gameState = "menu";
-//Title text and instructions images
-let cookieEaterText;
-let instructions;
-let useMouse;
-let avoidObstacles;
-let enterDoors;
-let escapeMonster;
-
-//Gameover screen
-let gameOver;
-
-//Current score
-let score = 0;
-let chip = 0;
-
-/**Monster's settings */
-
-//Image
-let monsterImage;
-//monster
-const monster = {
-    body: {
-        x: 100,
-        y: 200,
-        size: 100,
-        speed: 3
-    },
-
-    //Eyes and pupils
-    eyes: {
-        globes: {
-            fill: "#FFFFFF",
-        },
-        pupils: {
-            y: undefined,
-            fill: "#000000",
-            left: {
-                x: undefined,
-            },
-            right: {
-                x: undefined,
-            }
-        },
-        left: {
-            x: undefined,
-        },
-        right: {
-            x: undefined,
-        }
-    }
-};
-/**Cookie settings */
-//cookie
-const cookie = {
-    x: undefined, // mouseX
-    y: undefined, // mouseY
-    size: 40
-};
-
-/**Chips settings */
-//chips
-const chips = {
-    x: 0,
-    y: 0,
-    size: 8
-};
-
-/** Load sounds and images */
-function preload() {
-    cookieEaterText = loadImage("assets/images/cookieEaterText.png");
-    instructions = loadImage("assets/images/instructions.png");
-    useMouse = loadImage("assets/images/useMouse.png");
-    avoidObstacles = loadImage("assets/images/avoidObstacles.png");
-    enterDoors = loadImage("assets/images/enterDoors.png");
-    escapeMonster = loadImage("assets/images/escapeMonster.png");
-    monsterImage = loadImage("assets/images/monster.png");
-}
-
-//Start game when ENTER is pressed
-function keyPressed() {
-    if (gameState === "menu" && key === "Enter") {
-        gameState = "playing"
-    }
-}
+let state = "menu";
 
 /**
- * Create canvas and set up monster and mouse positions
+ * Create the canvas
 */
 function setup() {
     createCanvas(1300, 700);
+}
 
-    //Give the chips random positions
-    resetChips();
+
+/**
+ * Display the menu or the current variation
+*/
+function draw() {
+    switch (state) {
+        case "menu":
+            menuDraw();
+            break;
+        case "normal-variation":
+            normalDraw();
+            break
+        case "dog-variation":
+            dogDraw();
+            break;
+        case "cat-variation":
+            catDraw();
+            break;
+    }
 }
 
 /**
- * Draw background, monster, mouse, obstacles and doors
-*/
-function draw() {
-
-    if (gameState === "menu") {
-        menuScreen();
-    }
-    else if (gameState === "playing") {
-
-        drawBackground();
-        moveCookie();
-        drawCookie();
-        moveMonster();
-        drawMonster();
-        checkMonsterCollision();
-        drawChips();
-        checkChipsCollision();
-        chipCollected();
-        // drawObstacles();
-        // checkObstaclesCollision();
-        displayScore();
-
-    }
-    else if (gameState === "game over") {
-        gameOver();
+ * Listen for keypressed and call the function for it in the
+ * current state
+ */
+function keyPressed(event) {
+    // ESC → go back to main menu
+    if (event.keyCode === 27) {
+        window.location.reload();
     }
 
+    switch (state) {
+        case "menu":
+            menuKeyPressed(event);
+            break;
+    }
 }
 
-/**Draw menu screen*/
-function menuScreen() {
-    push();
-    //Add background color
-    noStroke();
-    fill(300, 250, 200);
-    rect(0, 0, width, height)
+// /**
+//  * Cookie Eater 
+//  * Yvonne Scarlett Arriola Lerin
+//  * 
+//  * A game about avoiding being eaten by a cookie monster
+//  * 
+//  * Instructions:
+//  * - Move the mouse to avoid the cookie monster
+//  * - Avoid the obstacles
+//  * - Collect chips to gain points
+//  */
 
-    //Title text
-    imageMode(CENTER);
-    image(cookieEaterText, width / 2, height - 600, 900, 150);
-    //Instructions
-    image(instructions, width / 2, height - 490, 400, 50);
-    image(useMouse, width / 2, height - 420, 390, 20);
-    image(avoidObstacles, width / 2, height - 370, 275, 17);
-    image(enterDoors, width / 2, height - 320, 380, 30);
-    image(escapeMonster, width / 2, height - 260, 230, 20);
-    pop();
-};
+// "use strict";
+
+// /**Start state for a title and Game over screen*/
+// //Menu screen
+// let gameState = "menu";
+// //Title text and instructions images
+// let cookieEaterText;
+// let instructions;
+// let useMouse;
+// let avoidObstacles;
+// let enterDoors;
+// let escapeMonster;
+
+// //Gameover screen
+// let gameOver;
+
+// //Current score
+// let score = 0;
+// let chip = 0;
+
+// /**Monster's settings */
+
+// //Image
+// let monsterImage;
+// //monster
+// const monster = {
+//     body: {
+//         x: 100,
+//         y: 200,
+//         size: 100,
+//         speed: 3
+//     },
+
+//     //Eyes and pupils
+//     eyes: {
+//         globes: {
+//             fill: "#FFFFFF",
+//         },
+//         pupils: {
+//             y: undefined,
+//             fill: "#000000",
+//             left: {
+//                 x: undefined,
+//             },
+//             right: {
+//                 x: undefined,
+//             }
+//         },
+//         left: {
+//             x: undefined,
+//         },
+//         right: {
+//             x: undefined,
+//         }
+//     }
+// };
+// /**Cookie settings */
+// //cookie
+// const cookie = {
+//     x: undefined, // mouseX
+//     y: undefined, // mouseY
+//     size: 40
+// };
+
+// /**Chips settings */
+// //chips
+// const chips = {
+//     x: 0,
+//     y: 0,
+//     size: 8
+// };
+
+// /** Load sounds and images */
+// function preload() {
+//     cookieEaterText = loadImage("assets/images/cookieEaterText.png");
+//     instructions = loadImage("assets/images/instructions.png");
+//     useMouse = loadImage("assets/images/useMouse.png");
+//     avoidObstacles = loadImage("assets/images/avoidObstacles.png");
+//     enterDoors = loadImage("assets/images/enterDoors.png");
+//     escapeMonster = loadImage("assets/images/escapeMonster.png");
+//     monsterImage = loadImage("assets/images/monster.png");
+// }
+
+// //Start game when ENTER is pressed
+// function keyPressed() {
+//     if (gameState === "menu" && key === "Enter") {
+//         gameState = "playing"
+//     }
+// }
+
+// /**
+//  * Create canvas and set up monster and mouse positions
+// */
+// function setup() {
+//     createCanvas(1300, 700);
+
+//     //Give the chips random positions
+//     resetChips();
+// }
+
+// /**
+//  * Draw background, monster, mouse, obstacles and doors
+// */
+// function draw() {
+
+//     if (gameState === "menu") {
+//         menuScreen();
+//     }
+//     else if (gameState === "playing") {
+
+//         drawBackground();
+//         moveCookie();
+//         drawCookie();
+//         moveMonster();
+//         drawMonster();
+//         checkMonsterCollision();
+//         drawChips();
+//         checkChipsCollision();
+//         chipCollected();
+//         // drawObstacles();
+//         // checkObstaclesCollision();
+//         displayScore();
+
+//     }
+//     else if (gameState === "game over") {
+//         gameOver();
+//     }
+
+// }
+
+// /**Draw menu screen*/
+// function menuScreen() {
+//     push();
+//     //Add background color
+//     noStroke();
+//     fill(300, 250, 200);
+//     rect(0, 0, width, height)
+
+//     //Title text
+//     imageMode(CENTER);
+//     image(cookieEaterText, width / 2, height - 600, 900, 150);
+//     //Instructions
+//     image(instructions, width / 2, height - 490, 400, 50);
+//     image(useMouse, width / 2, height - 420, 390, 20);
+//     image(avoidObstacles, width / 2, height - 370, 275, 17);
+//     image(enterDoors, width / 2, height - 320, 380, 30);
+//     image(escapeMonster, width / 2, height - 260, 230, 20);
+//     pop();
+// };
 
 // /**Draw background*/
-function drawBackground() {
-    background(300, 150, 200);
-};
+// function drawBackground() {
+//     background(300, 150, 200);
+// };
 
-/** Cookie */
-function moveCookie() {
-    cookie.x = mouseX;
-    cookie.y = mouseY;
-};
+// /** Cookie */
+// function moveCookie() {
+//     cookie.x = mouseX;
+//     cookie.y = mouseY;
+// };
 
-function drawCookie() {
-    //Cookie
-    push();
-    noStroke();
-    fill("#efc713ff");
-    ellipse(cookie.x, cookie.y, cookie.size);
-};
+// function drawCookie() {
+//     //Cookie
+//     push();
+//     noStroke();
+//     fill("#efc713ff");
+//     ellipse(cookie.x, cookie.y, cookie.size);
+// };
 
-/** Monster set up */
-//Move monster
-function moveMonster() {
-    let followSpeed = 0.05;
-    monster.body.x = lerp(monster.body.x, mouseX, followSpeed);
-    monster.body.y = lerp(monster.body.y, mouseY, followSpeed);
-};
+// /** Monster set up */
+// //Move monster
+// function moveMonster() {
+//     let followSpeed = 0.05;
+//     monster.body.x = lerp(monster.body.x, mouseX, followSpeed);
+//     monster.body.y = lerp(monster.body.y, mouseY, followSpeed);
+// };
 
-//Draw monster
-function drawMonster() {
-    //Body
-    push();
-    imageMode(CENTER);
-    image(monsterImage, monster.body.x, monster.body.y, monster.body.size, monster.body.size);
-    pop();
+// //Draw monster
+// function drawMonster() {
+//     //Body
+//     push();
+//     imageMode(CENTER);
+//     image(monsterImage, monster.body.x, monster.body.y, monster.body.size, monster.body.size);
+//     pop();
 
-    //Eyes
-    push();
-    noStroke();
-    fill(monster.eyes.globes.fill);
-    monster.eyes.y = monster.body.y - 10;
-    ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
-    ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
-    pop();
+//     //Eyes
+//     push();
+//     noStroke();
+//     fill(monster.eyes.globes.fill);
+//     monster.eyes.y = monster.body.y - 10;
+//     ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
+//     ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
+//     pop();
 
-    //Pupils
-    push();
-    fill(monster.eyes.pupils.fill);
-    // Make left pupil follow mouse X and mouse Y inside globe
-    monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
-    monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-    ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
-    // Make right pupil follow mouse X and mouse Y inside globe
-    monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
-    monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-    ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
-    pop();
+//     //Pupils
+//     push();
+//     fill(monster.eyes.pupils.fill);
+//     // Make left pupil follow mouse X and mouse Y inside globe
+//     monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
+//     monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
+//     ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
+//     // Make right pupil follow mouse X and mouse Y inside globe
+//     monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
+//     monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
+//     ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
+//     pop();
 
-    //Mouth
-    push();
-    noStroke();
-    fill("#680C07");
-    // d = distance between the mouse and the center of the monster's mouth
-    let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
-    let mouthSize = map(d, 0, 200, 60, 15);
-    mouthSize = constrain(mouthSize, 15, 60);
-    ellipse(monster.body.x, monster.body.y, mouthSize);
-    pop();
-};
+//     //Mouth
+//     push();
+//     noStroke();
+//     fill("#680C07");
+//     // d = distance between the mouse and the center of the monster's mouth
+//     let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
+//     let mouthSize = map(d, 0, 200, 60, 15);
+//     mouthSize = constrain(mouthSize, 15, 60);
+//     ellipse(monster.body.x, monster.body.y, mouthSize);
+//     pop();
+// };
 
-//Monster collission with cookie
-function checkMonsterCollision() {
-    //distance between monster and cookie
-    const d = dist(monster.body.x, monster.body.y, cookie.x, cookie.y);
-    //eaten as soon they touch
-    const eaten = (d < monster.body.size / 2 + cookie.size / 2);
+// //Monster collission with cookie
+// function checkMonsterCollision() {
+//     //distance between monster and cookie
+//     const d = dist(monster.body.x, monster.body.y, cookie.x, cookie.y);
+//     //eaten as soon they touch
+//     const eaten = (d < monster.body.size / 2 + cookie.size / 2);
 
-    if (eaten) {
-        gameState = "game over";
-    }
-};
-
-//Chocolate chips
-function drawChips() {
-    push();
-    noStroke();
-    fill("#680C07");
-    ellipse(chips.x, chips.y, chips.size);
-    pop();
-};
-
-/** Reset the chips in random positions all over the screen*/
-function resetChips() {
-    chips.x = random(13, 1288);
-    chips.y = random(13, 688);
-};
-
-function checkChipsCollision() {
-    //Distance between cookie and chips
-    const d = dist(cookie.x, cookie.y, chips.x, chips.y);
-    //Getting collect by the cookie
-    const collect = (d < cookie.size / 2 + chips.size / 2);
-
-    if (collect) {
-        //Reset the chip
-        resetChips();
-        //Score increases and a chip is added to the cookie
-        score += 1;
-        chip += 1;
-
-    }
-
-}
-
-function chipCollected() {
-    push();
-    noStroke();
-    fill("#680C07");
-    ellipse(cookie.x, cookie.y, cookie.size);
-    pop();
-
-}
-//     let chips = [
-//         [-12, -8], [10, -6], [-5, 6],
-//         [14, 4], [-15, 5], [2, -14],
-//         [6, 12]
-//     ];
-
-//     for (let i = 0; i < chips.length; i++) {
-//         let dx = chips[i][0];
-//         let dy = chips[i][1];
-//         circle(mouseX + dx, mouseY + dy, 6);
+//     if (eaten) {
+//         gameState = "game over";
 //     }
+// };
+
+// //Chocolate chips
+// function drawChips() {
+//     push();
+//     noStroke();
+//     fill("#680C07");
+//     ellipse(chips.x, chips.y, chips.size);
+//     pop();
+// };
+
+// /** Reset the chips in random positions all over the screen*/
+// function resetChips() {
+//     chips.x = random(13, 1288);
+//     chips.y = random(13, 688);
+// };
+
+// function checkChipsCollision() {
+//     //Distance between cookie and chips
+//     const d = dist(cookie.x, cookie.y, chips.x, chips.y);
+//     //Getting collect by the cookie
+//     const collect = (d < cookie.size / 2 + chips.size / 2);
+
+//     if (collect) {
+//         //Reset the chip
+//         resetChips();
+//         //Score increases and a chip is added to the cookie
+//         score += 1;
+//         chip += 1;
+
+//     }
+
+// }
+
+// function chipCollected() {
+//     push();
+//     noStroke();
+//     fill("#680C07");
+//     ellipse(cookie.x, cookie.y, cookie.size);
+//     pop();
+
+// }
+// //     let chips = [
+// //         [-12, -8], [10, -6], [-5, 6],
+// //         [14, 4], [-15, 5], [2, -14],
+// //         [6, 12]
+// //     ];
+
+// //     for (let i = 0; i < chips.length; i++) {
+// //         let dx = chips[i][0];
+// //         let dy = chips[i][1];
+// //         circle(mouseX + dx, mouseY + dy, 6);
+// //     }
+// //     pop();
+// // }
+// // /** Obstacles set up */
+// // //Draw Obstacles
+// // function drawObstacles() {
+
+// // }
+
+// // //Check obstacles collision
+// // function checkObstaclesCollision() {
+
+// // }
+
+// // //Draw doors
+// // function drawDoors() {
+
+// // }
+
+// // //Check doors collision
+// // function checkDoorsCollision() {
+
+// // }
+
+// //Display score
+// function displayScore() {
+//     push();
+//     textSize(40);
+//     textAlign(320, 100);
+//     textFont(BOLD);
+//     fill("#000000");
+//     stroke("#FFFFFF");
+//     strokeWeight(4);
+//     text(score, width * 0.90, height * 0.1);
 //     pop();
 // }
-// /** Obstacles set up */
-// //Draw Obstacles
-// function drawObstacles() {
-
-// }
-
-// //Check obstacles collision
-// function checkObstaclesCollision() {
-
-// }
-
-// //Draw doors
-// function drawDoors() {
-
-// }
-
-// //Check doors collision
-// function checkDoorsCollision() {
-
-// }
-
-//Display score
-function displayScore() {
-    push();
-    textSize(40);
-    textAlign(320, 100);
-    textFont(BOLD);
-    fill("#000000");
-    stroke("#FFFFFF");
-    strokeWeight(4);
-    text(score, width * 0.90, height * 0.1);
-    pop();
-}
 
 
 
 
 
-// /**Game over set up */
-// function gameOver() {
-//     push();
-//     //Game over screen
-//     noStroke();
-//     fill("#08519C");
-//     rect(0, 0, width, height);
-// }
+// // /**Game over set up */
+// // function gameOver() {
+// //     push();
+// //     //Game over screen
+// //     noStroke();
+// //     fill("#08519C");
+// //     rect(0, 0, width, height);
+// // }
 
