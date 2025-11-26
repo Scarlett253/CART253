@@ -20,7 +20,7 @@ let normalModeState = "playing";
 let gameOver;
 
 //Current score
-let score = 0;
+let normalScore = 0;
 let chip = 0;
 
 /**Monster's settings */

@@ -20,7 +20,7 @@ let dogModeState = "playing";
 let gameOver;
 
 //Current score
-let score = 0;
+let dogScore = 0;
 
 /**Xula's settings */
 
@@ -147,115 +147,116 @@ function drawXula() {
     imageMode(CENTER);
     image(xulaImage, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
     pop();
+};
 
-    // //Eyes
-    // push();
-    // noStroke();
-    // fill(monster.eyes.globes.fill);
-    // monster.eyes.y = monster.body.y - 10;
-    // ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
-    // ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
-    // pop();
+// //Eyes
+// push();
+// noStroke();
+// fill(monster.eyes.globes.fill);
+// monster.eyes.y = monster.body.y - 10;
+// ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
+// ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
+// pop();
 
-    // //Pupils
-    // push();
-    // fill(monster.eyes.pupils.fill);
-    // // Make left pupil follow mouse X and mouse Y inside globe
-    // monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
-    // monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-    // ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
-    // // Make right pupil follow mouse X and mouse Y inside globe
-    // monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
-    // monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-    // ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
-    // pop();
+// //Pupils
+// push();
+// fill(monster.eyes.pupils.fill);
+// // Make left pupil follow mouse X and mouse Y inside globe
+// monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
+// monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
+// ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
+// // Make right pupil follow mouse X and mouse Y inside globe
+// monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
+// monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
+// ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
+// pop();
 
-    //     //Mad xula
-    //     push();
-    //     imageMode(CENTER);
-    //     image(xulaMad, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
-    //     pop();
-    //     // d = distance between the mouse and the center of the monster's mouth
-    //     let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
-    //     let mouthSize = map(d, 0, 200, 60, 15);
-    //     mouthSize = constrain(mouthSize, 15, 60);
-    //     ellipse(monster.body.x, monster.body.y, mouthSize);
-    //     pop();
-    // };
+//     //Mad xula
+//     push();
+//     imageMode(CENTER);
+//     image(xulaMad, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
+//     pop();
+//     // d = distance between the mouse and the center of the monster's mouth
+//     let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
+//     let mouthSize = map(d, 0, 200, 60, 15);
+//     mouthSize = constrain(mouthSize, 15, 60);
+//     ellipse(monster.body.x, monster.body.y, mouthSize);
+//     pop();
+// };
 
-    //Xula collission with dog cookie
-    function checkXulaCollision() {
-        //distance between xula and dog cookie
-        const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
-        //eaten as soon they touch
-        const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
+//Xula collission with dog cookie
+function checkXulaCollision() {
+    //distance between xula and dog cookie
+    const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
+    //eaten as soon they touch
+    const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
 
-        if (eaten) {
-            dogModeState = "game over";
-        }
-    };
+    if (eaten) {
+        dogModeState = "game over";
+    }
+};
 
-    //Bones
-    function drawBones() {
-        push();
-        imageMode(CENTER);
-        image(bonesImage, bones.x, bones.y, bones.size, bones.size);
-        pop();
-    };
+//Bones
+function drawBones() {
+    push();
+    imageMode(CENTER);
+    image(bonesImage, bones.x, bones.y, bones.size, bones.size);
+    pop();
+};
 
-    /** Reset the bones in random positions all over the screen*/
-    function resetBones() {
-        bones.x = random(13, 1288);
-        bones.y = random(13, 688);
-    };
+/** Reset the bones in random positions all over the screen*/
+function resetBones() {
+    bones.x = random(13, 1288);
+    bones.y = random(13, 688);
+};
 
-    function checkBonesCollision() {
-        //Distance between dog cookie and bones
-        const d = dist(dogCookie.x, dogCookie.y, bones.x, bones.y);
-        //Getting collect by the dog cookie
-        const collect = (d < dogCookie.size / 2 + bones.size / 2);
+function checkBonesCollision() {
+    //Distance between dog cookie and bones
+    const d = dist(dogCookie.x, dogCookie.y, bones.x, bones.y);
+    //Getting collect by the dog cookie
+    const collect = (d < dogCookie.size / 2 + bones.size / 2);
 
-        if (collect) {
-            //Reset the bones
-            resetBones();
-            //Score increases
-            score += 1;
-        }
-
+    if (collect) {
+        //Reset the bones
+        resetBones();
+        //Score increases
+        score += 1;
     }
 
-
-    // /** Obstacles set up */
-    // //Draw Obstacles
-    // function drawObstacles() {
-
-    // }
-
-    // //Check obstacles collision
-    // function checkObstaclesCollision() {
-
-    // }
+};
 
 
-    //Display score
-    function displayScore() {
-        push();
-        textSize(40);
-        textAlign(320, 100);
-        textFont(BOLD);
-        fill("#000000");
-        stroke("#FFFFFF");
-        strokeWeight(4);
-        text(score, width * 0.90, height * 0.1);
-        pop();
-    }
+// /** Obstacles set up */
+// //Draw Obstacles
+// function drawObstacles() {
 
-    // /**Game over set up */
-    // function gameOver() {
-    //     push();
-    //     //Game over screen
-    //     noStroke();
-    //     fill("#08519C");
-    //     rect(0, 0, width, height);
-    // }
-}
+// }
+
+// //Check obstacles collision
+// function checkObstaclesCollision() {
+
+// }
+
+
+//Display score
+function displayScore() {
+    push();
+    textSize(40);
+    textAlign(320, 100);
+    textFont(BOLD);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text(score, width * 0.90, height * 0.1);
+    pop();
+};
+
+// /**Game over set up */
+// function gameOver() {
+//     push();
+//     //Game over screen
+//     noStroke();
+//     fill("#08519C");
+//     rect(0, 0, width, height);
+// }
+
