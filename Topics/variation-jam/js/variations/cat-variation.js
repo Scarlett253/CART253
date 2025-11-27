@@ -16,9 +16,6 @@
 /** Game State */
 let catModeState = "playing";
 
-//Gameover screen
-// let catGameOver;
-
 //Current score
 let catScore = 0;
 
@@ -87,9 +84,9 @@ function catDraw() {
         catDisplayScore();
 
     }
-    // else if (catModeState === "game over") {
-    //     catGameOver();
-    // }
+    else if (catModeState === "game over") {
+        catGameOver();
+    }
 
 }
 
@@ -137,9 +134,9 @@ function checkFrijolCollision() {
     //eaten as soon they touch
     const eaten = (d < frijol.body.size / 2 + fishCookie.size / 2);
 
-    // if (eaten) {
-    //     catModeState = "game over";
-    // }
+    if (eaten) {
+        catModeState = "game over";
+    }
 };
 
 //fishes
@@ -184,13 +181,13 @@ function catDisplayScore() {
     pop();
 };
 
-// /**Game over set up */
-// function catGameOver() {
-//     push();
-//     //Game over screen
-//     noStroke();
-//     fill("#08519C");
-//     rect(0, 0, width, height);
-// }
+/**Game over set up */
+function catGameOver() {
+    push();
+    //Game over screen
+    noStroke();
+    fill("#08519C");
+    rect(0, 0, width, height);
+}
 
 

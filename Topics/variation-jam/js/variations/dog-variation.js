@@ -16,9 +16,6 @@
 /** Game State */
 let dogModeState = "playing";
 
-//Gameover screen
-// let dogGameOver;
-
 //Current score
 let dogScore = 0;
 
@@ -89,9 +86,9 @@ function dogDraw() {
         dogDisplayScore();
 
     }
-    // else if (dogModeState === "game over") {
-    //     dogGameOver();
-    // }
+    else if (dogModeState === "game over") {
+        dogGameOver();
+    }
 
 }
 
@@ -128,9 +125,18 @@ function drawXula() {
     imageMode(CENTER);
     image(xulaImage, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
     pop();
-};
 
-//     //Mad xula
+    //Mouth
+    push();
+    noStroke();
+    fill("#680C07");
+    // d = distance between the mouse and the center of the monster's mouth
+    let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
+    let mouthSize = map(d, 0, 200, 60, 15);
+    mouthSize = constrain(mouthSize, 15, 60);
+    ellipse(monster.body.x, monster.body.y, mouthSize);
+    pop();
+};
 
 //Xula collission with dog cookie
 function checkXulaCollision() {
@@ -139,9 +145,9 @@ function checkXulaCollision() {
     //eaten as soon they touch
     const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
 
-    // if (eaten) {
-    //     dogModeState = "game over";
-    // }
+    if (eaten) {
+        dogModeState = "game over";
+    }
 };
 
 //Bones
@@ -186,12 +192,12 @@ function dogDisplayScore() {
     pop();
 };
 
-// /**Game over set up */
-// function dogGameOver() {
-//     push();
-//     //Game over screen
-//     noStroke();
-//     fill("#08519C");
-//     rect(0, 0, width, height);
-// }
+/**Game over set up */
+function dogGameOver() {
+    push();
+    //Game over screen
+    noStroke();
+    fill("#08519C");
+    rect(0, 0, width, height);
+}
 
