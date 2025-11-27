@@ -23,7 +23,7 @@ let dogScore = 0;
 
 //Xula image
 let xulaImage;
-let xulaMad;
+let xulaMadImage;
 
 //dog cookie 
 let dogCookieImage;
@@ -31,6 +31,7 @@ let dogCookieImage;
 //bones
 let bonesImage;
 
+/**xula settings */
 //xula
 const xula = {
     body: {
@@ -40,7 +41,20 @@ const xula = {
         speed: 3
     }
 
+
 };
+
+//mad xula
+const xulaMad = {
+    body: {
+        x: 100,
+        y: 200,
+        size: 250,
+        speed: 3
+    }
+
+};
+
 /**Dog cookie settings */
 //cookie
 const dogCookie = {
@@ -78,6 +92,9 @@ function dogDraw() {
         drawDogCookie();
         moveXula();
         drawXula();
+        moveXulaMad();
+        // drawXulaMad();
+        // checkXulaInput();
         checkXulaCollision();
         drawBones();
         checkBonesCollision();
@@ -86,9 +103,9 @@ function dogDraw() {
         dogDisplayScore();
 
     }
-    else if (dogModeState === "game over") {
-        dogGameOver();
-    }
+    // else if (dogModeState === "game over") {
+    //     dogGameOver();
+    // }
 
 }
 
@@ -128,26 +145,59 @@ function drawXula() {
 
     //Mouth
     push();
-    noStroke();
-    fill("#680C07");
-    // d = distance between the mouse and the center of the monster's mouth
-    let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
-    let mouthSize = map(d, 0, 200, 60, 15);
-    mouthSize = constrain(mouthSize, 15, 60);
-    ellipse(monster.body.x, monster.body.y, mouthSize);
+    imageMode(CENTER);
+    image(xulaMadImage, xulaMad.body.x, xulaMad.body.y, xulaMad.body.size, xulaMad.body.size);
+    // d = distance between the mouse and the center of the xula mad's mouth
+    let d = dist(mouseX, mouseY, xulaMad.body.size, xulaMad.body.size);
+    let mad = map(d, 200, 200, 0, xulaMad.body.y);
+    mad = constrain(mad, 0, xulaMad.body.x);
+    // ellipse(monster.body.x, monster.body.y, mouthSize);
     pop();
 };
+
+//Move xula mad
+function moveXulaMad() {
+    let followSpeed = 0.05;
+    xulaMad.body.x = lerp(xulaMad.body.x, mouseX, followSpeed);
+    xulaMad.body.y = lerp(xulaMad.body.y, mouseY, followSpeed);
+};
+
+// //Draw xula mad
+// function drawXulaMad() {
+//     //Body
+//     push();
+//     imageMode(CENTER);
+//     image(xulaMadImage, xulaMad.body.x, xulaMad.body.y, xulaMad.body.size, xulaMad.body.size);
+//     pop();
+// }
+
+//Mad xula
+// function checkXulaInput() {
+//     const distance = dist(mouseX, mouseY, target1.x, target1.y);
+//     const mouseOverlapsKid = distanceTarget1Mouse < target1.size / 2;
+//     if (mouseOverlaps//DogCookie) {
+//                 kidSkin.fill//xula = kidSkin.fills.scared//xulaMad;
+// } else {
+//     kidSkin.fill//xula = kidSkin.fills.normal//xula;
+// }
+
 
 //Xula collission with dog cookie
 function checkXulaCollision() {
     //distance between xula and dog cookie
     const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
+    // //mad xula
+    // const mad = (d < xula.body.size / 2 + dogCookie.size / 2);
+    // if (mad) {
+    //     xula.body.size = xulaMad.body.size;
+    // } else {
+    //     xula.body.size = xula.body.size;
+    // }
     //eaten as soon they touch
     const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
-
-    if (eaten) {
-        dogModeState = "game over";
-    }
+    // if (eaten) {
+    //     dogModeState = "game over";
+    // }
 };
 
 //Bones
@@ -192,12 +242,12 @@ function dogDisplayScore() {
     pop();
 };
 
-/**Game over set up */
-function dogGameOver() {
-    push();
-    //Game over screen
-    noStroke();
-    fill("#08519C");
-    rect(0, 0, width, height);
-}
+// /**Game over set up */
+// function dogGameOver() {
+//     push();
+//     //Game over screen
+//     noStroke();
+//     fill("#08519C");
+//     rect(0, 0, width, height);
+// }
 
