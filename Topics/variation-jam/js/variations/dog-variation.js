@@ -39,7 +39,7 @@ const xula = {
     body: {
         x: 100,
         y: 200,
-        size: 100,
+        size: 250,
         speed: 3
     }
 
@@ -49,7 +49,7 @@ const xula = {
 const dogCookie = {
     x: undefined, // mouseX
     y: undefined, // mouseY
-    size: 40
+    size: 50
 };
 
 /**Bones settings */
@@ -57,7 +57,7 @@ const dogCookie = {
 const bones = {
     x: 0,
     y: 0,
-    size: 8
+    size: 100
 };
 
 /**

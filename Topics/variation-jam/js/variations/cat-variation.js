@@ -36,9 +36,9 @@ let fishImage;
 //frijol
 const frijol = {
     body: {
-        x: 100,
-        y: 200,
-        size: 100,
+        x: 200,
+        y: 300,
+        size: 400,
         speed: 3
     }
 };
@@ -47,7 +47,7 @@ const frijol = {
 const fishCookie = {
     x: undefined, // mouseX
     y: undefined, // mouseY
-    size: 40
+    size: 180
 };
 
 /**fishes settings */
@@ -55,7 +55,7 @@ const fishCookie = {
 const fish = {
     x: 0,
     y: 0,
-    size: 8
+    size: 90
 };
 
 /**
