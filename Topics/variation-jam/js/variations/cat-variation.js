@@ -1,271 +1,196 @@
-// /**
-// * COOKIE EATER
-// * Yvonne Scarlett Arriola Lerin
-// *
-// * A game about avoiding being eaten by a cookie monster.
-// * This is the normal variation.
-// *
-// * Instructions:
-// * - Move the mouse to avoid the cookie monster
-// * - Avoid the obstacles
-// * - Collect chips to gain points
-// */
+/**
+* COOKIE EATER
+* Yvonne Scarlett Arriola Lerin
+*
+* A game about avoiding being eaten by my boyfriend's cat Frijol.
+* This is the cat-variation.
+*
+* Instructions:
+* - Move the mouse to avoid Frijol
+* - Avoid the obstacles
+* - Collect fishes to gain points
+*/
 
-// "use strict"
+"use strict"
 
-// /** Game State */
-// let normalModeState = "playing";
+/** Game State */
+let catModeState = "playing";
 
-// //Gameover screen
+//Gameover screen
 // let catGameOver;
 
-// //Current score
-// let catScore = 0;
+//Current score
+let catScore = 0;
 
-// /**Frijol's settings */
+/**Frijol's settings */
 
-// //Frijol mage
-// let frijol;
-// let frijolMad;
-// //Cat cookie image
-// let catCookie;
+//Frijol mage
+let frijolImage;
+let frijolMad;
+//Cat cookie image
+let fishCookieImage;
 
-// //frijol
-// const monster = {
-//     body: {
-//         x: 100,
-//         y: 200,
-//         size: 100,
-//         speed: 3
-//     },
+//fishes
+let fishImage;
 
-//     //Eyes and pupils
-//     eyes: {
-//         globes: {
-//             fill: "#FFFFFF",
-//         },
-//         pupils: {
-//             y: undefined,
-//             fill: "#000000",
-//             left: {
-//                 x: undefined,
-//             },
-//             right: {
-//                 x: undefined,
-//             }
-//         },
-//         left: {
-//             x: undefined,
-//         },
-//         right: {
-//             x: undefined,
-//         }
-//     }
-// };
-// /**Cookie settings */
-// //cookie
-// const cookie = {
-//     x: undefined, // mouseX
-//     y: undefined, // mouseY
-//     size: 40
-// };
+//frijol
+const frijol = {
+    body: {
+        x: 100,
+        y: 200,
+        size: 100,
+        speed: 3
+    }
+};
+/**fish cookie settings */
+//fish cookie
+const fishCookie = {
+    x: undefined, // mouseX
+    y: undefined, // mouseY
+    size: 40
+};
 
-// /**Chips settings */
-// //chips
-// const chips = {
-//     x: 0,
-//     y: 0,
-//     size: 8
-// };
+/**fishes settings */
+//fishes
+const fish = {
+    x: 0,
+    y: 0,
+    size: 8
+};
 
-// /**
-//  * Create canvas and set up monster and mouse positions
-// */
-// function normalSetup() {
-//     createCanvas(1300, 700);
+/**
+ * Create canvas and set up frijol and mouse positions
+*/
+function catSetup() {
+    createCanvas(1300, 700);
 
-//     //Give the chips random positions
-//     resetChips();
+    //Give the fishes random positions
+    resetFish();
+}
+
+/**
+ * Draw background, frijol, fish cookie, fishes and obstacles
+*/
+function catDraw() {
+    if (catModeState === "playing") {
+
+        catDrawBackground();
+        moveFishCookie();
+        drawFishCookie();
+        moveFrijol();
+        drawFrijol();
+        checkFrijolCollision();
+        drawfish();
+        checkfishCollision();
+        // drawObstacles();
+        // checkObstaclesCollision();
+        catDisplayScore();
+
+    }
+    // else if (catModeState === "game over") {
+    //     catGameOver();
+    // }
+
+}
+
+/**Draw background*/
+function catDrawBackground() {
+    background(300, 150, 200);
+};
+
+/** fish cookie */
+function moveFishCookie() {
+    fishCookie.x = mouseX;
+    fishCookie.y = mouseY;
+};
+
+function drawFishCookie() {
+    push();
+    imageMode(CENTER);
+    image(fishCookieImage, fishCookie.x, fishCookie.y, fishCookie.size, fishCookie.size);
+    pop();
+};
+
+/** Frijol set up */
+//Move frijol
+function moveFrijol() {
+    let followSpeed = 0.05;
+    frijol.body.x = lerp(frijol.body.x, mouseX, followSpeed);
+    frijol.body.y = lerp(frijol.body.y, mouseY, followSpeed);
+};
+
+//Draw frijol
+function drawFrijol() {
+    //Body
+    push();
+    imageMode(CENTER);
+    image(frijolImage, frijol.body.x, frijol.body.y, frijol.body.size, frijol.body.size);
+    pop();
+};
+
+//     //Mad frijol
+
+//Frijol collission with fish cookie
+function checkFrijolCollision() {
+    //distance between frijol and fish cookie
+    const d = dist(frijol.body.x, frijol.body.y, fishCookie.x, fishCookie.y);
+    //eaten as soon they touch
+    const eaten = (d < frijol.body.size / 2 + fishCookie.size / 2);
+
+    // if (eaten) {
+    //     catModeState = "game over";
+    // }
+};
+
+//fishes
+function drawfish() {
+    push();
+    imageMode(CENTER);
+    image(fishImage, fish.x, fish.y, fish.size, fish.size);
+    pop();
+};
+
+/** Reset the fishes in random positions all over the screen*/
+function resetFish() {
+    fish.x = random(13, 1288);
+    fish.y = random(13, 688);
+};
+
+function checkfishCollision() {
+    //Distance between fish cookie and fishes
+    const d = dist(fishCookie.x, fishCookie.y, fish.x, fish.y);
+    //Getting collect by the fish cookie
+    const collect = (d < fishCookie.size / 2 + fish.size / 2);
+
+    if (collect) {
+        //Reset the fishes
+        resetFish();
+        //Score increases
+        catScore += 1;
+    }
+
+};
+
+//Display score
+function catDisplayScore() {
+    push();
+    textSize(40);
+    textAlign(320, 100);
+    textFont(BOLD);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text(catScore, width * 0.90, height * 0.1);
+    pop();
+};
+
+// /**Game over set up */
+// function catGameOver() {
+//     push();
+//     //Game over screen
+//     noStroke();
+//     fill("#08519C");
+//     rect(0, 0, width, height);
 // }
 
-// /**
-//  * Draw background, monster, cookie, chips and obstacles
-// */
-// function normalDraw() {
-//     if (normalModeState === "playing") {
-
-//         catDrawBackground();
-//         moveCookie();
-//         drawCookie();
-//         moveMonster();
-//         drawMonster();
-//         checkMonsterCollision();
-//         drawChips();
-//         checkChipsCollision();
-//         chipCollected();
-//         // drawObstacles();
-//         // checkObstaclesCollision();
-//         catDisplayScore();
-
-//     }
-//     else if (normalModeState === "game over") {
-//         catGameOver();
-//     }
-
-// }
-
-// /**Draw background*/
-// function catDrawBackground() {
-//     background(300, 150, 200);
-// };
-
-// /** Cookie */
-// function moveCookie() {
-//     cookie.x = mouseX;
-//     cookie.y = mouseY;
-// };
-
-// function drawCookie() {
-//     //Cookie
-//     push();
-//     noStroke();
-//     fill("#efc713ff");
-//     ellipse(cookie.x, cookie.y, cookie.size);
-// };
-
-// /** Monster set up */
-// //Move monster
-// function moveMonster() {
-//     let followSpeed = 0.05;
-//     monster.body.x = lerp(monster.body.x, mouseX, followSpeed);
-//     monster.body.y = lerp(monster.body.y, mouseY, followSpeed);
-// };
-
-// //Draw monster
-// function drawMonster() {
-//     //Body
-//     push();
-//     imageMode(CENTER);
-//     image(monsterImage, monster.body.x, monster.body.y, monster.body.size, monster.body.size);
-//     pop();
-
-//     //Eyes
-//     push();
-//     noStroke();
-//     fill(monster.eyes.globes.fill);
-//     monster.eyes.y = monster.body.y - 10;
-//     ellipse(monster.body.x - 10, monster.body.y - 40, 30, 30);
-//     ellipse(monster.body.x + 10, monster.body.y - 40, 30, 30);
-//     pop();
-
-//     //Pupils
-//     push();
-//     fill(monster.eyes.pupils.fill);
-//     // Make left pupil follow mouse X and mouse Y inside globe
-//     monster.eyes.pupils.left.x = map(mouseX, 0, width, monster.body.x - 15, monster.body.x - 5);
-//     monster.eyes.pupils.left.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-//     ellipse(monster.eyes.pupils.left.x, monster.eyes.pupils.left.y, 15);
-//     // Make right pupil follow mouse X and mouse Y inside globe
-//     monster.eyes.pupils.right.x = map(mouseX, 0, width, monster.body.x + 5, monster.body.x + 15);
-//     monster.eyes.pupils.right.y = map(mouseY, 0, height, monster.body.y - 45, monster.body.y - 35);
-//     ellipse(monster.eyes.pupils.right.x, monster.eyes.pupils.right.y, 15);
-//     pop();
-
-//     //Mouth
-//     push();
-//     noStroke();
-//     fill("#680C07");
-//     // d = distance between the mouse and the center of the monster's mouth
-//     let d = dist(mouseX, mouseY, monster.body.x, monster.body.y);
-//     let mouthSize = map(d, 0, 200, 60, 15);
-//     mouthSize = constrain(mouthSize, 15, 60);
-//     ellipse(monster.body.x, monster.body.y, mouthSize);
-//     pop();
-// };
-
-// //Monster collission with cookie
-// function checkMonsterCollision() {
-//     //distance between monster and cookie
-//     const d = dist(monster.body.x, monster.body.y, cookie.x, cookie.y);
-//     //eaten as soon they touch
-//     const eaten = (d < monster.body.size / 2 + cookie.size / 2);
-
-//     if (eaten) {
-//         normalModeState = "game over";
-//     }
-// };
-
-// //Chocolate chips
-// function drawChips() {
-//     push();
-//     noStroke();
-//     fill("#680C07");
-//     ellipse(chips.x, chips.y, chips.size);
-//     pop();
-// };
-
-// /** Reset the chips in random positions all over the screen*/
-// function resetChips() {
-//     chips.x = random(13, 1288);
-//     chips.y = random(13, 688);
-// };
-
-// function checkChipsCollision() {
-//     //Distance between cookie and chips
-//     const d = dist(cookie.x, cookie.y, chips.x, chips.y);
-//     //Getting collect by the cookie
-//     const collect = (d < cookie.size / 2 + chips.size / 2);
-
-//     if (collect) {
-//         //Reset the chip
-//         resetChips();
-//         //Score increases and a chip is added to the cookie
-//         catScore += 1;
-
-//     }
-
-// }
-
-// function chipCollected() {
-//     push();
-//     noStroke();
-//     fill("#680C07");
-//     // ellipse(cookie.x, cookie.y, cookie.size);
-//     pop();
-
-// }
-
-// // /** Obstacles set up */
-// // //Draw Obstacles
-// // function drawObstacles() {
-
-// // }
-
-// // //Check obstacles collision
-// // function checkObstaclesCollision() {
-
-// // }
-
-
-// //Display score
-// function catDisplayScore() {
-//     push();
-//     textSize(40);
-//     textAlign(320, 100);
-//     textFont(BOLD);
-//     fill("#000000");
-//     stroke("#FFFFFF");
-//     strokeWeight(4);
-//     text(catScore, width * 0.90, height * 0.1);
-//     pop();
-// }
-
-// // /**Game over set up */
-// // function catGameOver() {
-// //     push();
-// //     //Game over screen
-// //     noStroke();
-// //     fill("#08519C");
-// //     rect(0, 0, width, height);
-// // }
 

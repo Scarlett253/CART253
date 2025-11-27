@@ -33,8 +33,8 @@ function preload() {
     bonesImage = loadImage("assets/images/bone.png");
     frijolImage = loadImage("assets/images/frijolPose2.png");
     frijolMad = loadImage("assets/images/frijolPose1.png");
-    fishCookie = loadImage("assets/images/fishCookie.png");
-    fish = loadImage("assets/images/fish.png");
+    fishCookieImage = loadImage("assets/images/fishCookie.png");
+    fishImage = loadImage("assets/images/fish.png");
     //sounds
     song = loadSound('assets/sounds/soniditos.mp3');
     sniff = loadSound('assets/sounds/sniff.wav');
@@ -64,22 +64,23 @@ function menuDraw() {
 /**
  * Listen to the keyboard
  */
-fu
-// function menuKeyPressed(event) {
-//     switch (event.keyCode) {
-//         case 78:
-//             state = "normal-variation";
-//             normalSetup();
-//             break;
 
-//         case 68:
-//             state = "dog-variation";
-//             dogSetup();
-//             break;
+function menuKeyPressed(event) {
+    switch (event.keyCode) {
+        case 78:
+            state = "normal-variation";
+            normalSetup();
+            break;
 
-//         case 67:
-//             state = "cat-variation";
-//             catSetup();
-//             break;
-//     }
-// }
+        case 68:
+            state = "dog-variation";
+            dogSetup();
+            break;
+
+        case 67:
+            state = "cat-variation";
+            catSetup();
+            break;
+    }
+
+}

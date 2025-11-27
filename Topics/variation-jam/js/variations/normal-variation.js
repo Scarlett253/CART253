@@ -17,7 +17,7 @@
 let normalModeState = "playing";
 
 //Gameover screen
-let normalGameOver;
+// let normalGameOver;
 
 //Current score
 let normalScore = 0;
@@ -106,9 +106,9 @@ function normalDraw() {
         normalDisplayScore();
 
     }
-    else if (normalModeState === "game over") {
-        normalGameOver();
-    }
+    // else if (normalModeState === "game over") {
+    //     normalGameOver();
+    // }
 
 }
 
@@ -188,9 +188,9 @@ function checkMonsterCollision() {
     //eaten as soon they touch
     const eaten = (d < monster.body.size / 2 + cookie.size / 2);
 
-    if (eaten) {
-        normalModeState = "game over";
-    }
+    // if (eaten) {
+    //     normalModeState = "game over";
+    // }
 };
 
 //Chocolate chips
@@ -247,12 +247,12 @@ function displayNormalScore() {
     pop();
 }
 
-/**Game over set up */
-function normalGameOver() {
-    push();
-    //Game over screen
-    noStroke();
-    fill("#08519C");
-    rect(0, 0, width, height);
-}
+// /**Game over set up */
+// function normalGameOver() {
+//     push();
+//     //Game over screen
+//     noStroke();
+//     fill("#08519C");
+//     rect(0, 0, width, height);
+// }
 

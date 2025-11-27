@@ -17,7 +17,7 @@
 let dogModeState = "playing";
 
 //Gameover screen
-let dogGameOver;
+// let dogGameOver;
 
 //Current score
 let dogScore = 0;
@@ -27,6 +27,12 @@ let dogScore = 0;
 //Xula image
 let xulaImage;
 let xulaMad;
+
+//dog cookie 
+let dogCookieImage;
+
+//bones
+let bonesImage;
 
 //xula
 const xula = {
@@ -83,9 +89,9 @@ function dogDraw() {
         dogDisplayScore();
 
     }
-    else if (dogModeState === "game over") {
-        dogGameOver();
-    }
+    // else if (dogModeState === "game over") {
+    //     dogGameOver();
+    // }
 
 }
 
@@ -133,9 +139,9 @@ function checkXulaCollision() {
     //eaten as soon they touch
     const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
 
-    if (eaten) {
-        dogModeState = "game over";
-    }
+    // if (eaten) {
+    //     dogModeState = "game over";
+    // }
 };
 
 //Bones
@@ -180,12 +186,12 @@ function dogDisplayScore() {
     pop();
 };
 
-/**Game over set up */
-function dogGameOver() {
-    push();
-    //Game over screen
-    noStroke();
-    fill("#08519C");
-    rect(0, 0, width, height);
-}
+// /**Game over set up */
+// function dogGameOver() {
+//     push();
+//     //Game over screen
+//     noStroke();
+//     fill("#08519C");
+//     rect(0, 0, width, height);
+// }
 
