@@ -33,12 +33,23 @@ let fishImage;
 //frijol
 const frijol = {
     body: {
-        x: 200,
-        y: 300,
-        size: 400,
+        x: 100,
+        y: 200,
+        size: 100,
         speed: 3
-    }
-};
+    },
+    image2: undefined,
+    mouthClose: undefined,
+    mouthOpen: undefined,
+}
+// const frijol = {
+//     body: {
+//         x: 200,
+//         y: 300,
+//         size: 400,
+//         speed: 3
+//     }
+// };
 /**fish cookie settings */
 //fish cookie
 const fishCookie = {
@@ -121,7 +132,7 @@ function drawFrijol() {
     //Body
     push();
     imageMode(CENTER);
-    image(frijolImage, frijol.body.x, frijol.body.y, frijol.body.size, frijol.body.size);
+    image(frijol.image2, frijol.body.x, frijol.body.y, frijol.body.size, frijol.body.size);
     pop();
 };
 

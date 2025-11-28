@@ -36,7 +36,7 @@ const xula = {
     body: {
         x: 100,
         y: 200,
-        size: 100,
+        size: 300,
         speed: 3
     },
     image: undefined,
@@ -146,7 +146,7 @@ function drawXula() {
     //Body
     push();
     imageMode(CENTER);
-    image(xula.image, xula.body.x, xula.body.y);
+    image(xula.image, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
     // image(xulaImage, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
     pop();
 
@@ -201,7 +201,8 @@ function drawXula() {
 function checkXulaCollision() {
     //distance between xula and dog cookie
     const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
-    const close = d < xula.body.size / 2;
+    //mad xula
+    const close = d < xula.body.size;
     if (close) {
         if (frameCount % 20 === 0) {
             xula.image = xula.closeImage;
@@ -210,7 +211,7 @@ function checkXulaCollision() {
             xula.image = xula.openImage;
         }
     }
-    //mad xula
+
     // const mad = (d < xula.body.size / 3 + dogCookie.size / 3);
     // if (mad) {
     //     xula.body.size = xulaMad.body.size;

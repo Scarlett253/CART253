@@ -35,8 +35,11 @@ function preload() {
     // xulaMadImage = xulaImage;
     dogCookieImage = loadImage("assets/images/dogCookie.png");
     bonesImage = loadImage("assets/images/bone.png");
-    frijolImage = loadImage("assets/images/frijolPose2.png");
-    frijolMadImage = loadImage("assets/images/frijolPose1.png");
+    frijol.mouthClose = loadImage("assets/images/frijolPose2.png");
+    frijol.mouthOpen = loadImage("assets/images/frijolPose1.png");
+    frijol.image2 = frijol.mouthClose;
+    // frijolImage = loadImage("assets/images/frijolPose2.png");
+    // frijolMadImage = loadImage("assets/images/frijolPose1.png");
     fishCookieImage = loadImage("assets/images/fishCookie.png");
     fishImage = loadImage("assets/images/fish.png");
     //sounds
