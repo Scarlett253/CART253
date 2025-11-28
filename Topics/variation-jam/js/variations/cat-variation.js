@@ -42,20 +42,13 @@ const frijol = {
     mouthClose: undefined,
     mouthOpen: undefined,
 }
-// const frijol = {
-//     body: {
-//         x: 200,
-//         y: 300,
-//         size: 400,
-//         speed: 3
-//     }
-// };
+
 /**fish cookie settings */
 //fish cookie
 const fishCookie = {
     x: undefined, // mouseX
     y: undefined, // mouseY
-    size: 180
+    size: 80
 };
 
 /**fishes settings */
@@ -63,7 +56,7 @@ const fishCookie = {
 const fish = {
     x: 0,
     y: 0,
-    size: 90
+    size: 40
 };
 
 /**
@@ -136,18 +129,26 @@ function drawFrijol() {
     pop();
 };
 
-//     //Mad frijol
-
 //Frijol collission with fish cookie
 function checkFrijolCollision() {
     //distance between frijol and fish cookie
     const d = dist(frijol.body.x, frijol.body.y, fishCookie.x, fishCookie.y);
+    //mad frijol
+    const close = d < frijol.body.size;
+    if (close) {
+        if (frameCount % 20 === 0) {
+            frijol.image2 = frijol.mouthClose;
+        }
+        else if (frameCount % 10 === 0) {
+            frijol.image2 = frijol.mouthOpen;
+        }
+    }
     //eaten as soon they touch
     const eaten = (d < frijol.body.size / 2 + fishCookie.size / 2);
 
-    if (eaten) {
-        catModeState = "game over";
-    }
+    //     if (eaten) {
+    //         catModeState = "game over";
+    //     }
 };
 
 //fishes
