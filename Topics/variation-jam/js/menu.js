@@ -27,8 +27,12 @@ function preload() {
     enterDoors = loadImage("assets/images/enterDoors.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
     monsterImage = loadImage("assets/images/monster.png");
-    xulaImage = loadImage("assets/images/xulaPose1.png");
-    xulaMadImage = loadImage("assets/images/xulaPose2.png");
+    xula.closeImage = loadImage("assets/images/xulaPose1.png");
+    xula.openImage = loadImage("assets/images/xulaPose2.png");
+    xula.image = xula.closeImage;
+    // xulaImage = loadImage("assets/images/xulaPose1.png");
+    // xulaMadImage = loadImage("assets/images/xulaPose2.png");
+    // xulaMadImage = xulaImage;
     dogCookieImage = loadImage("assets/images/dogCookie.png");
     bonesImage = loadImage("assets/images/bone.png");
     frijolImage = loadImage("assets/images/frijolPose2.png");

@@ -32,28 +32,34 @@ let dogCookieImage;
 let bonesImage;
 
 /**xula settings */
-//xula
 const xula = {
     body: {
         x: 100,
         y: 200,
         size: 250,
         speed: 3
-    }
+    },
+    image: undefined,
+    closeImage: undefined,
+    openImage: undefined,
+}
+// //xula
+// const xula = {
+//     
 
 
-};
+// };
 
-//mad xula
-const xulaMad = {
-    body: {
-        x: 100,
-        y: 200,
-        size: 250,
-        speed: 3
-    }
+// //mad xula
+// const xulaMad = {
+//     body: {
+//         x: 100,
+//         y: 200,
+//         size: 250,
+//         speed: 3
+//     }
 
-};
+// };
 
 /**Dog cookie settings */
 //cookie
@@ -92,7 +98,7 @@ function dogDraw() {
         drawDogCookie();
         moveXula();
         drawXula();
-        moveXulaMad();
+        // moveXulaMad();
         // drawXulaMad();
         // checkXulaInput();
         checkXulaCollision();
@@ -140,27 +146,28 @@ function drawXula() {
     //Body
     push();
     imageMode(CENTER);
-    image(xulaImage, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
+    image(xula.image, xula.x, xula.y);
+    // image(xulaImage, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
     pop();
 
-    //Mouth
-    push();
-    imageMode(CENTER);
-    image(xulaMadImage, xulaMad.body.x, xulaMad.body.y, xulaMad.body.size, xulaMad.body.size);
-    // d = distance between the mouse and the center of the xula mad's mouth
-    let d = dist(mouseX, mouseY, xulaMad.body.size, xulaMad.body.size);
-    let mad = map(d, 200, 200, 0, xulaMad.body.y);
-    mad = constrain(mad, 0, xulaMad.body.x);
-    // ellipse(monster.body.x, monster.body.y, mouthSize);
-    pop();
+    // //Mouth
+    // push();
+    // imageMode(CENTER);
+    // image(xulaMadImage, xulaMad.body.x, xulaMad.body.y, xulaMad.body.size, xulaMad.body.size);
+    // // d = distance between the mouse and the center of the xula mad's mouth
+    // let d = dist(mouseX, mouseY, xulaMad.body.size, xulaMad.body.size);
+    // let mad = map(d, 200, 200, 0, xulaMad.body.y);
+    // mad = constrain(mad, 0, xulaMad.body.x);
+    // // ellipse(monster.body.x, monster.body.y, mouthSize);
+    // pop();
 };
 
-//Move xula mad
-function moveXulaMad() {
-    let followSpeed = 0.05;
-    xulaMad.body.x = lerp(xulaMad.body.x, mouseX, followSpeed);
-    xulaMad.body.y = lerp(xulaMad.body.y, mouseY, followSpeed);
-};
+// //Move xula mad
+// function moveXulaMad() {
+//     let followSpeed = 0.05;
+//     xulaMad.body.x = lerp(xulaMad.body.x, mouseX, followSpeed);
+//     xulaMad.body.y = lerp(xulaMad.body.y, mouseY, followSpeed);
+// };
 
 // //Draw xula mad
 // function drawXulaMad() {
@@ -171,23 +178,40 @@ function moveXulaMad() {
 //     pop();
 // }
 
-//Mad xula
+// //Mad xula
 // function checkXulaInput() {
-//     const distance = dist(mouseX, mouseY, target1.x, target1.y);
-//     const mouseOverlapsKid = distanceTarget1Mouse < target1.size / 2;
-//     if (mouseOverlaps//DogCookie) {
-//                 kidSkin.fill//xula = kidSkin.fills.scared//xulaMad;
-// } else {
-//     kidSkin.fill//xula = kidSkin.fills.normal//xula;
+//     const de = dist(mouseX, mouseY, xulaMad.x, xulaMad.y);
+//     const close = de < xulaMad.size / 2;
+//     if (close) {
+//         if (frameCount % 5 === 0) {
+//             //set image to mouth close
+//         } else if (frameCount % 10 === 0) {
+
+//             // if (close) {
+//             //     xula.body.size = xulaMad.body.size;
+//             // } else {
+//             //     xula.body.size = xula.body.size;
+//         }
+//     }
 // }
+
 
 
 //Xula collission with dog cookie
 function checkXulaCollision() {
     //distance between xula and dog cookie
     const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
-    // //mad xula
-    // const mad = (d < xula.body.size / 2 + dogCookie.size / 2);
+    const close = d < xula.body.size / 2;
+    if (close) {
+        if (frameCount % 5 === 0) {
+            xula.image = xula.closeImage;
+        }
+        else if (frameCount % 10 === 0) {
+            xula.image = xula.openImage;
+        }
+    }
+    //mad xula
+    // const mad = (d < xula.body.size / 3 + dogCookie.size / 3);
     // if (mad) {
     //     xula.body.size = xulaMad.body.size;
     // } else {
