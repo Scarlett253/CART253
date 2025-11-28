@@ -36,7 +36,7 @@ const xula = {
     body: {
         x: 100,
         y: 200,
-        size: 250,
+        size: 100,
         speed: 3
     },
     image: undefined,
@@ -146,7 +146,7 @@ function drawXula() {
     //Body
     push();
     imageMode(CENTER);
-    image(xula.image, xula.x, xula.y);
+    image(xula.image, xula.body.x, xula.body.y);
     // image(xulaImage, xula.body.x, xula.body.y, xula.body.size, xula.body.size);
     pop();
 
@@ -203,7 +203,7 @@ function checkXulaCollision() {
     const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
     const close = d < xula.body.size / 2;
     if (close) {
-        if (frameCount % 5 === 0) {
+        if (frameCount % 20 === 0) {
             xula.image = xula.closeImage;
         }
         else if (frameCount % 10 === 0) {
