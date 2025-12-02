@@ -36,7 +36,7 @@ const xula = {
     body: {
         x: 100,
         y: 200,
-        size: 200,
+        size: 150,
         speed: 3
     },
     image: undefined,
@@ -135,7 +135,8 @@ function checkXulaCollision() {
     //distance between xula and dog cookie
     const d = dist(xula.body.x, xula.body.y, dogCookie.x, dogCookie.y);
     //mad xula
-    const close = d < xula.body.size;
+    const close = 150;
+    // d < xula.body.size;
     if (close) {
         if (frameCount % 20 === 0) {
             xula.image = xula.closeImage;
@@ -146,9 +147,9 @@ function checkXulaCollision() {
     }
     //eaten as soon they touch
     const eaten = (d < xula.body.size / 2 + dogCookie.size / 2);
-    // if (eaten) {
-    //     dogModeState = "game over";
-    // }
+    if (eaten) {
+        dogModeState = "game over";
+    }
 };
 
 //Bones
