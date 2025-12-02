@@ -18,8 +18,7 @@ let normalModeState = "playing";
 
 //Current score
 let normalScore = 0; // The score is the chips collected
-
-
+let collectedChips = [];
 
 /**Monster's settings */
 
@@ -127,15 +126,24 @@ function drawCookie() {
     ellipse(cookie.x, cookie.y, cookie.size);
     pop();
 
-    //chips inside cookie (score)
+    //draw collected chips
     push();
     textSize(10);
     textAlign(CENTER, CENTER);
     fill(0);
 
-    let emojiScore = "🟤".repeat(normalScore);
-    text(emojiScore, cookie.x, cookie.y);
+    for (let i of collectedChips) {
+        text("🟤", cookie.x + i.xOffset, cookie.y + i.yOffset);
+    }
     pop();
+
+    // //chips inside cookie (score)
+    // push();
+    // textSize(10);
+    // textAlign(CENTER, CENTER);
+    // fill(0);
+    // text(emojiScore, cookie.x, cookie.y);
+    // pop();
 };
 
 /** Monster set up */
@@ -224,10 +232,14 @@ function checkChipsCollision() {
     if (collect) {
         //Reset the chip
         resetChips();
-        //Score increases (a chip is added to the cookie)
+        //Score increases
         normalScore += 1;
+        //A chip is added to the cookie
+        collectedChips.push({
+            xOffset: random(-cookie.size / 4, cookie.size / 4),
+            yOffset: random(-cookie.size / 4, cookie.size / 4)
+        });
     }
-
 }
 
 /**Game over set up */
