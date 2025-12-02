@@ -18,7 +18,11 @@ let normalModeState = "playing";
 
 //Current score
 let normalScore = 0;
-let chip = 0;
+const chip = {
+    x: undefined, //Inside the cookie, mouse x
+    y: undefined, //Inside the cookie, mouse y
+    size: 5
+}
 
 /**Monster's settings */
 
@@ -100,7 +104,7 @@ function normalDraw() {
         chipCollected();
         // drawObstacles();
         // checkObstaclesCollision();
-        // normalDisplayScore();
+        normalDisplayScore();
 
     }
     else if (normalModeState === "game over") {
@@ -223,26 +227,17 @@ function checkChipsCollision() {
 }
 
 function chipCollected() {
-    push();
-    noStroke();
-    fill("#680C07");
-    // ellipse(cookie.x, cookie.y, cookie.size);
-    pop();
-
+    chip.x = mouseX;
+    chip.y = mouseY;
 }
 
-// //Display score
-// function displayNormalScore() {
-//     push();
-//     textSize(40);
-//     textAlign(320, 100);
-//     textFont(BOLD);
-//     fill("#000000");
-//     stroke("#FFFFFF");
-//     strokeWeight(4);
-//     text(normalScore, width * 0.90, height * 0.1);
-//     pop();
-// }
+//Display score
+function displayNormalScore() {
+    push();
+    textSize(chip.size);
+    text('🟤', chip.x, chip.y);
+    pop();
+}
 
 /**Game over set up */
 function normalGameOver() {
