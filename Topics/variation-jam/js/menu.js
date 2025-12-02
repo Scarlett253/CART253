@@ -22,8 +22,6 @@ let mySound;
 let hasSoundPlayed = false;
 let wisdomDog;
 let hasWisdomDogPlayed = false;
-// let sniff;
-// let hasSniffPlayed = false;
 let purring;
 let hasPurringPlayed = false;
 
@@ -40,21 +38,15 @@ function preload() {
     xula.closeImage = loadImage("assets/images/xulaPose1.png");
     xula.openImage = loadImage("assets/images/xulaPose2.png");
     xula.image = xula.closeImage;
-    // xulaImage = loadImage("assets/images/xulaPose1.png");
-    // xulaMadImage = loadImage("assets/images/xulaPose2.png");
-    // xulaMadImage = xulaImage;
     dogCookieImage = loadImage("assets/images/dogCookie.png");
     bonesImage = loadImage("assets/images/bone.png");
     frijol.mouthClose = loadImage("assets/images/frijolPose2.png");
     frijol.mouthOpen = loadImage("assets/images/frijolPose1.png");
     frijol.image2 = frijol.mouthClose;
-    // frijolImage = loadImage("assets/images/frijolPose2.png");
-    // frijolMadImage = loadImage("assets/images/frijolPose1.png");
     fishCookieImage = loadImage("assets/images/fishCookie.png");
     fishImage = loadImage("assets/images/fish.png");
     //sounds
     mySound = loadSound('assets/sounds/soniditos.mp3');
-    // sniff = loadSound('assets/sounds/sniff.wav');
     wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');
     purring = loadSound('assets/sounds/purring.wav');
 }
@@ -101,10 +93,6 @@ function menuKeyPressed(event) {
                 wisdomDog.loop();
                 hasWisdomDogPlayed = true;
             }
-            // if (!sniff.isPlaying() && !hasSniffPlayed) {
-            //     sniff.loop();
-            //     hasSniffPlayed = true;
-            // }
             break;
 
         case 67:
