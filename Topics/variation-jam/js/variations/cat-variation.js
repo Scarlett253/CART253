@@ -134,7 +134,9 @@ function checkFrijolCollision() {
     //distance between frijol and fish cookie
     const d = dist(frijol.body.x, frijol.body.y, fishCookie.x, fishCookie.y);
     //mad frijol
-    const close = d < frijol.body.size * 0.5;
+    const close = 150;
+    // d < frijol.body.size;
+
     if (close) {
         if (frameCount % 20 === 0) {
             frijol.image2 = frijol.mouthClose;
