@@ -17,6 +17,16 @@ let avoidObstacles;
 let enterDoors;
 let escapeMonster;
 
+//Sounds
+let mySound;
+let hasSoundPlayed = false;
+let wisdomDog;
+let hasWisdomDogPlayed = false;
+// let sniff;
+// let hasSniffPlayed = false;
+let purring;
+let hasPurringPlayed = false;
+
 /** Load sounds and images */
 function preload() {
     //images
@@ -43,8 +53,9 @@ function preload() {
     fishCookieImage = loadImage("assets/images/fishCookie.png");
     fishImage = loadImage("assets/images/fish.png");
     //sounds
-    song = loadSound('assets/sounds/soniditos.mp3');
-    sniff = loadSound('assets/sounds/sniff.wav');
+    mySound = loadSound('assets/sounds/soniditos.mp3');
+    // sniff = loadSound('assets/sounds/sniff.wav');
+    wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');
     purring = loadSound('assets/sounds/purring.wav');
 }
 
@@ -77,16 +88,32 @@ function menuKeyPressed(event) {
         case 78:
             state = "normal-variation";
             normalSetup();
+            if (!mySound.isPlaying() && !hasSoundPlayed) {
+                mySound.loop();
+                hasSoundPlayed = true;
+            }
             break;
 
         case 68:
             state = "dog-variation";
             dogSetup();
+            if (!wisdomDog.isPlaying() && !hasWisdomDogPlayed) {
+                wisdomDog.loop();
+                hasWisdomDogPlayed = true;
+            }
+            // if (!sniff.isPlaying() && !hasSniffPlayed) {
+            //     sniff.loop();
+            //     hasSniffPlayed = true;
+            // }
             break;
 
         case 67:
             state = "cat-variation";
             catSetup();
+            if (!purring.isPlaying() && !hasPurringPlayed) {
+                purring.loop();
+                hasPurringPlayed = true;
+            }
             break;
     }
 
