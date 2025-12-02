@@ -73,11 +73,43 @@ const chips = {
     size: 8
 };
 
+//Monster background ending
+const monsterBackground = {
+    body: {
+        x: 1300 / 2,
+        y: 700 / 2,
+
+    },
+
+    //Eyes and pupils
+    eyes: {
+        globes: {
+            fill: "#FFFFFF",
+        },
+        pupils: {
+            y: undefined,
+            fill: "#000000",
+            left: {
+                x: undefined,
+            },
+            right: {
+                x: undefined,
+            }
+        },
+        left: {
+            x: undefined,
+        },
+        right: {
+            x: undefined,
+        }
+    }
+};
+
 /**
  * Create canvas and set up monster and mouse positions
 */
 function normalSetup() {
-    // createCanvas(1300, 700);
+    createCanvas(1300, 700);
 
     //Give the chips random positions
     resetChips();
@@ -97,7 +129,6 @@ function normalDraw() {
         checkMonsterCollision();
         drawChips();
         checkChipsCollision();
-        //chipCollected();
         // drawObstacles();
         // checkObstaclesCollision();
     }
@@ -136,14 +167,6 @@ function drawCookie() {
         text("🟤", cookie.x + i.xOffset, cookie.y + i.yOffset);
     }
     pop();
-
-    // //chips inside cookie (score)
-    // push();
-    // textSize(10);
-    // textAlign(CENTER, CENTER);
-    // fill(0);
-    // text(emojiScore, cookie.x, cookie.y);
-    // pop();
 };
 
 /** Monster set up */
@@ -249,5 +272,46 @@ function normalGameOver() {
     noStroke();
     fill("#08519C");
     rect(0, 0, width, height);
+
+    //Eyes
+    push();
+    noStroke();
+    fill(monsterBackground.eyes.globes.fill);
+    monsterBackground.eyes.y = monsterBackground.body.y;
+    ellipse(monsterBackground.body.x - 300, monsterBackground.body.y - 40, 150, 150);
+    ellipse(monsterBackground.body.x + 300, monsterBackground.body.y - 40, 150, 150);
+    pop();
+
+    //Pupils
+    push();
+    fill(monsterBackground.eyes.pupils.fill);
+
+    // Make left pupil follow mouse X and mouse Y inside globe
+    monsterBackground.eyes.pupils.left.x = constrain(
+        map(mouseX, 0, width, monsterBackground.body.x - 350, monsterBackground.body.x - 250),
+        monsterBackground.body.x - 350,
+        monsterBackground.body.x - 250
+    );
+    monsterBackground.eyes.pupils.left.y = constrain(
+        map(mouseY, 0, height, monsterBackground.body.y - 90, monsterBackground.body.y + 10),
+        monsterBackground.body.y - 90,
+        monsterBackground.body.y + 10
+    );
+    ellipse(monsterBackground.eyes.pupils.left.x, monsterBackground.eyes.pupils.left.y, 100, 100);
+
+    // Make right pupil follow mouse X and mouse Y inside globe
+    monsterBackground.eyes.pupils.right.x = constrain(
+        map(mouseX, 0, width, monsterBackground.body.x + 250, monsterBackground.body.x + 350),
+        monsterBackground.body.x + 250,
+        monsterBackground.body.x + 350
+    );
+    monsterBackground.eyes.pupils.right.y = constrain(
+        map(mouseY, 0, height, monsterBackground.body.y - 90, monsterBackground.body.y + 10),
+        monsterBackground.body.y - 90,
+        monsterBackground.body.y + 10
+    );
+    ellipse(monsterBackground.eyes.pupils.right.x, monsterBackground.eyes.pupils.right.y, 100, 100);
+    pop();
+
 }
 
