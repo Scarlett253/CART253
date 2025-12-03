@@ -45,6 +45,9 @@ function preload() {
     frijol.image2 = frijol.mouthClose;
     fishCookieImage = loadImage("assets/images/fishCookie.png");
     fishImage = loadImage("assets/images/fish.png");
+    star = loadImage("assets/images/star.png");
+    dogSmile = loadImage("assets/images/dogSmile.gif");
+    catEating = loadImage("assets/")
     //sounds
     mySound = loadSound('assets/sounds/soniditos.mp3');
     wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');

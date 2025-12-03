@@ -31,6 +31,10 @@ let dogCookieImage;
 //bones
 let bonesImage;
 
+//star end screen
+let star;
+var a = 0;
+
 /**xula settings */
 const xula = {
     body: {
@@ -194,12 +198,20 @@ function dogDisplayScore() {
     pop();
 };
 
-// /**Game over set up */
-// function dogGameOver() {
-//     push();
-//     //Game over screen
-//     noStroke();
-//     fill("#08519C");
-//     rect(0, 0, width, height);
-// }
+/**Game over set up */
+function dogGameOver() {
+    push();
+    //Game over screen
+    noStroke();
+    fill("#08519C");
+    rect(0, 0, width, height);
+    //star rotation work, drove me crazy
+    translate(width / 2, height / 2);
+    imageMode(CENTER);
+    noTint();
+    rotate(a);
+    image(star, 0, 0, 450, 450);
+    a = a + 0.02;
+    //Xula in the center
+}
 
