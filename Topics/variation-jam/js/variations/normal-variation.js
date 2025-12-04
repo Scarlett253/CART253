@@ -16,6 +16,9 @@
 /** Game State */
 let normalModeState = "playing";
 
+//Game overs text images
+let gameOverText;
+
 //Current score
 let normalScore = 0; // The score is the chips collected
 let collectedChips = [];
@@ -355,6 +358,14 @@ function normalGameOver() {
     let mouthSizeMonsterBg = map(dbgs, 0, 200, 160, 115);
     mouthSizeMonsterBg = constrain(mouthSizeMonsterBg, 115, 160);
     ellipse(monsterBackground.body.x, monsterBackground.body.y * 1.5, mouthSizeMonsterBg);
+    pop();
+
+    //Text
+    push();
+    imageMode(CENTER);
+    image(gameOverText, width / 2, height / 2 * 0.80, 400, 50);
+    image(pressEsc, width / 2, height / 2 - 300, 100, 20);
+    image(mainMenuText, width / 2, height / 2 - 280, 100, 15);
     pop();
 
 }

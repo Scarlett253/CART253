@@ -16,6 +16,9 @@
 /** Game State */
 let dogModeState = "playing";
 
+//Game over text image
+let xulaAteYou;
+
 //Shade the background
 let dogBackgroundShade = 10;
 //Day and night cycle

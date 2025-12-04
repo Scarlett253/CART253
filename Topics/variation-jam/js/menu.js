@@ -29,9 +29,6 @@ let frijolText;
 let pressC;
 
 //Game overs text images
-let gameOverText;
-let xulaAteYou;
-let frijolCookedYou;
 let mainMenuText;
 let pressEsc;
 

@@ -16,6 +16,9 @@
 /** Game State */
 let catModeState = "playing";
 
+//Game overs text images
+let frijolCookedYou;
+
 //Current score
 let catScore = 0;
 

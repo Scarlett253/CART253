@@ -33,7 +33,7 @@ This bit should include the license you want to apply to your work. For example:
 
 > This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
 
-## Sourtces
+## Sources
 * my mod-jam code example
 * my art-jam code example
 * conditionals-challenge
@@ -42,3 +42,7 @@ This bit should include the license you want to apply to your work. For example:
 * Giphy
 * Arrays class example and challenge + p5js examples
 * Chloé's Art Jam code example
+* soniditos- Obstinate Dreamer
+* Dogsong of wisdom
+* SND_CatPurring_Loop_01.wav
+megrez7274
