@@ -89,7 +89,6 @@ function preload() {
 
     //Game over images
     star = loadImage("assets/images/star.png");
-    dogSmile = loadImage("assets/images/dogSmile.gif");
     catEating = loadImage("assets/images/catEating.gif");
 
     //sounds
