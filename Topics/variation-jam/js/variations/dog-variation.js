@@ -221,11 +221,13 @@ function dogGameOver() {
     //Xula in the center
     push();
     imageMode(CENTER);
-    image(dogSmile, width / 2, height / 2);
+    image(xula.image, width / 2, height / 2, xula.body.size, xula.body.size);
+
+    if (frameCount % 20 === 0) {
+        xula.image = xula.closeImage;
+    } else if (frameCount % 10 === 0) {
+        xula.image = xula.openImage;
+    }
     pop();
-    // push();
-    // imageMode(CENTER);
-    // image(xula.image, width / 2, height / 2, xula.size, xula.size);
-    // pop();
 }
 
