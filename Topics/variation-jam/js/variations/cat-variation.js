@@ -231,12 +231,8 @@ function catGameOver() {
     let b = 275 - catBackgroundShade;
 
     background(r, g, b);
-    //Game over screen
-    // noStroke();
-    // fill("#510fa1ff");
-
-    // rect(0, 0, width, height);
     pop();
+
     //star rotation work, drove me crazy
     push();
     translate(width / 2, height / 2);
@@ -246,10 +242,19 @@ function catGameOver() {
     image(star, 0, 0, 450, 450);
     a = a + 0.02;
     pop();
+
     //Cat eating in the center
     push();
     imageMode(CENTER);
     image(catEating, width / 2, height / 2);
+    pop();
+
+    //Text
+    push();
+    imageMode(CENTER);
+    image(frijolCookedYou, width / 2, height / 2 - 250, 500, 100);
+    image(pressEsc, width / 2, height - 60, 100, 20);
+    image(mainMenuText, width / 2, height - 40, 100, 15);
     pop();
 
     //Frijoles

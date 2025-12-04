@@ -261,9 +261,9 @@ function dogGameOver() {
     //Text
     push();
     imageMode(CENTER);
-    image(xulaAteYou, width / 2, height - 100, 500, 100);
-    image(pressEsc, width / 2, height / 2 - 300, 100, 20);
-    image(mainMenuText, width / 2, height / 2 - 280, 100, 15);
+    image(xulaAteYou, width / 2, height / 2 - 250, 500, 100);
+    image(pressEsc, width / 2, height - 60, 100, 20);
+    image(mainMenuText, width / 2, height - 40, 100, 15);
     pop();
 
     //Dog cookies rotation
