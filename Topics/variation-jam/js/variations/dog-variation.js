@@ -200,7 +200,6 @@ function checkBonesCollision() {
         //Score increases
         dogScore += 1;
     }
-
 };
 
 //Display score
@@ -219,10 +218,18 @@ function dogDisplayScore() {
 /**Game over set up */
 function dogGameOver() {
     push();
-    //Game over screen
-    noStroke();
-    fill("#08519C");
-    rect(0, 0, width, height);
+    dogBackgroundShade += 0.3 * dogBackgroundDirection;
+    if (dogBackgroundShade >= 100) {
+        dogBackgroundDirection = -1;
+    }
+    if (dogBackgroundShade <= 0) {
+        dogBackgroundDirection = 1;
+    }
+    let r = 0 - dogBackgroundShade;
+    let g = 123 - dogBackgroundShade;
+    let b = 167 - dogBackgroundShade;
+
+    background(r, g, b);
     pop();
 
     //star rotation work, drove me crazy

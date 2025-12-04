@@ -136,6 +136,7 @@ function normalDraw() {
         checkChipsCollision();
         // drawObstacles();
         // checkObstaclesCollision();
+        normalScoreDisplay();
     }
     else if (normalModeState === "game over") {
         normalGameOver();
@@ -282,6 +283,20 @@ function checkChipsCollision() {
         });
     }
 }
+
+//Display score
+//Display score
+function normalScoreDisplay() {
+    push();
+    textSize(40);
+    textAlign(320, 100);
+    textFont(BOLD);
+    fill("#000000");
+    stroke("#FFFFFF");
+    strokeWeight(4);
+    text(normalScore, width * 0.90, height * 0.1);
+    pop();
+};
 
 /**Game over set up */
 function normalGameOver() {

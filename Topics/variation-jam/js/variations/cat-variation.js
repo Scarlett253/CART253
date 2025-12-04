@@ -20,9 +20,9 @@ let catModeState = "playing";
 let catScore = 0;
 
 //Shade the background
-let dogBackgroundShade = 10;
+let catBackgroundShade = 10;
 //Day and night cycle
-let dogBackgroundDirection = 1;
+let catBackgroundDirection = 1;
 
 /**Frijol's settings */
 
@@ -102,16 +102,16 @@ function catDraw() {
 /**Draw background*/
 function catDrawBackground() {
     //Make the background darker and lighter
-    dogBackgroundShade += 0.3 * dogBackgroundDirection;
-    if (dogBackgroundShade >= 100) {
-        dogBackgroundDirection = -1;
+    catBackgroundShade += 0.3 * catBackgroundDirection;
+    if (catBackgroundShade >= 100) {
+        catBackgroundDirection = -1;
     }
-    if (dogBackgroundShade <= 0) {
-        dogBackgroundDirection = 1;
+    if (catBackgroundShade <= 0) {
+        catBackgroundDirection = 1;
     }
-    let r = 255 - dogBackgroundShade;
-    let g = 223 - dogBackgroundShade;
-    let b = 142 - dogBackgroundShade;
+    let r = 255 - catBackgroundShade;
+    let g = 223 - catBackgroundShade;
+    let b = 142 - catBackgroundShade;
 
     background(r, g, b);
     // background(300, 150, 200);
@@ -133,7 +133,7 @@ function drawFishCookie() {
 /** Frijol set up */
 //Move frijol
 function moveFrijol() {
-    let followSpeed = 0.08;
+    let followSpeed = 0.10;
     frijol.body.x = lerp(frijol.body.x, mouseX, followSpeed);
     frijol.body.y = lerp(frijol.body.y, mouseY, followSpeed);
 };
@@ -216,10 +216,23 @@ function catDisplayScore() {
 /**Game over set up */
 function catGameOver() {
     push();
+    catBackgroundShade += 0.3 * catBackgroundDirection;
+    if (catBackgroundShade >= 100) {
+        catBackgroundDirection = -1;
+    }
+    if (catBackgroundShade <= 0) {
+        catBackgroundDirection = 1;
+    }
+    let r = 244 - catBackgroundShade;
+    let g = 156 - catBackgroundShade;
+    let b = 275 - catBackgroundShade;
+
+    background(r, g, b);
     //Game over screen
-    noStroke();
-    fill("#510fa1ff");
-    rect(0, 0, width, height);
+    // noStroke();
+    // fill("#510fa1ff");
+
+    // rect(0, 0, width, height);
     pop();
     //star rotation work, drove me crazy
     push();
