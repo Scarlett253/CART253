@@ -15,7 +15,6 @@ let instructions;
 let useMouse;
 let toControl;
 let collectTreats;
-let avoidObstacles;
 let escapeMonster;
 let clickHere;
 
@@ -43,6 +42,8 @@ let hasWisdomDogPlayed = false;
 //sounds cat variation
 let purring;
 let hasPurringPlayed = false;
+let undertaleSong;
+let hasUndertaleSongPlayed = false;
 
 /** Load sounds and images */
 function preload() {
@@ -52,7 +53,6 @@ function preload() {
     useMouse = loadImage("assets/images/useMouse.png");
     toControl = loadImage("assets/images/toControlTheCookie.png");
     collectTreats = loadImage("assets/images/collectTreats.png");
-    avoidObstacles = loadImage("assets/images/avoidObstacles.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
     variationsText = loadImage("assets/images/variations.png");
     og = loadImage("assets/images/og.png");
@@ -94,6 +94,7 @@ function preload() {
     mySound = loadSound('assets/sounds/soniditos.mp3');
     wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');
     purring = loadSound('assets/sounds/purring.wav');
+    undertaleSong = loadSound('assets/sounds/undertaleSong.mp3');
 }
 
 /**Draw menu screen*/
@@ -111,17 +112,16 @@ function menuDraw() {
     image(useMouse, width * 0.40, height - 440, 300, 15);
     image(toControl, width * 0.64, height - 440, 300, 15);
     image(collectTreats, width / 2, height - 400, 300, 15);
-    image(avoidObstacles, width / 2, height - 360, 300, 15);
-    image(escapeMonster, width / 2, height - 320, 300, 20);
+    image(escapeMonster, width / 2, height - 360, 300, 20);
     //Variations text
-    image(variationsText, width / 2, height - 280, 300, 35);
+    image(variationsText, width / 2, height - 300, 300, 35);
     image(og, width * 0.20, height - 205, 60, 25);
     image(pressN, width * 0.20, height - 180, 100, 15);
-    image(xulaText, width / 2, height - 180, 60, 25);
-    image(pressD, width / 2, height - 155, 100, 15);
+    image(xulaText, width / 2, height - 205, 60, 25);
+    image(pressD, width / 2, height - 180, 100, 15);
     image(frijolText, width * 0.80, height - 205, 60, 25);
     image(pressC, width * 0.80, height - 180, 100, 15);
-    image(clickHere, width / 2, height - 100, 350, 30);
+    image(clickHere, width / 2, height - 80, 350, 30);
     pop();
 };
 
@@ -152,10 +152,15 @@ function menuKeyPressed(event) {
         case 67:
             state = "cat-variation";
             catSetup();
+            if (!undertaleSong.isPlaying() && !hasUndertaleSongPlayed) {
+                undertaleSong.loop();
+                hasUndertaleSongPlayed = true;
+            }
             if (!purring.isPlaying() && !hasPurringPlayed) {
                 purring.loop();
                 hasPurringPlayed = true;
             }
+
             break;
     }
 
