@@ -67,5 +67,4 @@ SOUNDS:
 > "author" content="Yvonne Scarlett Arriola Lerin".
 > "copyright" content="Yvonne Scarlett Arriola Lerin, Student Project, 2025".
 
-> This project is licensed under a Creative Commons Attribution ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en)) license with the exception of libraries and other components with their own licenses.
 
