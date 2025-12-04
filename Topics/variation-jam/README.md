@@ -3,15 +3,31 @@
 Yvonne Scarlett Arriola Lerin
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
+- [Ideas](Ideas)
+- [planning](<option 2 planning>)
+- 
+
 ## Description
+> "Am I a Frog?" is a simulation about a green frog who catches flies for living with a catchy song in the background and some other video game details. 
 
-This description should help the reader understand what the program is, anything they should know to be able to experience it (controls, special features, etc.), and what the desired user experience is. For example:
+> Before starting the simulation there's a menu screen that includes the title, the instructions, and the procedure to start playing. To start the simulation you press a random key and then the screen state changes to the playing state + a really catchy song starts playing (Le Poisson Steve) on loop. 
 
-> *The Mayor of Clown Town* is a simulator experience that allows the user to control a small town populated entirely by clowns.
+> The simulation includes a blue background that smoothly changes of shades to simulate the time of the day. A green realistic frog that can move left to right and vice versa and can shoot it's tongue. As bugs, besides the flies I decided to add ladybugs, both of them are really minimalistic. And for last it has a scoring points in the top right of the screen and every strike is add in the top left of the screen. It has two endings: the winning screen (You are a frog) and the game over one (You are not a frog!). The winnig screen includes a solid yellow/green background with the text "YOU ARE A FROG!" with a minecraft walking frog gif above. If you lose,a gif of a pixel art frog eating a fly and then dying appears shows up covering the whole screen (source at the bottom of README page) with the text "YOU ARE NOT A FROG!". Both endings also have the "ctrl + r to restart" text; well, to restart lol.
 
-> The experience is controlled via the mouse, with left click selecting a clown and bringing up a menu of options such as "slip of banana peel" or "get into impossible capacious clown-car."
+> The simulation is controlled by the mouse and by left click. The frog only moves towards the sides (x) and the the tongue can only be launched upward by left click and comes back when it reaches the top of the screen, or if it catches a bug. The scoring system depends on which bug the player catches. If the player catches a fly the score increases +1 point, but if it misses, the player gets a strike; it takes 3 strikes for a game over. If the player catches a ladybug, it eliminates one strike, but the score dicrease -1 point. For winning, the player needs a score of 30.
 
-> The project is meant to give the user a sense of what it would be the mayor of a town of clowns, eventually getting the sense that clowns are not taking their civic duties seriously.
+## Attribution/Sources
+- This project uses:
+> [p5.js](https://p5js.org).
+> events-challenge code (as an example)
+> change variables video-examples
+> w3schools Game examples
+> pin pon p5*js example
+> variables-challenge code (as an example)
+> lerpColor p5*js example
+> gif frog dying :Melbourne based animator. Twiter @IvanRDixon
+> some other png images and gifs found in google (i forgot to copy the links)
+> Le poisson Steve song: https://youtu.be/VCdWC5FefRo?si=dDRtlcYbG_6O4ePD
 
 ## Screenshot(s)
 

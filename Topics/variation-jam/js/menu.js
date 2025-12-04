@@ -38,6 +38,8 @@ let hasSoundPlayed = false;
 //sounds dog variation
 let wisdomDog;
 let hasWisdomDogPlayed = false;
+let bark;
+let hasBarkPlayed = false;
 
 //sounds cat variation
 let purring;
@@ -93,6 +95,7 @@ function preload() {
     //sounds
     mySound = loadSound('assets/sounds/soniditos.mp3');
     wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');
+    bark = loadSound('assets/sounds/bark.wav');
     purring = loadSound('assets/sounds/purring.wav');
     undertaleSong = loadSound('assets/sounds/undertaleSong.mp3');
 }
@@ -146,6 +149,10 @@ function menuKeyPressed(event) {
             if (!wisdomDog.isPlaying() && !hasWisdomDogPlayed) {
                 wisdomDog.loop();
                 hasWisdomDogPlayed = true;
+            }
+            if (!bark.isPlaying() && !hasBarkPlayed) {
+                bark.play();
+                hasBarkPlayed = true;
             }
             break;
 
