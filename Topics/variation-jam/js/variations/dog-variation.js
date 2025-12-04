@@ -205,13 +205,27 @@ function dogGameOver() {
     noStroke();
     fill("#08519C");
     rect(0, 0, width, height);
+    pop();
+
     //star rotation work, drove me crazy
+    push();
     translate(width / 2, height / 2);
     imageMode(CENTER);
     noTint();
     rotate(a);
     image(star, 0, 0, 450, 450);
+    pop();
     a = a + 0.02;
+    pop();
+
     //Xula in the center
+    push();
+    imageMode(CENTER);
+    image(dogSmile, width / 2, height / 2);
+    pop();
+    // push();
+    // imageMode(CENTER);
+    // image(xula.image, width / 2, height / 2, xula.size, xula.size);
+    // pop();
 }
 

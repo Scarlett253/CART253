@@ -148,9 +148,9 @@ function checkFrijolCollision() {
     //eaten as soon they touch
     const eaten = (d < frijol.body.size / 2 + fishCookie.size / 2);
 
-    //     if (eaten) {
-    //         catModeState = "game over";
-    //     }
+    if (eaten) {
+        catModeState = "game over";
+    }
 };
 
 //fishes
@@ -200,8 +200,23 @@ function catGameOver() {
     push();
     //Game over screen
     noStroke();
-    fill("#08519C");
+    fill("#510fa1ff");
     rect(0, 0, width, height);
+    pop();
+    //star rotation work, drove me crazy
+    push();
+    translate(width / 2, height / 2);
+    imageMode(CENTER);
+    noTint();
+    rotate(a);
+    image(star, 0, 0, 450, 450);
+    a = a + 0.02;
+    pop();
+    //Cat eating in the center
+    push();
+    imageMode(CENTER);
+    image(catEating, width / 2, height / 2);
+    pop();
 }
 
 

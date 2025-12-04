@@ -47,7 +47,7 @@ function preload() {
     fishImage = loadImage("assets/images/fish.png");
     star = loadImage("assets/images/star.png");
     dogSmile = loadImage("assets/images/dogSmile.gif");
-    catEating = loadImage("assets/")
+    catEating = loadImage("assets/images/catEating.gif");
     //sounds
     mySound = loadSound('assets/sounds/soniditos.mp3');
     wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');
