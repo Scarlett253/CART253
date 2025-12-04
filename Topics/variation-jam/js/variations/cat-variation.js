@@ -19,6 +19,11 @@ let catModeState = "playing";
 //Current score
 let catScore = 0;
 
+//Shade the background
+let dogBackgroundShade = 10;
+//Day and night cycle
+let dogBackgroundDirection = 1;
+
 /**Frijol's settings */
 
 //Frijol mage
@@ -96,7 +101,20 @@ function catDraw() {
 
 /**Draw background*/
 function catDrawBackground() {
-    background(300, 150, 200);
+    //Make the background darker and lighter
+    dogBackgroundShade += 0.3 * dogBackgroundDirection;
+    if (dogBackgroundShade >= 100) {
+        dogBackgroundDirection = -1;
+    }
+    if (dogBackgroundShade <= 0) {
+        dogBackgroundDirection = 1;
+    }
+    let r = 255 - dogBackgroundShade;
+    let g = 223 - dogBackgroundShade;
+    let b = 142 - dogBackgroundShade;
+
+    background(r, g, b);
+    // background(300, 150, 200);
 };
 
 /** fish cookie */
@@ -115,7 +133,7 @@ function drawFishCookie() {
 /** Frijol set up */
 //Move frijol
 function moveFrijol() {
-    let followSpeed = 0.05;
+    let followSpeed = 0.08;
     frijol.body.x = lerp(frijol.body.x, mouseX, followSpeed);
     frijol.body.y = lerp(frijol.body.y, mouseY, followSpeed);
 };
@@ -138,10 +156,10 @@ function checkFrijolCollision() {
     // d < frijol.body.size;
 
     if (close) {
-        if (frameCount % 20 === 0) {
+        if (frameCount % 10 === 0) {
             frijol.image2 = frijol.mouthClose;
         }
-        else if (frameCount % 10 === 0) {
+        else if (frameCount % 5 === 0) {
             frijol.image2 = frijol.mouthOpen;
         }
     }
@@ -227,9 +245,9 @@ function catGameOver() {
     imageMode(CENTER);
     image(frijol.image2, width * 0.80, height / 2, frijol.body.size * 1.5, frijol.body.size * 1.5);
 
-    if (frameCount % 20 === 0) {
+    if (frameCount % 10 === 0) {
         frijol.image2 = frijol.mouthClose;
-    } else if (frameCount % 10 === 0) {
+    } else if (frameCount % 5 === 0) {
         frijol.image2 = frijol.mouthOpen;
     }
     pop();

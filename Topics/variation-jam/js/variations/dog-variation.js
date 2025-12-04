@@ -138,7 +138,7 @@ function drawDogCookie() {
 /** Xula set up */
 //Move xula
 function moveXula() {
-    let followSpeed = 0.05;
+    let followSpeed = 0.08;
     xula.body.x = lerp(xula.body.x, mouseX, followSpeed);
     xula.body.y = lerp(xula.body.y, mouseY, followSpeed);
 };
@@ -160,10 +160,10 @@ function checkXulaCollision() {
     const close = 150;
     // d < xula.body.size;
     if (close) {
-        if (frameCount % 20 === 0) {
+        if (frameCount % 10 === 0) {
             xula.image = xula.closeImage;
         }
-        else if (frameCount % 10 === 0) {
+        else if (frameCount % 5 === 0) {
             xula.image = xula.openImage;
         }
     }
@@ -241,9 +241,9 @@ function dogGameOver() {
     imageMode(CENTER);
     image(xula.image, width / 2, height / 2, xula.body.size * 2, xula.body.size * 2);
 
-    if (frameCount % 20 === 0) {
+    if (frameCount % 10 === 0) {
         xula.image = xula.closeImage;
-    } else if (frameCount % 10 === 0) {
+    } else if (frameCount % 5 === 0) {
         xula.image = xula.openImage;
     }
     pop();

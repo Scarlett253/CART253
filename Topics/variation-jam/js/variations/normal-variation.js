@@ -190,7 +190,7 @@ function drawCookie() {
 /** Monster set up */
 //Move monster
 function moveMonster() {
-    let followSpeed = 0.05;
+    let followSpeed = 0.09;
     monster.body.x = lerp(monster.body.x, mouseX, followSpeed);
     monster.body.y = lerp(monster.body.y, mouseY, followSpeed);
 };
@@ -260,8 +260,8 @@ function drawChips() {
 
 /** Reset the chips in random positions all over the screen*/
 function resetChips() {
-    chips.x = random(13, 1288);
-    chips.y = random(13, 688);
+    chips.x = random(15, 1285);
+    chips.y = random(15, 685);
 };
 
 function checkChipsCollision() {
