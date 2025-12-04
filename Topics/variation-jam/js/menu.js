@@ -13,15 +13,34 @@ const menuText = `
 let cookieEaterText;
 let instructions;
 let useMouse;
+let toControl;
+let collectTreats;
 let avoidObstacles;
-let enterDoors;
 let escapeMonster;
 
-//Sounds
+//Variations text images
+let VariationsText;
+let og;
+let pressN;
+let xulaText;
+let pressD;
+let frijolText;
+let pressC;
+
+//Game overs text images
+let gameOverText;
+let xulaAteYou;
+let frijolCookedYou;
+
+//Sounds normal variation
 let mySound;
 let hasSoundPlayed = false;
+
+//sounds dog variation
 let wisdomDog;
 let hasWisdomDogPlayed = false;
+
+//sounds cat variation
 let purring;
 let hasPurringPlayed = false;
 
@@ -31,22 +50,43 @@ function preload() {
     cookieEaterText = loadImage("assets/images/cookieEaterText.png");
     instructions = loadImage("assets/images/instructions.png");
     useMouse = loadImage("assets/images/useMouse.png");
+    toControl = loadImage("assets/images/toControlTheCookie.png");
+    collectTreats = loadImage("assets/images/collectTreats.png");
     avoidObstacles = loadImage("assets/images/avoidObstacles.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
+    variationsText = loadImage("assets/images/variations.png");
+    og = loadImage("assets/images/og.png");
+    pressN = loadImage("assets/images/pressN.png");
+    xulaText = loadImage("assets/images/xula.png");
+    pressD = loadImage("assets/images/pressD.png");
+    frijolText = loadImage("assets/images/frijol.png");
+    pressC = loadImage("assets/images/pressC.png");
+    gameOverText = loadImage("assets/images/gameOver.png");
+    xulaAteYou = loadImage("assets/images/xulaAteYou.png");
+    frijolCookedYou = loadImage("assets/images/frijolCookedYou.png");
+
+    //Monster image
     monsterImage = loadImage("assets/images/monster.png");
+
+    //Dog variation images
     xula.closeImage = loadImage("assets/images/xulaPose1.png");
     xula.openImage = loadImage("assets/images/xulaPose2.png");
     xula.image = xula.closeImage;
     dogCookieImage = loadImage("assets/images/dogCookie.png");
     bonesImage = loadImage("assets/images/bone.png");
+
+    //Cat variation images
     frijol.mouthClose = loadImage("assets/images/frijolPose2.png");
     frijol.mouthOpen = loadImage("assets/images/frijolPose1.png");
     frijol.image2 = frijol.mouthClose;
     fishCookieImage = loadImage("assets/images/fishCookie.png");
     fishImage = loadImage("assets/images/fish.png");
+
+    //Game over images
     star = loadImage("assets/images/star.png");
     dogSmile = loadImage("assets/images/dogSmile.gif");
     catEating = loadImage("assets/images/catEating.gif");
+
     //sounds
     mySound = loadSound('assets/sounds/soniditos.mp3');
     wisdomDog = loadSound('assets/sounds/wisdomDogSong.mp3');
@@ -68,7 +108,6 @@ function menuDraw() {
     image(instructions, width / 2, height - 490, 400, 50);
     image(useMouse, width / 2, height - 420, 390, 20);
     image(avoidObstacles, width / 2, height - 370, 275, 17);
-    image(enterDoors, width / 2, height - 320, 380, 30);
     image(escapeMonster, width / 2, height - 260, 230, 20);
     pop();
 };
