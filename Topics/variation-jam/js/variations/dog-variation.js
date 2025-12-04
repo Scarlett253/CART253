@@ -17,9 +17,9 @@
 let dogModeState = "playing";
 
 //Shade the background
-let backgroundShade = 10;
+let dogBackgroundShade = 10;
 //Day and night cycle
-let backgroundDirection = 1;
+let dogBackgroundDirection = 1;
 
 //Current score
 let dogScore = 0;
@@ -107,16 +107,16 @@ function dogDraw() {
 /**Draw background*/
 function dogDrawBackground() {
     //Make the background darker and lighter
-    backgroundShade += 0.3 * backgroundDirection;
-    if (backgroundShade >= 100) {
-        backgroundDirection = -1;
+    dogBackgroundShade += 0.3 * dogBackgroundDirection;
+    if (dogBackgroundShade >= 100) {
+        dogBackgroundDirection = -1;
     }
-    if (backgroundShade <= 0) {
-        backgroundDirection = 1;
+    if (dogBackgroundShade <= 0) {
+        dogBackgroundDirection = 1;
     }
-    let r = 130 - backgroundShade;
-    let g = 150 - backgroundShade;
-    let b = 230 - backgroundShade;
+    let r = 130 - dogBackgroundShade;
+    let g = 150 - dogBackgroundShade;
+    let b = 230 - dogBackgroundShade;
 
     background(r, g, b);
     // background(300, 150, 200);

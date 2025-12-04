@@ -20,6 +20,11 @@ let normalModeState = "playing";
 let normalScore = 0; // The score is the chips collected
 let collectedChips = [];
 
+//Shade the background
+let backgroundShade = 10;
+//Day and night cycle
+let backgroundDirection = 1;
+
 /**Monster's settings */
 
 //Image
@@ -140,7 +145,20 @@ function normalDraw() {
 
 /**Draw background*/
 function normalDrawBackground() {
-    background(300, 150, 200);
+    //Make the background darker and lighter
+    backgroundShade += 0.3 * backgroundDirection;
+    if (backgroundShade >= 100) {
+        backgroundDirection = -1;
+    }
+    if (backgroundShade <= 0) {
+        backgroundDirection = 1;
+    }
+    let r = 300 - backgroundShade;
+    let g = 150 - backgroundShade;
+    let b = 200 - backgroundShade;
+
+    background(r, g, b);
+    // background(300, 150, 200);
 };
 
 /** Cookie */
