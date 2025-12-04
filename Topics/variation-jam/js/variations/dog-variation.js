@@ -7,7 +7,6 @@
 * 
 * Instructions:
 * - Move the mouse to avoid Xula
-* - Avoid the obstacles
 * - Collect bones to gain points
 */
 
@@ -83,7 +82,7 @@ function dogSetup() {
 }
 
 /**
- * Draw background, xula, dog cookie, bones and obstacles
+ * Draw background, xula, dog cookie and bones  
 */
 function dogDraw() {
     if (dogModeState === "playing") {
@@ -96,8 +95,6 @@ function dogDraw() {
         checkXulaCollision();
         drawBones();
         checkBonesCollision();
-        // drawObstacles();
-        // checkObstaclesCollision();
         dogDisplayScore();
 
     }
@@ -251,9 +248,9 @@ function dogGameOver() {
     imageMode(CENTER);
     image(xula.image, width / 2, height / 2, xula.body.size * 2, xula.body.size * 2);
 
-    if (frameCount % 10 === 0) {
+    if (frameCount % 15 === 0) {
         xula.image = xula.closeImage;
-    } else if (frameCount % 5 === 0) {
+    } else if (frameCount % 10 === 0) {
         xula.image = xula.openImage;
     }
     pop();

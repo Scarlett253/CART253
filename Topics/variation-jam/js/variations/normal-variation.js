@@ -7,7 +7,6 @@
 * 
 * Instructions:
 * - Move the mouse to avoid the cookie monster
-* - Avoid the obstacles
 * - Collect chips to gain points
 */
 
@@ -124,7 +123,7 @@ function normalSetup() {
 }
 
 /**
- * Draw background, monster, cookie, chips and obstacles
+ * Draw background, monster, cookie and chips 
 */
 function normalDraw() {
     if (normalModeState === "playing") {
@@ -137,8 +136,6 @@ function normalDraw() {
         checkMonsterCollision();
         drawChips();
         checkChipsCollision();
-        // drawObstacles();
-        // checkObstaclesCollision();
         normalScoreDisplay();
     }
     else if (normalModeState === "game over") {

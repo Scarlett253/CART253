@@ -7,7 +7,6 @@
 *
 * Instructions:
 * - Move the mouse to avoid Frijol
-* - Avoid the obstacles
 * - Collect fishes to gain points
 */
 
@@ -78,7 +77,7 @@ function catSetup() {
 }
 
 /**
- * Draw background, frijol, fish cookie, fishes and obstacles
+ * Draw background, frijol, fish cookie and fishes
 */
 function catDraw() {
     if (catModeState === "playing") {
@@ -91,8 +90,6 @@ function catDraw() {
         checkFrijolCollision();
         drawfish();
         checkfishCollision();
-        // drawObstacles();
-        // checkObstaclesCollision();
         catDisplayScore();
 
     }
