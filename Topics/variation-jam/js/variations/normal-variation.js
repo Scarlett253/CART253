@@ -313,5 +313,16 @@ function normalGameOver() {
     ellipse(monsterBackground.eyes.pupils.right.x, monsterBackground.eyes.pupils.right.y, 100, 100);
     pop();
 
+    //Mouth
+    push();
+    noStroke();
+    fill("#680C07");
+    // d = distance between the mouse and the center of the monster's mouth
+    let dbgs = dist(mouseX, mouseY, monsterBackground.body.x, monsterBackground.body.y);
+    let mouthSizeMonsterBg = map(dbgs, 0, 200, 160, 115);
+    mouthSizeMonsterBg = constrain(mouthSizeMonsterBg, 115, 160);
+    ellipse(monsterBackground.body.x, monsterBackground.body.y * 1.5, mouthSizeMonsterBg);
+    pop();
+
 }
 

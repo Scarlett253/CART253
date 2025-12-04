@@ -221,13 +221,33 @@ function dogGameOver() {
     //Xula in the center
     push();
     imageMode(CENTER);
-    image(xula.image, width / 2, height / 2, xula.body.size, xula.body.size);
+    image(xula.image, width / 2, height / 2, xula.body.size * 2, xula.body.size * 2);
 
     if (frameCount % 20 === 0) {
         xula.image = xula.closeImage;
     } else if (frameCount % 10 === 0) {
         xula.image = xula.openImage;
     }
+    pop();
+
+    //Dog cookies rotation
+    push();
+    //cookie 1
+    translate(width * 0.15, height / 2);
+    imageMode(CENTER);
+    noTint();
+    rotate(a);
+    image(dogCookieImage, 0, 0, 130, 100);
+    pop();
+    a = a + 0.02;
+    //cookie 2
+    translate(width * 0.85, height / 2);
+    imageMode(CENTER);
+    noTint();
+    rotate(a);
+    image(dogCookieImage, 0, 0, 130, 100);
+    pop();
+    a = a + 0.02;
     pop();
 }
 

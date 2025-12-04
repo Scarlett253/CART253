@@ -220,12 +220,12 @@ function catGameOver() {
 
     //Frijoles
     push();
+    //frijol 1
     imageMode(CENTER);
-    image(frijol.image2, width * 0.20, height / 2, frijol.body.size, frijol.body.size);
-
-    push();
+    image(frijol.image2, width * 0.20, height / 2, frijol.body.size * 1.5, frijol.body.size * 1.5);
+    //frijol 2
     imageMode(CENTER);
-    image(frijol.image2, width * 0.80, height / 2, frijol.body.size, frijol.body.size);
+    image(frijol.image2, width * 0.80, height / 2, frijol.body.size * 1.5, frijol.body.size * 1.5);
 
     if (frameCount % 20 === 0) {
         frijol.image2 = frijol.mouthClose;

@@ -27,12 +27,11 @@ let hasPurringPlayed = false;
 
 /** Load sounds and images */
 function preload() {
-    //images
+    //Text images
     cookieEaterText = loadImage("assets/images/cookieEaterText.png");
     instructions = loadImage("assets/images/instructions.png");
     useMouse = loadImage("assets/images/useMouse.png");
     avoidObstacles = loadImage("assets/images/avoidObstacles.png");
-    enterDoors = loadImage("assets/images/enterDoors.png");
     escapeMonster = loadImage("assets/images/escapeMonster.png");
     monsterImage = loadImage("assets/images/monster.png");
     xula.closeImage = loadImage("assets/images/xulaPose1.png");
