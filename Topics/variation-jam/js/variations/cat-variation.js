@@ -217,6 +217,23 @@ function catGameOver() {
     imageMode(CENTER);
     image(catEating, width / 2, height / 2);
     pop();
+
+    //Frijoles
+    push();
+    imageMode(CENTER);
+    image(frijol.image2, width * 0.20, height / 2, frijol.body.size, frijol.body.size);
+
+    push();
+    imageMode(CENTER);
+    image(frijol.image2, width * 0.80, height / 2, frijol.body.size, frijol.body.size);
+
+    if (frameCount % 20 === 0) {
+        frijol.image2 = frijol.mouthClose;
+    } else if (frameCount % 10 === 0) {
+        frijol.image2 = frijol.mouthOpen;
+    }
+    pop();
+
 }
 
 
