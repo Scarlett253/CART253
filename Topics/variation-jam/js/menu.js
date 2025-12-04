@@ -17,9 +17,10 @@ let toControl;
 let collectTreats;
 let avoidObstacles;
 let escapeMonster;
+let clickHere;
 
 //Variations text images
-let VariationsText;
+let variationsText;
 let og;
 let pressN;
 let xulaText;
@@ -31,6 +32,8 @@ let pressC;
 let gameOverText;
 let xulaAteYou;
 let frijolCookedYou;
+let mainMenuText;
+let pressEsc;
 
 //Sounds normal variation
 let mySound;
@@ -61,9 +64,12 @@ function preload() {
     pressD = loadImage("assets/images/pressD.png");
     frijolText = loadImage("assets/images/frijol.png");
     pressC = loadImage("assets/images/pressC.png");
+    clickHere = loadImage("assets/images/clickHere.png");
     gameOverText = loadImage("assets/images/gameOver.png");
     xulaAteYou = loadImage("assets/images/xulaAteYou.png");
     frijolCookedYou = loadImage("assets/images/frijolCookedYou.png");
+    mainMenuText = loadImage("assets/images/mainMenu.png");
+    pressEsc = loadImage("assets/images/pressEsc.png");
 
     //Monster image
     monsterImage = loadImage("assets/images/monster.png");
@@ -100,15 +106,25 @@ function menuDraw() {
     noStroke();
     fill(300, 250, 200);
     rect(0, 0, width, height);
-
     //Title text
     imageMode(CENTER);
-    image(cookieEaterText, width / 2, height - 600, 900, 150);
+    image(cookieEaterText, width / 2, height - 600, 1100, 150);
     //Instructions
-    image(instructions, width / 2, height - 490, 400, 50);
-    image(useMouse, width / 2, height - 420, 390, 20);
-    image(avoidObstacles, width / 2, height - 370, 275, 17);
-    image(escapeMonster, width / 2, height - 260, 230, 20);
+    image(instructions, width / 2, height - 480, 300, 35);
+    image(useMouse, width * 0.40, height - 440, 300, 15);
+    image(toControl, width * 0.64, height - 440, 300, 15);
+    image(collectTreats, width / 2, height - 400, 300, 15);
+    image(avoidObstacles, width / 2, height - 360, 300, 15);
+    image(escapeMonster, width / 2, height - 320, 300, 20);
+    //Variations text
+    image(variationsText, width / 2, height - 280, 300, 35);
+    image(og, width * 0.20, height - 205, 60, 25);
+    image(pressN, width * 0.20, height - 180, 100, 15);
+    image(xulaText, width / 2, height - 180, 60, 25);
+    image(pressD, width / 2, height - 155, 100, 15);
+    image(frijolText, width * 0.80, height - 205, 60, 25);
+    image(pressC, width * 0.80, height - 180, 100, 15);
+    image(clickHere, width / 2, height - 100, 350, 30);
     pop();
 };
 

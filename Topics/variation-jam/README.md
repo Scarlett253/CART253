@@ -35,9 +35,10 @@ This bit should include the license you want to apply to your work. For example:
 
 ## Sourtces
 * my mod-jam code example
-* my art-jam
+* my art-jam code example
 * conditionals-challenge
 * p5js lerp and map
 * https://freesound.org/
+* Giphy
 * Arrays class example and challenge + p5js examples
-* Chloé's Art Jam
+* Chloé's Art Jam code example
