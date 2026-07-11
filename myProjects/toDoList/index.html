@@ -10,7 +10,7 @@
     <button onclick="clearAll()">Clear All</button>
 
     <script>
-        // Function to add a task
+        // Task array
         let tasks = [];
 
         // Function to show the list
@@ -20,6 +20,20 @@
                 html += "<li>" + tasks[i] +
                     " <button onclick='removeTask(" + i + ")'>x</button></li>";
             }
+            document.getElementById("list").innerHTML = html;
+        }
+
+        // Function to add a task
+        function addTask() {
+            let taskInput = document.getElementById("task");
+            let text = taskInput.value;
+            if (text === "") {
+                return;
+            }
+            tasks.push(text);
+            taskInput.value = "";
+            saveTasks();
+            displayTasks();
         }
     </script>
 
