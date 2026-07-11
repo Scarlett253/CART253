@@ -43,6 +43,18 @@
             displayTasks();
         }
 
+        // Function to clear all tasks
+        function clearAll() {
+            tasks = [];
+            saveTasks();
+            displayTasks();
+        }
+
+        // Function to save tasks
+        function saveTasks() {
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
     </script>
 
 </body>
