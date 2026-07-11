@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2> Scarlett's To-Do List</h2>
+
+    <input id="task" placeholder="New task">
+    <button onclick="addTask()">Add</button>
+    <ul id="list"></ul>
+    <button onclick="clearAll()">Clear All</button>
+
+    <script>
+        // Function to add a task
+        let tasks = [];
+
+        // Function to show the list
+        function displayTasks() {
+            let html = "";
+            for (let i = 0; i < tasks.length; i++) {
+                html += "<li>" + tasks[i] +
+                    " <button onclick='removeTask(" + i + ")'>x</button></li>";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
