@@ -8,6 +8,8 @@
     <button onclick="addTask()">Add</button>
     <ul id="list"></ul>
     <button onclick="clearAll()">Clear All</button>
+    <keydown id="task" onkeydown="if(event.key === 'Enter') { addTask(); }"></keydown>
+
 
     <script>
         // Task array
@@ -34,6 +36,7 @@
             taskInput.value = "";
             saveTasks();
             displayTasks();
+
         }
 
         // Function to remove a task
@@ -66,6 +69,7 @@
         //Load and display task when page loads 
         loadTasks();
         displayTasks();
+
     </script>
 
 </body>
